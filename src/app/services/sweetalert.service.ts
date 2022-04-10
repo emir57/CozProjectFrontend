@@ -20,10 +20,15 @@ export class SweetalertService {
         toast.addEventListener('mouseleave', sweetalert.resumeTimer)
       }
     })
-
     Toast.fire({
-      icon: 'success',
+      icon: 'question',
       title: message
     })
   }
+}
+export enum IconType{
+  Success = "success",
+  Info = "info",
+  Error = "error",
+  Question = "question"
 }
