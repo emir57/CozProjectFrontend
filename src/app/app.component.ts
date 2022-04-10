@@ -7,6 +7,6 @@ import { SweetalertService } from './services/sweetalert.service';
 })
 export class AppComponent {
   constructor(private sweetAlertService:SweetalertService) {
-    this.sweetAlertService.showMessage();
+    this.sweetAlertService.showMessage("Giriş Başarılı");
   }
 }
