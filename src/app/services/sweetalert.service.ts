@@ -26,13 +26,17 @@ export class SweetalertService {
     })
   }
 }
-export enum SweetIconType{
+export class SweetOptions {
+  iconType: SweetIconType;
+  position: SweetPosition;
+}
+export enum SweetIconType {
   Success = "success",
   Info = "info",
   Error = "error",
   Question = "question"
 }
-export enum SweetPosition{
+export enum SweetPosition {
   Top = "top-end",
   Bottom = "bottom-end"
 }
