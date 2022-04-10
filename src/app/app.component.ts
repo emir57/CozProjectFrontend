@@ -6,7 +6,5 @@ import { SweetalertService, SweetIconType, SweetPosition } from './services/swee
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private sweetAlertService:SweetalertService) {
-    this.sweetAlertService.showMessage("Giriş Başarılı");
-  }
+  constructor() {}
 }
