@@ -16,22 +16,22 @@
           <div class="form-floating mb-3">
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="coz@example.com">
             <label for="email">Eposta Adresi</label>
-            <div class="text-danger"
+            <small class="text-danger"
               *ngIf="(loginForm.get('email').touched || loginForm.get('email').dirty)&& loginForm.get('email').errors">
               <div *ngIf="loginForm.get('email').errors.required">Eposta boş olamaz</div>
               <div *ngIf="loginForm.get('email').errors.email">Eposta geçersiz</div>
               <div *ngIf="loginForm.get('email').errors.maxlength">Eposta maksimum
                 {{loginForm.get('email').errors.maxlength.requiredLength}} karakter olabilir</div>
-            </div>
+            </small>
           </div>
           <div class="form-floating mb-3">
             <input formControlName="password" type="password" class="form-control" id="password" placeholder="Şifreniz">
             <label for="password">Şifre</label>
-            <div class="text-danger"
+            <small class="text-danger"
               *ngIf="(loginForm.get('password').touched || loginForm.get('password').dirty) && loginForm.get('password').errors">
                 <div *ngIf="loginForm.get('password').errors.required">Şifre boş olamaz</div>
                 <div *ngIf="loginForm.get('password').errors.minlength">Şifre en az {{loginForm.get('password').errors.minlength.requiredLength}} karakter olabilir</div>
-            </div>
+            </small>
           </div>
           <button [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary" type="submit">Giriş Yap</button>
           <hr class="my-4">
