@@ -11,7 +11,7 @@ export class SweetalertService {
   showMessage(message: String, options: Partial<SweetOptions>) {
     const Toast = sweetalert.mixin({
       toast: true,
-      position: 'top-end',
+      position: options.position ?? SweetPosition.Top,
       showConfirmButton: false,
       timer: 3000,
       timerProgressBar: true,
@@ -21,7 +21,7 @@ export class SweetalertService {
       }
     })
     Toast.fire({
-      icon: 'question',
+      icon: options.iconType ?? SweetIconType.Success,
       title: message
     })
   }
