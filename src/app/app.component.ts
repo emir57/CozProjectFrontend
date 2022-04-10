@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SweetalertService } from './services/sweetalert.service';
+import { SweetalertService, SweetIconType, SweetPosition } from './services/sweetalert.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -7,6 +7,6 @@ import { SweetalertService } from './services/sweetalert.service';
 })
 export class AppComponent {
   constructor(private sweetAlertService:SweetalertService) {
-    this.sweetAlertService.showMessage("Giriş Başarılı",{});
+    this.sweetAlertService.showMessage("Giriş Başarılı");
   }
 }
