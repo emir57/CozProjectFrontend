@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as alertifyjs from "alertifyjs"
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,6 @@ import * as alertifyjs from "alertifyjs"
 })
 export class AppComponent {
   constructor() {
-    alertifyjs.notify("msg","success");
+
   }
 }
