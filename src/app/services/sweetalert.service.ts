@@ -33,5 +33,6 @@ export enum SweetIconType{
   Question = "question"
 }
 export enum SweetPosition{
-
+  Top = "top-end",
+  Bottom = "bottom-end"
 }
