@@ -10,12 +10,12 @@
   font-family: 'Montserrat', sans-serif;
   font-size: x-large;
   font-weight: 700;
-  background: #9D50BB;
-  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #6E48AA, #9D50BB);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  // background: #9D50BB;
+  // background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);
+  // background: linear-gradient(to right, #6E48AA, #9D50BB);
+  font-size: 25px;
+  background: rgb(59,205,232);
+background: radial-gradient(circle, rgba(59,205,232,1) 4%, rgba(0,255,21,1) 100%);
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,13 +29,11 @@
 
 ion-content {
   --background: #B3FFAB;
-  /* fallback for old browsers */
   --background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);
-  /* Chrome 10-25, Safari 5.1-6 */
   --background: linear-gradient(to right, #12FFF7, #B3FFAB);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.login-card{
+
+.login-card {
   opacity: .96;
   border-radius: 10px;
 }
