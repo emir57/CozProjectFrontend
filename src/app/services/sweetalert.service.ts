@@ -7,6 +7,7 @@ import * as sweetalert from "../../../node_modules/sweetalert2/dist/sweetalert2.
 export class SweetalertService {
 
   constructor() { }
+
   showMessage() {
     const Toast = sweetalert.mixin({
       toast: true,
