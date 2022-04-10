@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SweetalertService, SweetIconType, SweetPosition } from './services/sweetalert.service';
+import { SweetalertService, SweetIconType, SweetPosition } from './services/common/sweetalert.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
