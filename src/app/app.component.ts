@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { PluginListenerHandle } from '@capacitor/core';
-import { Motion } from '@capacitor/motion';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +6,6 @@ import { Motion } from '@capacitor/motion';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  isMotion: string = "";
   constructor() {
-    this.motion();
-  }
-  async motion() {
-    await Motion.addListener("accel", event => {
-      this.isMotion = "Device motion event: " + event;
-    })
   }
 }
