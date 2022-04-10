@@ -22,4 +22,8 @@ export class LoginPage implements OnInit {
     })
   }
 
+  login(){
+
+  }
+
 }
