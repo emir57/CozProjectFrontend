@@ -13,7 +13,7 @@ export class SweetalertService {
       toast: true,
       position: options.position ?? SweetPosition.Top,
       showConfirmButton: false,
-      timer: 3000,
+      timer: options.time ?? 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
         toast.addEventListener('mouseenter', sweetalert.stopTimer)
@@ -22,13 +22,14 @@ export class SweetalertService {
     })
     Toast.fire({
       icon: options.iconType ?? SweetIconType.Success,
-      title: message
+      title: message,
     })
   }
 }
 export class SweetOptions {
   iconType: SweetIconType;
   position: SweetPosition;
+  time: number;
 }
 export enum SweetIconType {
   Success = "success",
