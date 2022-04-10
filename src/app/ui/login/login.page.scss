@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital,wght@1,500&display=swap');
-
+*{
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Montserrat', sans-serif;
+}
 .coz {
   font-family: 'Dancing Script', cursive;
   font-family: 'Montserrat', sans-serif;
@@ -14,4 +17,8 @@
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.login-title{
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Montserrat', sans-serif;
 }
