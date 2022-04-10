@@ -8,7 +8,7 @@ export class SweetalertService {
 
   constructor() { }
 
-  showMessage(message: String) {
+  showMessage(message: String, options: Partial<SweetOptions>) {
     const Toast = sweetalert.mixin({
       toast: true,
       position: 'top-end',
