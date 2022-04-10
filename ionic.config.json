@@ -1,0 +1,7 @@
+{
+  "name": "CozProjectFrontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
