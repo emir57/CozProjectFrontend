@@ -34,7 +34,7 @@
               "src/theme/variables.scss",
               "src/global.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/alertifyjs/src/less/themes/bootstrap.less",
+              "./node_modules/alertifyjs/build/css/themes/bootstrap.min.css",
               "./node_modules/sweetalert2/dist/sweetalert2.min.css"
             ],
             "scripts": [
