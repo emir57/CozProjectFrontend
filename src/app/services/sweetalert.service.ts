@@ -8,7 +8,7 @@ export class SweetalertService {
 
   constructor() { }
 
-  showMessage() {
+  showMessage(message: String) {
     const Toast = sweetalert.mixin({
       toast: true,
       position: 'top-end',
@@ -23,7 +23,7 @@ export class SweetalertService {
 
     Toast.fire({
       icon: 'success',
-      title: 'Signed in successfully'
+      title: message
     })
   }
 }
