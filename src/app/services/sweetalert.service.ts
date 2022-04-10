@@ -12,7 +12,7 @@ export class SweetalertService {
     const Toast = sweetalert.mixin({
       toast: true,
       position: options.position ?? SweetPosition.Top,
-      showConfirmButton: false,
+      showConfirmButton: options.confirmButton ?? false,
       timer: options.time ?? 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
@@ -30,6 +30,7 @@ export class SweetOptions {
   iconType: SweetIconType;
   position: SweetPosition;
   time: number;
+  confirmButton: boolean;
 }
 export enum SweetIconType {
   Success = "success",
