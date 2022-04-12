@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
+import { LoginModel } from 'src/app/models/auth/login-model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
     console.log(this.baseUrl)
   }
 
-  login() {
+  login(loginModel: LoginModel) {
 
   }
 }
