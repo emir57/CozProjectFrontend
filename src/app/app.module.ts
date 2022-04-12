@@ -17,7 +17,10 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: "baseUrl", useValue: "https://localhost:44379/" }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
