@@ -14,4 +14,8 @@ export class AuthService {
     this.isLogin = isLogin;
     console.log(this.baseUrl)
   }
+
+  login() {
+
+  }
 }
