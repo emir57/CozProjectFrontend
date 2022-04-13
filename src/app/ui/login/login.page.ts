@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
@@ -98,6 +99,14 @@ export class LoginPage implements OnInit {
         this.checkToken();
       }, 1000);
     }
+  }
+
+  async uploadImage() {
+    const image = await Camera.getPhoto({
+      quality: 75,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos
+    })
   }
 }
 
