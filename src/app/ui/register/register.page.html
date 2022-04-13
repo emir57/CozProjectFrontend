@@ -5,5 +5,45 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="login-card container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="login-title display-4 fw-bold lh-1 mb-3">Giriş Yap</h1>
+        <p class="col-lg-10 fs-4"></p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form [formGroup]="loginForm" class="p-4 p-md-5 border rounded-3 bg-light">
+          <div class="form-floating mb-3">
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="coz@example.com">
+            <label for="email">Eposta Adresi</label>
+            <small class="text-danger" *ngIf="(email.touched || email.dirty)&& email.errors">
+              <div *ngIf="email.errors.required">Eposta boş olamaz</div>
+              <div *ngIf="email.errors.email">Eposta geçersiz</div>
+              <div *ngIf="email.errors.maxlength">
+                Eposta maksimum {{email.errors.maxlength.requiredLength}} karakter olabilir
+              </div>
+            </small>
+          </div>
+          <div class="form-floating mb-3">
+            <input formControlName="password" type="password" class="form-control" id="password" placeholder="Şifreniz">
+            <label for="password">Şifre</label>
+            <small class="text-danger" *ngIf="(password.touched || password.dirty) && password.errors">
+              <div *ngIf="password.errors.required">Şifre boş olamaz</div>
+              <div *ngIf="password.errors.minlength">
+                Şifre en az {{password.errors.minlength.requiredLength}} karakter olabilir
+              </div>
+            </small>
+          </div>
+          <button (click)="login()" [disabled]="!isOk" [disabled]="!loginForm.valid"
+            class="w-100 btn btn-lg btn-primary" type="submit">
+            <span *ngIf="isOk">Giriş Yap</span>
+            <span *ngIf="!isOk">Giriş Yapılıyor</span>
+            <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+          <hr class="my-4">
+          <small class="text-muted">Giriş yaptığınızda, tüm kullanım haklarını kabul etmiş olursunuz.</small>
+        </form>
+      </div>
+    </div>
+  </div>
 </ion-content>
