@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
 
   isOk: boolean = true;
   loginForm: FormGroup;
+  token: any = null;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
