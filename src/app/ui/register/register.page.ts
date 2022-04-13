@@ -40,4 +40,17 @@ export class RegisterPage implements OnInit {
     return password === rePassword ? null : { notSame: true }
   }
 
+  get email() {
+    return this.registerForm.get("email");
+  }
+  get password() {
+    return this.registerForm.get("password");
+  }
+  get firstName() {
+    return this.registerForm.get("firstName");
+  }
+  get lastName() {
+    return this.registerForm.get("lastName");
+  }
+
 }
