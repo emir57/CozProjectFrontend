@@ -14,6 +14,16 @@
       <div class="col-md-10 mx-auto col-lg-5">
         <form [formGroup]="registerForm" class="p-4 p-md-5 border rounded-3 bg-light">
           <div class="form-floating mb-3">
+            <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="Emir">
+            <label for="firstName">Adınız</label>
+            <small class="text-danger" *ngIf="(firstName.touched || firstName.dirty)&& firstName.errors">
+              <div *ngIf="firstName.errors.required">Adınız boş olamaz</div>
+              <div *ngIf="firstName.errors.maxlength">
+                Adınız maksimum {{firstName.errors.maxlength.requiredLength}} karakter olabilir
+              </div>
+            </small>
+          </div>
+          <div class="form-floating mb-3">
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="coz@example.com">
             <label for="email">Eposta Adresi</label>
             <small class="text-danger" *ngIf="(email.touched || email.dirty)&& email.errors">
