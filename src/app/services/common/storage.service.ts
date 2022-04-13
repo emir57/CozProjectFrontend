@@ -8,10 +8,16 @@ export class StorageService {
 
   constructor() { }
 
-  async setName(key:string,value:any) {
+  async setName(key: string, value: any) {
     await Storage.set({
-      key:key,
-      value:JSON.stringify(value)
+      key: key,
+      value: JSON.stringify(value)
     });
+  }
+
+  async removeName(key: string) {
+    await Storage.remove({
+      key: key
+    })
   }
 }
