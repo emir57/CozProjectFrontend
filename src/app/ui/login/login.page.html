@@ -34,11 +34,12 @@
               </div>
             </small>
           </div>
-          <button (click)="login()" [disabled]="!isOk" [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary" type="submit">
+          <button (click)="login()" [disabled]="!isOk" [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary my-3" type="submit">
             <span *ngIf="isOk">Giriş Yap</span>
             <span *ngIf="!isOk">Giriş Yapılıyor</span>
             <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </button>
+          <span class="">Hesabınız yok mu? <a style="text-decoration: none;" routerLink="/register">Kayıt Olun</a></span>
           <hr class="my-4">
           <small class="text-muted">Giriş yaptığınızda, tüm kullanım haklarını kabul etmiş olursunuz.</small>
         </form>
