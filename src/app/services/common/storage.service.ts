@@ -23,7 +23,7 @@ export class StorageService {
 
   async checkName(key: KeyType) {
     const { value } = await Storage.get({ key: key });
-    return value;
+    return await value;
   }
 }
 

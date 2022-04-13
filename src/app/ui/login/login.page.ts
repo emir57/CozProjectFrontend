@@ -37,8 +37,15 @@ export class LoginPage implements OnInit {
       this.isOk = false;
       let loginModel = this.loginForm.value;
       this.authService.login(loginModel)
-      this.storageService.checkName(KeyType.Token).then(
-        (value) => this.token = JSON.parse(value));
+      // let interval = setInterval(() => {
+      //   setTimeout(() => {
+      //     console.log(this.token)
+      //     if (this.token) {
+      //       clearInterval(interval);
+      //       this.isOk = true;
+      //     }
+      //   }, 500);
+      // })
       await this.checkToken();
     }
 
@@ -54,6 +61,7 @@ export class LoginPage implements OnInit {
   async checkToken() {
     try {
       if (!this.token) {
+        this.token = JSON.parse(await this.storageService.checkName(KeyType.Token));
         throw new Error;
       } else {
         this.isOk = true;
@@ -61,7 +69,7 @@ export class LoginPage implements OnInit {
     } catch (error) {
       setTimeout(() => {
         this.checkToken();
-      }, 500);
+      }, 1000);
     }
   }
 }
