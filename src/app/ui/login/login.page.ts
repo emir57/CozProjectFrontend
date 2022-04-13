@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/auth/login-model';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
@@ -15,6 +16,7 @@ export class LoginPage implements OnInit {
   isOk: boolean = true;
   loginForm: FormGroup;
   token: TokenModel = undefined;
+  user: LoginedUser = undefined;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -60,8 +62,9 @@ export class LoginPage implements OnInit {
 
   async checkToken() {
     try {
-      if (!this.token) {
+      if (!this.token && !this.user) {
         this.token = JSON.parse(await this.storageService.checkName(KeyType.Token));
+        this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
         throw new Error;
       } else {
         this.isOk = true;
