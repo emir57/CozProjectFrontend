@@ -54,6 +54,16 @@
               </div>
             </small>
           </div>
+          <div class="form-floating mb-3">
+            <input formControlName="rePassword" type="password" class="form-control" id="rePassword" placeholder="Şifre Tekrar">
+            <label for="password">Şifre</label>
+            <small class="text-danger" *ngIf="(rePassword.touched || rePassword.dirty) && rePassword.errors">
+              <div *ngIf="rePassword.errors.required">Şifre tekrarı boş olamaz</div>
+              <div *ngIf="rePassword.errors.minlength">
+                Şifre tekrarı en az {{rePassword.errors.minlength.requiredLength}} karakter olabilir
+              </div>
+            </small>
+          </div>
           <button (click)="register()" [disabled]="!isOk" [disabled]="!registerForm.valid"
             class="w-100 btn btn-lg btn-primary" type="submit">
             <span *ngIf="isOk">Kayıt Ol</span>

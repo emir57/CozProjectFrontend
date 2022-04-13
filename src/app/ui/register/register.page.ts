@@ -52,5 +52,8 @@ export class RegisterPage implements OnInit {
   get lastName() {
     return this.registerForm.get("lastName");
   }
+  get rePassword() {
+    return this.registerForm.get("rePassword");
+  }
 
 }
