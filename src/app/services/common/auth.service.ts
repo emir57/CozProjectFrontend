@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { LoginModel } from 'src/app/models/auth/login-model';
 
@@ -6,7 +7,7 @@ import { LoginModel } from 'src/app/models/auth/login-model';
 })
 export class AuthService {
 
-  constructor(@Inject("baseUrl") private baseUrl: string) { }
+  constructor(@Inject("baseUrl") private baseUrl: string, private http: HttpClient) { }
   private isLogin = false;
 
 
@@ -17,6 +18,11 @@ export class AuthService {
   }
 
   login(loginModel: LoginModel) {
+    let newUrl = `${this.baseUrl}/api/auth/login`;
+    this.http.post(newUrl, loginModel).subscribe(response => {
 
+    },responseErr=>{
+      console.error(responseErr)
+    })
   }
 }
