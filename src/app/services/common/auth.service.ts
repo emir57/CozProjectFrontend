@@ -32,9 +32,10 @@ export class AuthService {
   login(loginModel: LoginModel) {
     let newUrl = `${this.baseUrl}api/auth/login`;
     this.http.post<LoginResponseModel>(newUrl, loginModel).subscribe(response => {
+      console.log(response)
       if (response.success) {
-        this.storageService.setName(KeyType.Token, response.token);
-        this.storageService.setName(KeyType.Token, response.user);
+        this.storageService.setName(KeyType.Token, response.data.token);
+        this.storageService.setName(KeyType.Token, response.data.user);
         this.isLogin = true;
         this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
       } else if (!response.success) {
