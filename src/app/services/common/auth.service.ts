@@ -35,7 +35,7 @@ export class AuthService {
         this.messageService.showMessage(response.message, { iconType: SweetIconType.Success })
       }
     }, responseErr => {
-      console.error(responseErr)
+      console.error(responseErr.error.Message)
     })
   }
 }
