@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   login(loginModel: LoginModel) {
-    let newUrl = `${this.baseUrl}/api/auth/login`;
+    let newUrl = `${this.baseUrl}api/auth/login`;
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
         this.messageService.showMessage(response.message, { iconType: SweetIconType.Success })
