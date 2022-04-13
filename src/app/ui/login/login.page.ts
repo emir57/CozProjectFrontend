@@ -5,6 +5,7 @@ import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private messageService: SweetalertService
   ) { }
 
   ngOnInit() {
@@ -38,7 +40,27 @@ export class LoginPage implements OnInit {
     if (this.loginForm.valid) {
       this.isOk = false;
       let loginModel = this.loginForm.value;
-      this.authService.login(loginModel)
+      this.authService.login(loginModel).subscribe(response => {
+        if (response.success) {
+          this.storageService.setName(KeyType.Token, response.data.token);
+          this.storageService.setName(KeyType.User, response.data.user);
+          this.authService.setIsLogin(true);
+          this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
+        } else if (!response.success) {
+          this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
+        }
+      }, responseErr => {
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
+        if (responseErr.error.Errors) {
+          for (let i = 0; i < responseErr.error.Errors.length; i++) {
+            let message = responseErr.error.Errors[i];
+            this.messageService.showMessage(message.ErrorMessage, { iconType: SweetIconType.Error })
+          }
+        }
+        else if (responseErr.error.message == "Şifre Yanlış") {
+          this.messageService.showMessage("Eposta veya şifre hatalı", { iconType: SweetIconType.Error })
+        }
+      })
       await this.checkToken();
     }
 
