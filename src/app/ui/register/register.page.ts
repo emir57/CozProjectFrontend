@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterPage implements OnInit {
 
+  isOk: boolean = true;
   registerForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,

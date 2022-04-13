@@ -12,7 +12,7 @@
         <p class="col-lg-10 fs-4"></p>
       </div>
       <div class="col-md-10 mx-auto col-lg-5">
-        <form [formGroup]="loginForm" class="p-4 p-md-5 border rounded-3 bg-light">
+        <form [formGroup]="registerForm" class="p-4 p-md-5 border rounded-3 bg-light">
           <div class="form-floating mb-3">
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="coz@example.com">
             <label for="email">Eposta Adresi</label>
@@ -34,10 +34,10 @@
               </div>
             </small>
           </div>
-          <button (click)="login()" [disabled]="!isOk" [disabled]="!loginForm.valid"
+          <button (click)="login()" [disabled]="!isOk" [disabled]="!registerForm.valid"
             class="w-100 btn btn-lg btn-primary" type="submit">
-            <span *ngIf="isOk">Giriş Yap</span>
-            <span *ngIf="!isOk">Giriş Yapılıyor</span>
+            <span *ngIf="isOk">Kayıt Ol</span>
+            <span *ngIf="!isOk">Kayıt Olunuyor</span>
             <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           </button>
           <hr class="my-4">
