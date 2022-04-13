@@ -31,8 +31,6 @@ export class LoginPage implements OnInit {
   login() {
     if (this.loginForm.valid) {
       let loginModel = this.loginForm.value;
-      console.log(loginModel)
-      this.authService.setIsLogin(true);
       this.authService.login(loginModel)
     }
 

@@ -32,8 +32,9 @@ export class AuthService {
     let newUrl = `${this.baseUrl}api/auth/login`;
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
-        this.storageService.setName(KeyType.Token, response.data)
-        this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success })
+        this.storageService.setName(KeyType.Token, response.data);
+        this.isLogin = true;
+        this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
       } else if (!response.success) {
         this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
       }
@@ -45,7 +46,7 @@ export class AuthService {
           this.messageService.showMessage(message.ErrorMessage, { iconType: SweetIconType.Error })
         }
       }
-      else if(responseErr.error.message == "Şifre Yanlış"){
+      else if (responseErr.error.message == "Şifre Yanlış") {
         this.messageService.showMessage("Eposta veya şifre hatalı", { iconType: SweetIconType.Error })
       }
     })
