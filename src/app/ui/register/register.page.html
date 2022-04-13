@@ -63,6 +63,9 @@
                 Şifre tekrarı en az {{rePassword.errors.minlength.requiredLength}} karakter olabilir
               </div>
             </small>
+            <small class="text-danger" *ngIf="((rePassword.touched || rePassword.dirty) && registerForm.hasError('notSame'))">
+              Şifreler uyuşmuyor
+            </small>
           </div>
           <button (click)="register()" [disabled]="!isOk" [disabled]="!registerForm.valid"
             class="w-100 btn btn-lg btn-primary" type="submit">
