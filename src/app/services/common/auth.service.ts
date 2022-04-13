@@ -5,7 +5,7 @@ import { LoginModel } from 'src/app/models/auth/login-model';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { StorageService } from './storage.service';
-import { SweetalertService } from './sweetalert.service';
+import { SweetalertService, SweetIconType } from './sweetalert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class AuthService {
     let newUrl = `${this.baseUrl}/api/auth/login`;
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
-
+        this.messageService.showMessage(response.message, { iconType: SweetIconType.Success })
       }
     }, responseErr => {
       console.error(responseErr)
