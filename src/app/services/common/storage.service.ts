@@ -20,4 +20,9 @@ export class StorageService {
       key: key
     })
   }
+
+  async checkName(key: string) {
+    const { value } = await Storage.get({ key: key });
+    return value;
+  }
 }
