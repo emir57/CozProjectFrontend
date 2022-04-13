@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
@@ -24,11 +24,17 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private messageService: SweetalertService,
-    private router:Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.createLoginForm();
+    this.activatedRoute.params.subscribe(param => {
+      if (param["email"]) {
+        this.loginForm.get("email").setValue(param["email"]);
+      }
+    })
   }
 
   createLoginForm() {
