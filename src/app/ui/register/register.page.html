@@ -24,6 +24,16 @@
             </small>
           </div>
           <div class="form-floating mb-3">
+            <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Gurbuz">
+            <label for="firstName">Soyadınız</label>
+            <small class="text-danger" *ngIf="(lastName.touched || lastName.dirty)&& lastName.errors">
+              <div *ngIf="lastName.errors.required">Soyadınız boş olamaz</div>
+              <div *ngIf="lastName.errors.maxlength">
+                Soyadınız maksimum {{lastName.errors.maxlength.requiredLength}} karakter olabilir
+              </div>
+            </small>
+          </div>
+          <div class="form-floating mb-3">
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="coz@example.com">
             <label for="email">Eposta Adresi</label>
             <small class="text-danger" *ngIf="(email.touched || email.dirty)&& email.errors">
