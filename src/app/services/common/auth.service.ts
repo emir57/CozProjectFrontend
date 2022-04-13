@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
+import LoginResponseModel from 'src/app/models/auth/loginResponseModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { KeyType, StorageService } from './storage.service';
@@ -30,9 +31,10 @@ export class AuthService {
 
   login(loginModel: LoginModel) {
     let newUrl = `${this.baseUrl}api/auth/login`;
-    this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
+    this.http.post<LoginResponseModel>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
-        this.storageService.setName(KeyType.Token, response.data);
+        this.storageService.setName(KeyType.Token, response.token);
+        this.storageService.setName(KeyType.Token, response.user);
         this.isLogin = true;
         this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
       } else if (!response.success) {
