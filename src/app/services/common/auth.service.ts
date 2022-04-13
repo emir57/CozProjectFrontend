@@ -33,17 +33,22 @@ export class AuthService {
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
         console.log(response)
-        this.storageService.setName(KeyType.Token,response.data)
+        this.storageService.setName(KeyType.Token, response.data)
         this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success })
+      } else if (!response.success) {
+        this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
       }
     }, responseErr => {
       console.error(responseErr)
-      this.messageService.showMessage(responseErr.error.message,{iconType:SweetIconType.Error})
-      if(responseErr.error.Errors){
+      this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
+      if (responseErr.error.Errors) {
         for (let i = 0; i < responseErr.error.Errors.length; i++) {
           let message = responseErr.error.Errors[i];
-          this.messageService.showMessage(message.ErrorMessage,{iconType:SweetIconType.Error})
+          this.messageService.showMessage(message.ErrorMessage, { iconType: SweetIconType.Error })
         }
+      }
+      else if(responseErr.error.message == "Şifre Yanlış"){
+        this.messageService.showMessage("Eposta veya şifre hatalı", { iconType: SweetIconType.Error })
       }
     })
   }
