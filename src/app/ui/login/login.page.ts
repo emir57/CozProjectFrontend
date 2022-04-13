@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private storageService: StorageService,
-    private messageService: SweetalertService
+    private messageService: SweetalertService,
+    private router:Router
   ) { }
 
   ngOnInit() {
@@ -46,6 +48,7 @@ export class LoginPage implements OnInit {
           this.storageService.setName(KeyType.User, response.data.user);
           this.authService.setIsLogin(true);
           this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
+          this.router.navigateByUrl("/home")
         } else if (!response.success) {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
           this.isOk = true;
