@@ -48,6 +48,7 @@ export class LoginPage implements OnInit {
           this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
         } else if (!response.success) {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
+          this.isOk = true;
         }
       }, responseErr => {
         this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
@@ -60,6 +61,7 @@ export class LoginPage implements OnInit {
         else if (responseErr.error.message == "Şifre Yanlış") {
           this.messageService.showMessage("Eposta veya şifre hatalı", { iconType: SweetIconType.Error })
         }
+        this.isOk = true;
       })
       await this.checkToken();
     }
