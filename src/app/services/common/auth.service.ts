@@ -35,7 +35,7 @@ export class AuthService {
       console.log(response)
       if (response.success) {
         this.storageService.setName(KeyType.Token, response.data.token);
-        this.storageService.setName(KeyType.Token, response.data.user);
+        this.storageService.setName(KeyType.User, response.data.user);
         this.isLogin = true;
         this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
       } else if (!response.success) {
