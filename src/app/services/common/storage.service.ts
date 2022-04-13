@@ -26,3 +26,8 @@ export class StorageService {
     return value;
   }
 }
+
+export enum KeyType {
+  User = "user",
+  Token = "token"
+}
