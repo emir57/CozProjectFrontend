@@ -32,7 +32,6 @@ export class AuthService {
   login(loginModel: LoginModel) {
     let newUrl = `${this.baseUrl}api/auth/login`;
     this.http.post<LoginResponseModel>(newUrl, loginModel).subscribe(response => {
-      console.log(response)
       if (response.success) {
         this.storageService.setName(KeyType.Token, response.data.token);
         this.storageService.setName(KeyType.User, response.data.user);
