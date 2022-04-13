@@ -33,4 +33,8 @@ export class AuthService {
     let newUrl = `${this.baseUrl}api/auth/login`;
     return this.http.post<LoginResponseModel>(newUrl, loginModel)
   }
+
+  register(registerModel: RegisterModel) {
+
+  }
 }
