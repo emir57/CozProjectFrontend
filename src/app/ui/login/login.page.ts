@@ -2,14 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
-
+import { Filesystem, Directory } from "@capacitor/filesystem";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -101,22 +101,6 @@ export class LoginPage implements OnInit {
         this.checkToken();
       }, 1000);
     }
-  }
-  sonuc:any;
-  async uploadImage() {
-    const image = await Camera.getPhoto({
-      quality: 75,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos
-    })
-    const readFile = await FileSystem
-    const response = await fetch(image.webPath);
-    let data = new FormData();
-    data.append("file", await response.blob());
-
-    this.httpClient.post("https://localhost:44379/api/images/upload", data)
-      .subscribe((response) => this.sonuc = JSON.stringify(response))
-      this.sonuc = image.webPath;
   }
 }
 
