@@ -26,9 +26,8 @@
 }
 
 ion-content {
-  --background: #B3FFAB;
-  --background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);
-  --background: linear-gradient(to right, #12FFF7, #B3FFAB);
+  --background: rgb(232, 59, 170);
+  --background: linear-gradient(53deg, rgba(232, 59, 170, 1) 11%, rgba(4, 0, 255, 1) 100%);
 }
 
 .login-card {
