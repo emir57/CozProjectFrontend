@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import { AuthService } from 'src/app/services/common/auth.service';
-import { StorageService } from 'src/app/services/common/storage.service';
+import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
 
   isOk: boolean = true;
   loginForm: FormGroup;
-  token: any = null;
+  token: any;
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -31,10 +31,14 @@ export class LoginPage implements OnInit {
     })
   }
 
-  login() {
+  async login() {
     if (this.loginForm.valid) {
+      this.isOk = false;
       let loginModel = this.loginForm.value;
       this.authService.login(loginModel)
+      this.storageService.checkName(KeyType.Token).then(
+        (value) => this.token = value);
+      await this.checkToken();
     }
 
   }
@@ -46,4 +50,18 @@ export class LoginPage implements OnInit {
     return this.loginForm.get("password");
   }
 
+  async checkToken() {
+    try {
+      if (!this.token) {
+        throw "";
+      }
+      this.isOk = true;
+    } catch (error) {
+      setTimeout(() => {
+        this.checkToken();
+      }, 1000);
+    }
+  }
 }
+
+
