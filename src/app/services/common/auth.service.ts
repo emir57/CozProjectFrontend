@@ -1,15 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
+import { StorageService } from './storage.service';
+import { SweetalertService } from './sweetalert.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(@Inject("baseUrl") private baseUrl: string, private http: HttpClient) { }
+  constructor(
+    @Inject("baseUrl") private baseUrl: string,
+    private http: HttpClient,
+    private messageService: SweetalertService,
+    private router: Router,
+    private storageService: StorageService
+  ) { }
   private isLogin = false;
 
 
