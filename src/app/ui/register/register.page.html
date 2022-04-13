@@ -34,7 +34,7 @@
               </div>
             </small>
           </div>
-          <button (click)="login()" [disabled]="!isOk" [disabled]="!registerForm.valid"
+          <button (click)="register()" [disabled]="!isOk" [disabled]="!registerForm.valid"
             class="w-100 btn btn-lg btn-primary" type="submit">
             <span *ngIf="isOk">Kayıt Ol</span>
             <span *ngIf="!isOk">Kayıt Olunuyor</span>
