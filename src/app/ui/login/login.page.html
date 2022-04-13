@@ -34,7 +34,6 @@
               </div>
             </small>
           </div>
-          {{isOk}}
           <button (click)="login()" [disabled]="!isOk" [disabled]="!loginForm.valid" class="w-100 btn btn-lg btn-primary" type="submit">
             <span *ngIf="isOk">Giriş Yap</span>
             <span *ngIf="!isOk">Giriş Yapılıyor</span>

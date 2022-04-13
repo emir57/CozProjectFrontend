@@ -39,15 +39,6 @@ export class LoginPage implements OnInit {
       this.isOk = false;
       let loginModel = this.loginForm.value;
       this.authService.login(loginModel)
-      // let interval = setInterval(() => {
-      //   setTimeout(() => {
-      //     console.log(this.token)
-      //     if (this.token) {
-      //       clearInterval(interval);
-      //       this.isOk = true;
-      //     }
-      //   }, 500);
-      // })
       await this.checkToken();
     }
 
