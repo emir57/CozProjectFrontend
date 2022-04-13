@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -6,4 +7,11 @@ import { Injectable } from '@angular/core';
 export class StorageService {
 
   constructor() { }
+
+  async setName(key:string,value:any) {
+    await Storage.set({
+      key:key,
+      value:JSON.stringify(value)
+    });
+  }
 }
