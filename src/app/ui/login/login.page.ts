@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import { AuthService } from 'src/app/services/common/auth.service';
+import { StorageService } from 'src/app/services/common/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
   token: any = null;
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
