@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
-import { StorageService } from './storage.service';
+import { KeyType, StorageService } from './storage.service';
 import { SweetalertService, SweetIconType } from './sweetalert.service';
 
 @Injectable({
@@ -33,6 +33,7 @@ export class AuthService {
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
         console.log(response)
+        this.storageService.setName(KeyType.Token,response.data)
         this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success })
       }
     }, responseErr => {
