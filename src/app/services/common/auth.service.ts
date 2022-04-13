@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/app/models/auth/login-model';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import LoginResponseModel from 'src/app/models/auth/loginResponseModel';
+import RegisterModel from 'src/app/models/auth/registerModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { KeyType, StorageService } from './storage.service';
@@ -35,6 +37,7 @@ export class AuthService {
   }
 
   register(registerModel: RegisterModel) {
-
+    let newUrl = `${this.baseUrl}api/auth/register`;
+    return this.http.post<ResponseSingleModel<LoginedUser>>(newUrl, registerModel);
   }
 }
