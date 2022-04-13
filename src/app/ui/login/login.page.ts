@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/common/auth.service';
 })
 export class LoginPage implements OnInit {
 
+  isOk: boolean = true;
   loginForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
