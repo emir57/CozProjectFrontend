@@ -31,7 +31,7 @@ export class RegisterPage implements OnInit {
   }
 
   register() {
-    this.router.navigate(["/login", { email: this.registerForm.get("email") }])
+    this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
   }
 
   checkPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
