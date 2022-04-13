@@ -32,10 +32,18 @@ export class AuthService {
     let newUrl = `${this.baseUrl}api/auth/login`;
     this.http.post<ResponseSingleModel<TokenModel>>(newUrl, loginModel).subscribe(response => {
       if (response.success) {
-        this.messageService.showMessage(response.message, { iconType: SweetIconType.Success })
+        console.log(response)
+        this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success })
       }
     }, responseErr => {
-      console.error(responseErr.error.Message)
+      console.error(responseErr)
+      this.messageService.showMessage(responseErr.error.message,{iconType:SweetIconType.Error})
+      if(responseErr.error.Errors){
+        for (let i = 0; i < responseErr.error.Errors.length; i++) {
+          let message = responseErr.error.Errors[i];
+          this.messageService.showMessage(message.ErrorMessage,{iconType:SweetIconType.Error})
+        }
+      }
     })
   }
 }
