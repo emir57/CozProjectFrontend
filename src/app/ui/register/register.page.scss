@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Montserrat:ital,wght@1,500&display=swap');
+
+* {
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.coz {
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Montserrat', sans-serif;
+  font-size: x-large;
+  font-weight: 700;
+  font-size: 35px;
+  background: rgb(59, 205, 232);
+  background: linear-gradient(45deg, rgba(59, 205, 232, 1) 5%, rgba(0, 255, 21, 1) 100%);
+
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-title {
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+}
+
+ion-content {
+  --background: #B3FFAB;
+  --background: -webkit-linear-gradient(to right, #12FFF7, #B3FFAB);
+  --background: linear-gradient(to right, #12FFF7, #B3FFAB);
+}
+
+.login-card {
+  opacity: .96;
+  border-radius: 10px;
+}
