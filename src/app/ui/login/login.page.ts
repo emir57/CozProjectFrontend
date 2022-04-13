@@ -1,7 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Platform } from '@ionic/angular';
 import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
@@ -26,7 +28,8 @@ export class LoginPage implements OnInit {
     private storageService: StorageService,
     private messageService: SweetalertService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit() {
@@ -104,9 +107,14 @@ export class LoginPage implements OnInit {
   async uploadImage() {
     const image = await Camera.getPhoto({
       quality: 75,
-      resultType: CameraResultType.Base64,
+      resultType: CameraResultType.Uri,
       source: CameraSource.Photos
     })
+    const response = await fetch(image.webPath);
+    let data = new FormData();
+    data.append("file", await response.blob());
+    this.httpClient.post("https://localhost:44379/api/images/upload", data)
+      .subscribe((response: any) => this.messageService.showMessage(response.error.Message, { iconType: SweetIconType.Error }))
   }
 }
 
