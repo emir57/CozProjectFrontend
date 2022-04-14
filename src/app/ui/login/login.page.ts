@@ -1,13 +1,13 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
-import { ImageUploadService, LocalFile } from 'src/app/services/common/image-upload.service';
+import { LoadingService } from 'src/app/services/common/loading.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -25,10 +25,8 @@ export class LoginPage implements OnInit {
     private messageService: SweetalertService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private imageUploadService: ImageUploadService
+    private loadingService: LoadingService
   ) { }
-
-  images: LocalFile[] = [];
   ngOnInit() {
     this.createLoginForm();
     this.activatedRoute.params.subscribe(param => {
@@ -36,11 +34,6 @@ export class LoginPage implements OnInit {
         this.loginForm.get("email").setValue(param["email"]);
       }
     })
-
-    this.imageUploadService.loadFiles();
-    setTimeout(() => {
-      this.images = this.imageUploadService.images;
-    }, 1000);
   }
 
   createLoginForm() {
@@ -52,9 +45,10 @@ export class LoginPage implements OnInit {
 
   async login() {
     if (this.loginForm.valid) {
+      await this.loadingService.showLoading("Giriş Yapılıyor");
       this.isOk = false;
       let loginModel = this.loginForm.value;
-      this.authService.login(loginModel).subscribe(response => {
+      this.authService.login(loginModel).subscribe(async response => {
         if (response.success) {
           this.storageService.setName(KeyType.Token, response.data.token);
           this.storageService.setName(KeyType.User, response.data.user);
@@ -64,8 +58,9 @@ export class LoginPage implements OnInit {
         } else if (!response.success) {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
           this.isOk = true;
+          await this.loadingService.closeLoading();
         }
-      }, responseErr => {
+      }, async responseErr => {
         this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
         if (responseErr.error.Errors) {
           for (let i = 0; i < responseErr.error.Errors.length; i++) {
@@ -77,6 +72,7 @@ export class LoginPage implements OnInit {
           this.messageService.showMessage("Eposta veya şifre hatalı", { iconType: SweetIconType.Error })
         }
         this.isOk = true;
+        await this.loadingService.closeLoading();
       })
       await this.checkToken();
     }
@@ -104,10 +100,6 @@ export class LoginPage implements OnInit {
         this.checkToken();
       }, 1000);
     }
-  }
-
-  async uploadImage() {
-    await this.imageUploadService.selectImage().then(()=>{});
   }
 }
 

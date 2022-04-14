@@ -14,7 +14,7 @@ export class LoadingService {
     const loading = await this.loadingControl.create({
       message: message
     })
-    await loading.present;
+    await loading.present();
   }
 
   async closeLoading() {
