@@ -15,8 +15,17 @@ export class ImageUploadService {
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos
     });
-
+    console.log(image)
+    if (image) {
+      this.saveImage(image);
+    }
   }
+
+  async saveImage(photo: Photo) {
+    const fileName = new Date().getTime() + ".jpeg";
+  }
+
+
 }
 
 export interface LocalFile {
