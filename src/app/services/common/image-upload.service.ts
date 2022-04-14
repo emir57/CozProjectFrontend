@@ -75,7 +75,8 @@ export class ImageUploadService {
       data: base46Data
     })
     this.loadFiles();
-    this.startUpload(this.images[0]);
+    this.deleteFiles();
+    // this.startUpload(this.images[0]);
   }
 
   async readAsBase64(photo: Photo) {
@@ -107,8 +108,17 @@ export class ImageUploadService {
     let formData = new FormData();
     formData.append("file", await response.blob(), file.name);
     this.http.post(url, formData).subscribe(response => {
-
+      console.log(response)
     })
+  }
+  async deleteFiles() {
+    for (let image of this.images) {
+      await Filesystem.deleteFile({
+        directory: Directory.Data,
+        path: image.path
+      });
+    }
+    this.loadFiles();
   }
 }
 

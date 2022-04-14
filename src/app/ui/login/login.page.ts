@@ -108,7 +108,8 @@ export class LoginPage implements OnInit {
   }
 
   async uploadImage() {
-    await this.imageUploadService.selectImage();
+    // await this.imageUploadService.selectImage();
+    // this.imageUploadService.deleteFiles();
   }
 }
 
