@@ -65,9 +65,8 @@ export class ImageUploadService {
       source: CameraSource.Photos
     });
     if (image) {
-      // this.saveImage(image);
       const base46Data = await this.readAsBase64(image);
-      this.startUpload({
+      await this.startUpload({
         data: `${base46Data}`,
         name: "a",
         path: ""
@@ -120,7 +119,7 @@ export class ImageUploadService {
     const blob = await response.blob();
     let formData = new FormData();
     formData.append("file", blob, file.name);
-
+    this.messageService.showMessage(JSON.stringify(file))
     this.http.post(url, formData).subscribe(response => {
       // this.error = "data"+JSON.stringify(file.data)
     }, err => {
