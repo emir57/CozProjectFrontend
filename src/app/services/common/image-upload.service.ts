@@ -31,6 +31,8 @@ export class ImageUploadService {
         directory: Directory.Data,
         path: IMAGE_DIR
       })
+    }).then(_ => {
+      loading.dismiss();
     })
   }
 
