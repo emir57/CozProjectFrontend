@@ -1,15 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { LoginModel } from 'src/app/models/auth/login-model';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
-import { Filesystem, Directory } from "@capacitor/filesystem";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
