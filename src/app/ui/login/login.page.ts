@@ -36,6 +36,8 @@ export class LoginPage implements OnInit {
         this.loginForm.get("email").setValue(param["email"]);
       }
     })
+
+    this.imageUploadService.loadFiles();
   }
 
   createLoginForm() {
