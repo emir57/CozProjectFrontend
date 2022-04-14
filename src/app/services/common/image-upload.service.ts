@@ -27,9 +27,7 @@ export class ImageUploadService {
       path: IMAGE_DIR
     }).then(result => {
       console.log("HERE: ", result.files.length);
-      result.files.forEach(e => {
-        this.images.push({ path: e, data: "", name: "" })
-      })
+      this.loadFileData(result.files);
     }, async err => {
       console.log("err: ", err);
       await Filesystem.mkdir({
@@ -39,6 +37,17 @@ export class ImageUploadService {
     }).then(_ => {
       loading.dismiss();
     })
+  }
+  async loadFileData(fileNames: string[]) {
+    for (let f of fileNames) {
+      const filePath = `${IMAGE_DIR}/${f}`;
+
+      const readFile = await Filesystem.readFile({
+        directory: Directory.Data,
+        path: filePath
+      });
+      console.log("READ: ", readFile);
+    }
   }
 
   async selectImage() {
