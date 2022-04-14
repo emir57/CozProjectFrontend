@@ -56,7 +56,8 @@ export class LoginPage implements OnInit {
           this.isOk = true;
           await this.loadingService.closeLoading();
           this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
-          this.router.navigateByUrl("/home")
+          await this.checkToken();
+
         } else if (!response.success) {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Error })
           this.isOk = true;
@@ -76,7 +77,7 @@ export class LoginPage implements OnInit {
         this.isOk = true;
         await this.loadingService.closeLoading();
       })
-      await this.checkToken();
+
     }
 
   }
@@ -95,6 +96,9 @@ export class LoginPage implements OnInit {
         this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
         throw new Error;
       } else {
+        setTimeout(() => {
+          this.router.navigateByUrl("/home")
+        }, 1000);
         this.isOk = true;
       }
     } catch (error) {
