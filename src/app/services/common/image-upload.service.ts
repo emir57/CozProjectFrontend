@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core/testing';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { LoadingController, Platform } from '@ionic/angular';
@@ -10,6 +11,7 @@ export class ImageUploadService {
 
   images: LocalFile[] = [];
   constructor(
+    @Inject("baseUrl") private baseUrl: string,
     private platform: Platform,
     private loadingCtrl: LoadingController
   ) { }
@@ -25,8 +27,8 @@ export class ImageUploadService {
       path: IMAGE_DIR
     }).then(result => {
       console.log("HERE: ", result.files.length);
-      result.files.forEach(e=>{
-        this.images.push({path:e,data:"",name:""})
+      result.files.forEach(e => {
+        this.images.push({ path: e, data: "", name: "" })
       })
     }, async err => {
       console.log("err: ", err);
