@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Platform } from '@ionic/angular';
-import { fileURLToPath } from 'url';
 
 @Injectable({
   providedIn: 'root'
