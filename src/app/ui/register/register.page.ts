@@ -37,7 +37,9 @@ export class RegisterPage implements OnInit {
   register() {
     if (this.registerForm.valid) {
       this.isOk = false;
-
+      let registerModel = this.registerForm.value;
+      delete registerModel.rePassword;
+      this.authService.register(registerModel)
     }
     this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
   }
