@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class ImageUploadService {
 
   constructor() { }
+
 }
 
 export interface LocalFile {
