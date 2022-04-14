@@ -24,7 +24,7 @@ export class ImageUploadService {
       directory: Directory.Data,
       path: IMAGE_DIR
     }).then(result => {
-
+      console.log("HERE: ", result);
     }, async err => {
       console.log("err: ", err);
       await Filesystem.mkdir({
