@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { inject } from '@angular/core/testing';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
@@ -13,7 +14,8 @@ export class ImageUploadService {
   constructor(
     @Inject("baseUrl") private baseUrl: string,
     private platform: Platform,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private http: HttpClient
   ) { }
 
   async loadFiles() {
@@ -26,7 +28,6 @@ export class ImageUploadService {
       directory: Directory.Data,
       path: IMAGE_DIR
     }).then(result => {
-      console.log("HERE: ", result.files.length);
       this.loadFileData(result.files);
     }, async err => {
       await Filesystem.mkdir({
@@ -100,7 +101,10 @@ export class ImageUploadService {
   })
 
   startUpload(file: LocalFile) {
-
+    let url = `${this.baseUrl}api/images/upload`;
+    let formData = new FormData();
+    formData.append("file", file.data, file.name);
+    this.http.post(url, formData);
   }
 
 
