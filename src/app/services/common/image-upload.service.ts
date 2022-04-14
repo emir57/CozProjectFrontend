@@ -20,6 +20,18 @@ export class ImageUploadService {
       message: "Yükleniyor..",
     });
     await loading.present();
+    Filesystem.readdir({
+      directory: Directory.Data,
+      path: IMAGE_DIR
+    }).then(result => {
+
+    }, async err => {
+      console.log("err: ", err);
+      await Filesystem.mkdir({
+        directory: Directory.Data,
+        path: IMAGE_DIR
+      })
+    })
   }
 
   async selectImage() {
