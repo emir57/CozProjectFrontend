@@ -29,7 +29,6 @@ export class ImageUploadService {
       console.log("HERE: ", result.files.length);
       this.loadFileData(result.files);
     }, async err => {
-      console.log("err: ", err);
       await Filesystem.mkdir({
         directory: Directory.Data,
         path: IMAGE_DIR
@@ -61,7 +60,6 @@ export class ImageUploadService {
       resultType: CameraResultType.Uri,
       source: CameraSource.Photos
     });
-    console.log(image)
     if (image) {
       this.saveImage(image);
     }
@@ -69,7 +67,6 @@ export class ImageUploadService {
 
   async saveImage(photo: Photo) {
     const base46Data = await this.readAsBase64(photo);
-    console.log(base46Data);
     const fileName = new Date().getTime() + ".jpeg";
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
