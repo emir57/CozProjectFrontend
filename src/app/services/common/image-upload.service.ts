@@ -8,6 +8,15 @@ export class ImageUploadService {
 
   constructor() { }
 
+  async selectImage() {
+    const image = await Camera.getPhoto({
+      quality: 70,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Photos
+    });
+
+  }
 }
 
 export interface LocalFile {
