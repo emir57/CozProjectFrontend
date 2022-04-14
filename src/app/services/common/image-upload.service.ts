@@ -8,7 +8,12 @@ import { Platform } from '@ionic/angular';
 })
 export class ImageUploadService {
 
+  images: LocalFile[] = [];
   constructor(private platform: Platform) { }
+
+  async loadFiles() {
+
+  }
 
   async selectImage() {
     const image = await Camera.getPhoto({
@@ -32,6 +37,7 @@ export class ImageUploadService {
       path: `${IMAGE_DIR}/${fileName}`,
       data: base46Data
     })
+    this.loadFiles();
   }
 
   async readAsBase64(photo: Photo) {
