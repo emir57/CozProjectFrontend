@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { SweetalertService } from 'src/app/services/common/sweetalert.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private loadingService: LoadingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: SweetalertService
   ) { }
 
   ngOnInit() {
@@ -34,14 +36,26 @@ export class RegisterPage implements OnInit {
     }, { validators: this.checkPassword })
   }
 
-  register() {
+  async register() {
     if (this.registerForm.valid) {
       this.isOk = false;
+      await this.loadingService.showLoading("Kayıt Olunuyor..");
       let registerModel = this.registerForm.value;
       delete registerModel.rePassword;
-      this.authService.register(registerModel)
+      this.authService.register(registerModel).subscribe(async response => {
+        if (response.success) {
+          await this.loadingService.closeLoading();
+          setTimeout(() => {
+            this.messageService.showMessage(response.message);
+          }, 100);
+          this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
+        }
+      }, async responseErr => {
+        await this.loadingService.closeLoading();
+        console.log(responseErr);
+        this.messageService.showMessage(responseErr.error.Message);
+      })
     }
-    this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
   }
 
   checkPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
