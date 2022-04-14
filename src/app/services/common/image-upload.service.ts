@@ -99,6 +99,10 @@ export class ImageUploadService {
     reader.readAsDataURL(blob);
   })
 
+  startUpload(file: LocalFile) {
+
+  }
+
 
 }
 
