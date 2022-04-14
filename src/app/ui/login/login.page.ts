@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
+import { ImageUploadService } from 'src/app/services/common/image-upload.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 @Component({
@@ -25,7 +26,7 @@ export class LoginPage implements OnInit {
     private messageService: SweetalertService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private httpClient: HttpClient
+    private imageUploadService: ImageUploadService
   ) { }
 
   ngOnInit() {
@@ -98,6 +99,10 @@ export class LoginPage implements OnInit {
         this.checkToken();
       }, 1000);
     }
+  }
+
+  async uploadImage(){
+    await this.imageUploadService.selectImage();
   }
 }
 
