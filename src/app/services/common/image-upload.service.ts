@@ -11,6 +11,7 @@ import { LoadingController, Platform } from '@ionic/angular';
 export class ImageUploadService {
 
   images: LocalFile[] = [];
+  error:any;
   constructor(
     @Inject("baseUrl") private baseUrl: string,
     private platform: Platform,
@@ -62,7 +63,13 @@ export class ImageUploadService {
       source: CameraSource.Photos
     });
     if (image) {
-      this.saveImage(image);
+      // this.saveImage(image);
+      const base46Data = await this.readAsBase64(image);
+      this.startUpload({
+        data:`${base46Data}`,
+        name:"a",
+        path:""
+      })
     }
   }
 
@@ -75,8 +82,11 @@ export class ImageUploadService {
       data: base46Data
     })
     this.loadFiles();
-    this.deleteFiles();
-    // this.startUpload(this.images[0]);
+    setTimeout(() => {
+      this.startUpload(this.images[0]);
+      this.deleteFiles();
+    }, 1000);
+
   }
 
   async readAsBase64(photo: Photo) {
@@ -105,10 +115,13 @@ export class ImageUploadService {
   async startUpload(file: LocalFile) {
     const response = await fetch(file.data);
     let url = `${this.baseUrl}api/images/upload`;
+    const blob = await response.blob();
     let formData = new FormData();
-    formData.append("file", await response.blob(), file.name);
+    formData.append("file", blob , file.name);
     this.http.post(url, formData).subscribe(response => {
-      console.log(response)
+      this.error = file
+    },err=>{
+      this.error = file;
     })
   }
   async deleteFiles() {

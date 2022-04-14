@@ -44,6 +44,7 @@
           <small class="text-muted">Giriş yaptığınızda, tüm kullanım haklarını kabul etmiş olursunuz.</small>
         </form>
         <button (click)="uploadImage()">Resim Yükle</button>
+        {{error}}
         <div *ngFor="let image of images">
           <img [src]="image.data" alt="">
         </div>
