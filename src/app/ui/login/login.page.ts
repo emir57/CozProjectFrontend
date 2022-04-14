@@ -14,8 +14,6 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-  error: string;
   isOk: boolean = true;
   loginForm: FormGroup;
   token: TokenModel = undefined;
@@ -109,12 +107,7 @@ export class LoginPage implements OnInit {
   }
 
   async uploadImage() {
-    await this.imageUploadService.selectImage().then(()=>{
-      setTimeout(() => {
-        this.error =  JSON.stringify(this.imageUploadService.error)
-      }, 1000);
-    });
-    // this.imageUploadService.deleteFiles();
+    await this.imageUploadService.selectImage().then(()=>{});
   }
 }
 
