@@ -46,8 +46,16 @@ export class ImageUploadService {
       const blob = await response.blob();
       return await this.convertBlobToBase64(blob) as string;
     }
-
   }
+
+  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
+    const reader = new FileReader;
+    reader.onerror = reject;
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.readAsDataURL(blob);
+  })
 
 
 }
