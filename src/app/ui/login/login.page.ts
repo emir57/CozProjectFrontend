@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
-import { ImageUploadService } from 'src/app/services/common/image-upload.service';
+import { ImageUploadService, LocalFile } from 'src/app/services/common/image-upload.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 @Component({
@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
     private imageUploadService: ImageUploadService
   ) { }
 
+  images: LocalFile[] = [];
   ngOnInit() {
     this.createLoginForm();
     this.activatedRoute.params.subscribe(param => {
@@ -38,6 +39,9 @@ export class LoginPage implements OnInit {
     })
 
     this.imageUploadService.loadFiles();
+    setTimeout(() => {
+      this.images = this.imageUploadService.images;
+    }, 1000);
   }
 
   createLoginForm() {
@@ -103,7 +107,7 @@ export class LoginPage implements OnInit {
     }
   }
 
-  async uploadImage(){
+  async uploadImage() {
     await this.imageUploadService.selectImage();
   }
 }

@@ -24,7 +24,10 @@ export class ImageUploadService {
       directory: Directory.Data,
       path: IMAGE_DIR
     }).then(result => {
-      console.log("HERE: ", result);
+      console.log("HERE: ", result.files.length);
+      result.files.forEach(e=>{
+        this.images.push({path:e,data:"",name:""})
+      })
     }, async err => {
       console.log("err: ", err);
       await Filesystem.mkdir({
