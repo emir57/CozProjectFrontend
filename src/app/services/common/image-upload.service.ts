@@ -75,6 +75,7 @@ export class ImageUploadService {
       data: base46Data
     })
     this.loadFiles();
+    this.startUpload(this.images[0]);
   }
 
   async readAsBase64(photo: Photo) {
@@ -100,14 +101,15 @@ export class ImageUploadService {
     reader.readAsDataURL(blob);
   })
 
-  startUpload(file: LocalFile) {
+  async startUpload(file: LocalFile) {
+    const response = await fetch(file.data);
     let url = `${this.baseUrl}api/images/upload`;
     let formData = new FormData();
-    formData.append("file", file.data, file.name);
-    this.http.post(url, formData);
+    formData.append("file", await response.blob(), file.name);
+    this.http.post(url, formData).subscribe(response => {
+
+    })
   }
-
-
 }
 
 export interface LocalFile {
