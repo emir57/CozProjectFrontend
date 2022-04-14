@@ -46,7 +46,11 @@ export class ImageUploadService {
         directory: Directory.Data,
         path: filePath
       });
-      console.log("READ: ", readFile);
+      this.images.push({
+        name: f,
+        path: filePath,
+        data: `data:image/jpeg;base64,${readFile.data}`
+      });
     }
   }
 
