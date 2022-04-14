@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
-import { Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,17 @@ import { Platform } from '@ionic/angular';
 export class ImageUploadService {
 
   images: LocalFile[] = [];
-  constructor(private platform: Platform) { }
+  constructor(
+    private platform: Platform,
+    private loadingCtrl: LoadingController
+  ) { }
 
   async loadFiles() {
-
+    this.images = [];
+    const loading = await this.loadingCtrl.create({
+      message: "Yükleniyor..",
+    });
+    await loading.present();
   }
 
   async selectImage() {
