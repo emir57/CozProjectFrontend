@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/common/auth.service';
+import { LoadingService } from 'src/app/services/common/loading.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,9 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -22,15 +26,19 @@ export class RegisterPage implements OnInit {
 
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
-      firstName: ['', [Validators.required, Validators.maxLength(20)]],
-      lastName: ['', [Validators.required, Validators.maxLength(20)]],
-      email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      rePassword: ['', [Validators.required]]
+      firstName: ['Emir', [Validators.required, Validators.maxLength(20)]],
+      lastName: ['Gürbüz', [Validators.required, Validators.maxLength(20)]],
+      email: ['emir.gurbuz07@hotmail.com', [Validators.required, Validators.email, Validators.maxLength(50)]],
+      password: ['123456', [Validators.required, Validators.minLength(5)]],
+      rePassword: ['123456', [Validators.required]]
     }, { validators: this.checkPassword })
   }
 
   register() {
+    if (this.registerForm.valid) {
+      this.isOk = false;
+
+    }
     this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
   }
 
