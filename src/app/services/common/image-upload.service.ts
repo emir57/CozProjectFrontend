@@ -4,6 +4,7 @@ import { inject } from '@angular/core/testing';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { LoadingController, Platform } from '@ionic/angular';
+import { SweetalertService } from './sweetalert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,13 @@ import { LoadingController, Platform } from '@ionic/angular';
 export class ImageUploadService {
 
   images: LocalFile[] = [];
-  error:any;
+  error: any;
   constructor(
     @Inject("baseUrl") private baseUrl: string,
     private platform: Platform,
     private loadingCtrl: LoadingController,
-    private http: HttpClient
+    private http: HttpClient,
+    private messageService: SweetalertService
   ) { }
 
   async loadFiles() {
@@ -66,9 +68,9 @@ export class ImageUploadService {
       // this.saveImage(image);
       const base46Data = await this.readAsBase64(image);
       this.startUpload({
-        data:`${base46Data}`,
-        name:"a",
-        path:""
+        data: `${base46Data}`,
+        name: "a",
+        path: ""
       })
     }
   }
@@ -117,11 +119,12 @@ export class ImageUploadService {
     let url = `${this.baseUrl}api/images/upload`;
     const blob = await response.blob();
     let formData = new FormData();
-    formData.append("file", blob , file.name);
+    formData.append("file", blob, file.name);
+
     this.http.post(url, formData).subscribe(response => {
-      this.error = file
-    },err=>{
-      this.error = file;
+      // this.error = "data"+JSON.stringify(file.data)
+    }, err => {
+      // this.error = "data"+JSON.stringify(file.data);
     })
   }
   async deleteFiles() {
