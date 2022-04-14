@@ -53,6 +53,8 @@ export class LoginPage implements OnInit {
           this.storageService.setName(KeyType.Token, response.data.token);
           this.storageService.setName(KeyType.User, response.data.user);
           this.authService.setIsLogin(true);
+          this.isOk = true;
+          await this.loadingService.closeLoading();
           this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
           this.router.navigateByUrl("/home")
         } else if (!response.success) {
