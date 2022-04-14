@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
   createRegisterForm() {
     this.registerForm = this.formBuilder.group({
       firstName: ['Emir', [Validators.required, Validators.maxLength(20)]],
-      lastName: ['Gürbüz', [Validators.required, Validators.maxLength(20)]],
+      lastName: ['Gürbüz', [Validators.required, Validators.maxLength(30)]],
       email: ['emir.gurbuz07@hotmail.com', [Validators.required, Validators.email, Validators.maxLength(50)]],
       password: ['123456', [Validators.required, Validators.minLength(5)]],
       rePassword: ['123456', [Validators.required]]
@@ -55,7 +55,14 @@ export class RegisterPage implements OnInit {
         this.isOk = true;
         await this.loadingService.closeLoading();
         console.log(responseErr);
-        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
+        if (responseErr.error.Errors) {
+          for (let i = 0; i < responseErr.error.Errors.length; i++) {
+            const element = responseErr.error.Errors[i];
+            console.log(element.ErrorMessage)
+            this.messageService.showMessage(element.ErrorMessage, { iconType: SweetIconType.Error });
+          }
+        }else
+          this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
       })
     }
   }
