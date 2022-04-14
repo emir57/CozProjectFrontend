@@ -25,7 +25,8 @@ export class ImageUploadService {
   }
 
   async saveImage(photo: Photo) {
-    const base46Data = "";
+    const base46Data = await this.readAsBase64(photo);
+    console.log(base46Data);
     const fileName = new Date().getTime() + ".jpeg";
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
