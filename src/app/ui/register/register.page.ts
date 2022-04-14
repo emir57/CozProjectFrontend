@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn,
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
-import { SweetalertService } from 'src/app/services/common/sweetalert.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 
 @Component({
   selector: 'app-register',
@@ -44,6 +44,7 @@ export class RegisterPage implements OnInit {
       delete registerModel.rePassword;
       this.authService.register(registerModel).subscribe(async response => {
         if (response.success) {
+          this.isOk = true;
           await this.loadingService.closeLoading();
           setTimeout(() => {
             this.messageService.showMessage(response.message);
@@ -51,9 +52,10 @@ export class RegisterPage implements OnInit {
           this.router.navigate(["/login", { email: this.registerForm.get("email").value }])
         }
       }, async responseErr => {
+        this.isOk = true;
         await this.loadingService.closeLoading();
         console.log(responseErr);
-        this.messageService.showMessage(responseErr.error.Message);
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
       })
     }
   }
