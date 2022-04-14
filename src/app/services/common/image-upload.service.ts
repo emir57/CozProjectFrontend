@@ -40,7 +40,12 @@ export class ImageUploadService {
         path: photo.path
       })
       return file.data;
-    };
+    }
+    else {
+      const response = await fetch(photo.webPath);
+      const blob = await response.blob();
+      return await this.convertBlobToBase64(blob) as string;
+    }
 
   }
 
