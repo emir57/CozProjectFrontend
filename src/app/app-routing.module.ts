@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home/home.page';
+import { HomePage } from './ui/home/home.page';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./ui/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./ui/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'register',
-    loadChildren: () => import('./ui/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./ui/register/register.module').then(m => m.RegisterPageModule)
   },
   {
     path: '',
@@ -18,8 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component:HomePage,
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    component: HomePage,
+    loadChildren: () => import('./ui/home/home.module').then(m => m.HomePageModule)
   },
 ];
 
