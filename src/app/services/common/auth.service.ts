@@ -30,6 +30,9 @@ export class AuthService {
     this.isLogin = isLogin;
     console.log(this.baseUrl)
   }
+  getIsLogin() {
+    return this.isLogin;
+  }
 
   login(loginModel: LoginModel) {
     let newUrl = `${this.baseUrl}api/auth/login`;
