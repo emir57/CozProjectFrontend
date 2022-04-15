@@ -23,11 +23,8 @@ export class AppComponent implements OnInit {
   async checkIsLogin() {
     const token = await this.storageService.checkName(KeyType.Token)
     const user = await this.storageService.checkName(KeyType.Token)
-    if (!user || !token) {
-      this.router.navigateByUrl("/login");
-    } else {
+    if (user || token) {
       this.authService.setIsLogin(true);
-      this.router.navigateByUrl("/home/questions");
     }
   }
 }
