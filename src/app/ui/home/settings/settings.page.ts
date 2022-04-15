@@ -23,4 +23,17 @@ export class SettingsPage implements OnInit {
     })
   }
 
+  isAdmin() {
+    this.roles.forEach(role => {
+      if (role == "Admin") { return true; }
+    })
+    return false;
+  }
+  isTeacher() {
+    this.roles.forEach(role => {
+      if (role == "Teacher") { return true; }
+    })
+    return false;
+  }
+
 }
