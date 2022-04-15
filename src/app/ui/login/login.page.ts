@@ -97,7 +97,7 @@ export class LoginPage implements OnInit {
         throw new Error;
       } else {
         setTimeout(() => {
-          this.router.navigateByUrl("/home")
+          this.router.navigateByUrl("/home/questions")
         }, 1000);
         this.isOk = true;
       }
