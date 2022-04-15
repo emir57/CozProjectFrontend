@@ -12,18 +12,22 @@ const routes: Routes = [
   },
   {
     path: 'questions',
+    canActivate: [IsLoginGuard],
     loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsPageModule)
   },
   {
     path: 'profile',
+    canActivate: [IsLoginGuard],
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
   },
   {
     path: 'stats',
+    canActivate: [IsLoginGuard],
     loadChildren: () => import('./stats/stats.module').then(m => m.StatsPageModule)
   },
   {
     path: 'settings',
+    canActivate: [IsLoginGuard],
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
   }
 ];
