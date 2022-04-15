@@ -8,12 +8,19 @@ import { RoleService } from 'src/app/services/common/role.service';
 })
 export class SettingsPage implements OnInit {
 
+  roles: string[] = [];
   constructor(
-    private roleService:RoleService
+    private roleService: RoleService
   ) { }
 
   ngOnInit() {
+    this.getRoles();
+  }
 
+  async getRoles() {
+    (await this.roleService.getUserRoles()).subscribe(response => {
+      console.log(response)
+    })
   }
 
 }
