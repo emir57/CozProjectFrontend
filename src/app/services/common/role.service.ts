@@ -8,15 +8,28 @@ import { KeyType, StorageService } from './storage.service';
 })
 export class RoleService {
 
+  isAdmin: boolean = false;
+  isTeacher: boolean = false;
   constructor(
     @Inject("baseUrl") private baseUrl: string,
     private http: HttpClient,
     private storageService: StorageService
-  ) { }
+  ) {
+    this.getUserRoles();
+  }
 
   async getUserRoles() {
     const user: LoginedUser = JSON.parse(await this.storageService.checkName(KeyType.User))
     let url = `${this.baseUrl}api/users/getroles?userId=${user.id}`;
-    return this.http.get<string[]>(url);
+    this.http.get<string[]>(url).subscribe(response => {
+      response.forEach(role => {
+        if (role == "Admin") {
+          this.isAdmin = true;
+        }
+        if (role == "Teacher") {
+          this.isTeacher = true;
+        }
+      })
+    })
   }
 }
