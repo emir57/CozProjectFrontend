@@ -15,6 +15,7 @@ export class QuestionsPage implements OnInit {
   ngOnInit() {
   }
   openMenu(){
+    this.menu.enable(true,"first")
     this.menu.open("first");
   }
 

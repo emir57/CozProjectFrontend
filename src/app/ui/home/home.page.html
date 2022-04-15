@@ -1,21 +1,5 @@
-<ion-content>
-  <ion-menu side="start" menuId="first">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-  <ion-router-outlet></ion-router-outlet>
+<ion-app>
+  <ion-router-outlet main></ion-router-outlet>
   <ion-tabs>
     <ion-tab-bar slot="bottom">
       <ion-tab-button tab="questions">
@@ -30,6 +14,10 @@
         <ion-icon name="stats-chart-outline"></ion-icon>
         <ion-label>İstatistiklerim</ion-label>
       </ion-tab-button>
+      <ion-tab-button tab="settings">
+        <ion-icon name="settings-outline"></ion-icon>
+        <ion-label>Seçenekler</ion-label>
+      </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>
-</ion-content>
+</ion-app>
