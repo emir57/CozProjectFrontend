@@ -16,7 +16,7 @@ import { QuestionsPage } from './questions/questions.page';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage,QuestionsPage],
+  declarations: [HomePage],
   exports:[HomePage]
 })
 export class HomePageModule {}
