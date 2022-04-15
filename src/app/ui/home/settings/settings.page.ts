@@ -8,6 +8,8 @@ import { RoleService } from 'src/app/services/common/role.service';
 })
 export class SettingsPage implements OnInit {
 
+  isAdmin: boolean = false;
+  isTeacher: boolean = false;
   roles: string[] = [];
   constructor(
     private roleService: RoleService
@@ -19,21 +21,14 @@ export class SettingsPage implements OnInit {
 
   async getRoles() {
     (await this.roleService.getUserRoles()).subscribe(response => {
-      console.log(response)
+      response.forEach(role=>{
+        if(role == "Admin"){
+          this.isAdmin = true;
+        }
+        if(role == "Teacher"){
+          this.isTeacher = true;
+        }
+      })
     })
   }
-
-  isAdmin() {
-    this.roles.forEach(role => {
-      if (role == "Admin") { return true; }
-    })
-    return false;
-  }
-  isTeacher() {
-    this.roles.forEach(role => {
-      if (role == "Teacher") { return true; }
-    })
-    return false;
-  }
-
 }
