@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable, Subject } from 'rxjs';
 import { AuthService } from '../services/common/auth.service';
 import { KeyType, StorageService } from '../services/common/storage.service';
+import { SweetalertService, SweetIconType } from '../services/common/sweetalert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class IsLoginGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private messageService: SweetalertService
   ) {
 
   }
@@ -29,6 +31,7 @@ export class IsLoginGuard implements CanActivate {
           subject.complete();
           return subject.asObservable();
         } else {
+          this.messageService.showMessage("Bir hata oluştu lütfen tekrar giriş yapınız.", { iconType: SweetIconType.Warning })
           this.authService.setIsLogin(false);
           this.router.navigateByUrl("/login")
           subject.next(false);

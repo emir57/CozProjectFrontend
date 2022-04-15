@@ -34,6 +34,7 @@ export class SweetOptions {
 }
 export enum SweetIconType {
   Success = "success",
+  Warning = "warning",
   Info = "info",
   Error = "error",
   Question = "question"
