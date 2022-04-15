@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-questions',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menu: MenuController
+  ) { }
 
   ngOnInit() {
+  }
+  openMenu(){
+    this.menu.open("first");
   }
 
 }
