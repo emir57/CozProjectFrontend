@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
 
 const routes: Routes = [
   {
@@ -17,15 +18,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    component:HomePage,
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'questions',
-    loadChildren: () => import('./ui/home/questions/questions.module').then( m => m.QuestionsPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./ui/home/home.module').then( m => m.HomePageModule)
   },
 ];
 
