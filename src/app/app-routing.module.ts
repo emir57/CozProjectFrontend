@@ -21,6 +21,10 @@ const routes: Routes = [
     component: HomePage,
     loadChildren: () => import('./ui/home/home.module').then(m => m.HomePageModule)
   },
+  {
+    path: 'firstlogin',
+    loadChildren: () => import('./firstlogin/firstlogin.module').then( m => m.FirstloginPageModule)
+  },
 ];
 
 @NgModule({
