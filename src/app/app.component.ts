@@ -15,10 +15,11 @@ export class AppComponent implements OnInit {
     private router: Router
   ) {
   }
+
   ngOnInit(): void {
-    console.log("app")
     this.checkIsLogin();
   }
+
   async checkIsLogin() {
     const token = await this.storageService.checkName(KeyType.Token)
     const user = await this.storageService.checkName(KeyType.Token)
