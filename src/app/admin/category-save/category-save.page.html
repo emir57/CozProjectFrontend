@@ -46,7 +46,8 @@
       <div class="col-6">
         <ion-item>
           <ion-label position="floating">Yazı Rengi</ion-label>
-          <ion-input [cpPosition]="'bottom'" [cpPositionOffset]="'-70%'" [(colorPicker)]="chosedTextColor" [(ngModel)]="chosedTextColor" formControlName="textColor">
+          <ion-input [cpPosition]="'bottom'" [cpPositionOffset]="'-70%'" [(colorPicker)]="chosedTextColor"
+            [(ngModel)]="chosedTextColor" formControlName="textColor">
           </ion-input>
         </ion-item>
         <div class="text-danger text-small" *ngIf="(textColor.touched || textColor.dirty) && textColor.errors">
@@ -69,6 +70,6 @@
   </ion-button>
   <div class="display-4 p-2"
     style="width: 100%;height: 50px;color:{{chosedTextColor}};background-color: {{chosedBackgroundColor}};">
-    {{name.value}}
+    {{name.value=="" ? "Javascript":name.value}}
   </div>
 </ion-content>
