@@ -32,4 +32,12 @@ export class CategorySavePage implements OnInit {
     })
   }
 
+  add(){
+    if(this.categoryForm.valid){
+      let categoryModel = this.categoryForm.value;
+      if(!this.category) delete categoryModel.id;
+
+    }
+  }
+
 }
