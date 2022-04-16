@@ -30,7 +30,7 @@ export class CategorySavePage implements OnInit {
   createCategoryForm() {
     this.categoryForm = this.formBuilder.group({
       id: [this.category?.id ?? 0, []],
-      name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(50)]]
+      name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]]
     })
   }
 
@@ -44,12 +44,13 @@ export class CategorySavePage implements OnInit {
             this.messageService.showMessage(response.message);
           }
         }, responseErr => {
-          console.log(responseErr)
-          if (responseErr.error.Errors.length > 0) {
+          if (responseErr.error.Errors) {
             for (let i = 0; i < responseErr.error.Errors.length; i++) {
               const error = responseErr.error.Errors[i];
               this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error })
             }
+          }else{
+            this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
           }
         })
       } else {
