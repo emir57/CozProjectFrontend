@@ -40,7 +40,7 @@ export class CategorySavePage implements OnInit {
   }
 
   async save() {
-    if (!this.categoryForm.valid) {
+    if (this.categoryForm.valid) {
       this.isOk = false;
       await this.loadingService.showLoading("Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
