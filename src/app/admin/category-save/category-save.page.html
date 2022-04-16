@@ -28,7 +28,8 @@
     </div>
     <ion-item>
       <ion-label position="floating">Arka Plan Rengi</ion-label>
-      <ion-input [(colorPicker)]="chosedBackgroundColor" [(ngModel)]="chosedBackgroundColor" formControlName="backgroundColor"></ion-input>
+      <ion-input [(colorPicker)]="chosedBackgroundColor" [(ngModel)]="chosedBackgroundColor"
+        formControlName="backgroundColor"></ion-input>
     </ion-item>
     <div class="text-danger text-small"
       *ngIf="(backgroundColor.touched || backgroundColor.dirty) && backgroundColor.errors">
@@ -36,6 +37,18 @@
       <div *ngIf="(backgroundColor.errors.minlength)">Renk en az {{backgroundColor.errors.minlength.requiredLength}}
         karakter olabilir</div>
       <div *ngIf="(backgroundColor.errors.maxlength)">Renk en fazla {{backgroundColor.errors.maxlength.requiredLength}}
+        karakter olabilir</div>
+    </div>
+    <ion-item>
+      <ion-label position="floating">Yazı Rengi</ion-label>
+      <ion-input [(colorPicker)]="chosedTextColor" [(ngModel)]="chosedTextColor" formControlName="textColor">
+      </ion-input>
+    </ion-item>
+    <div class="text-danger text-small" *ngIf="(textColor.touched || textColor.dirty) && textColor.errors">
+      <div *ngIf="(textColor.errors.required)">Renk boş olamaz</div>
+      <div *ngIf="(textColor.errors.minlength)">Renk en az {{backgroundColor.errors.minlength.requiredLength}}
+        karakter olabilir</div>
+      <div *ngIf="(textColor.errors.maxlength)">Renk en fazla {{backgroundColor.errors.maxlength.requiredLength}}
         karakter olabilir</div>
     </div>
   </form>
@@ -47,7 +60,7 @@
     <span *ngIf="isOk">Ekle</span>
     <span *ngIf="!isOk">Ekleniyor...</span>
   </ion-button>
-  <div style="width: 100%;height: 50px;background-color: {{chosedBackgroundColor}};">
+  <div class="display-4 p-2" style="width: 100%;height: 50px;color:{{chosedTextColor}};background-color: {{chosedBackgroundColor}};">
     {{name.value}}
   </div>
 </ion-content>
