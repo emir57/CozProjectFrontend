@@ -34,16 +34,18 @@ export class CategorySavePage implements OnInit {
     })
   }
 
-  add() {
+  async add() {
     if (this.categoryForm.valid) {
+      await this.loadingService.showLoading("Ekleniyor...");
       let categoryModel = this.categoryForm.value;
       if (!this.category) {
         delete categoryModel.id;
-        this.categoryService.add(categoryModel).subscribe(response => {
+        this.categoryService.add(categoryModel).subscribe(async response => {
           if (response.success) {
             this.messageService.showMessage(response.message);
           }
-        }, responseErr => {
+          await this.loadingService.closeLoading();
+        }, async responseErr => {
           if (responseErr.error.Errors) {
             for (let i = 0; i < responseErr.error.Errors.length; i++) {
               const error = responseErr.error.Errors[i];
@@ -52,6 +54,7 @@ export class CategorySavePage implements OnInit {
           }else{
             this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
           }
+          await this.loadingService.closeLoading();
         })
       } else {
 
