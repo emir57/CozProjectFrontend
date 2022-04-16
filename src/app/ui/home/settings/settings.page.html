@@ -8,7 +8,7 @@
   <ion-button (click)="goAdminPage()" *ngIf="isAdmin()" expand="block" shape="round" class="m-3">
     Admin İşlemleri
   </ion-button>
-  <ion-button *ngIf="isTeacher()" expand="block" shape="round" class="m-3">
+  <ion-button (click)="goAdminPage()" *ngIf="isTeacher()" expand="block" shape="round" class="m-3">
     Öğretmen İşlemleri
   </ion-button>
   <ion-button (click)="logout()" expand="block" color="danger" shape="round" class="m-3">
