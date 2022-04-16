@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'questions',
     loadChildren: () => import('./questions/questions.module').then( m => m.QuestionsPageModule)
+  },
+  {
+    path: 'question-save',
+    loadChildren: () => import('./question-save/question-save.module').then( m => m.QuestionSavePageModule)
   }
 ];
 
