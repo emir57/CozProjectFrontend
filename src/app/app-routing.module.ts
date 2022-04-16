@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AdminPage } from './admin/admin.page';
 import { HomePage } from './ui/home/home.page';
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule)
+    component: AdminPage,
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
   }
 ];
 
