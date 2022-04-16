@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'question-save',
     loadChildren: () => import('./question-save/question-save.module').then( m => m.QuestionSavePageModule)
+  },
+  {
+    path: 'category-save',
+    loadChildren: () => import('./category-save/category-save.module').then( m => m.CategorySavePageModule)
   }
 ];
 
