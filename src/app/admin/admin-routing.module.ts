@@ -27,6 +27,10 @@ const routes: Routes = [
   {
     path: 'category-save',
     loadChildren: () => import('./category-save/category-save.module').then( m => m.CategorySavePageModule)
+  },
+  {
+    path: 'answer-save',
+    loadChildren: () => import('./answer-save/answer-save.module').then( m => m.AnswerSavePageModule)
   }
 ];
 
