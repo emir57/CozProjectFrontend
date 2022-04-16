@@ -21,6 +21,10 @@
       <ion-label position="floating">Kategori İsmi</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="floating">Kategori İsmi</ion-label>
+      <ion-input [(colorPicker)]="color" formControlName="color"></ion-input>
+    </ion-item>
   </form>
   <div *ngIf="category?.createdDate">Ekleme tarihi{{getDate(category?.createdDate)}}</div>
   <div *ngIf="category?.updatedDate">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
