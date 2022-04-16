@@ -3,6 +3,11 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/admin/home"></ion-back-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="deleteCategory()">
+        <ion-icon name="trash-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       <span *ngIf="category">Kategori Güncelle</span>
       <span *ngIf="!category">Kategori Ekle</span>

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryModel } from 'src/app/models/tables/categoryMode';
+import { AlertService } from 'src/app/services/common/alert-service.service';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
@@ -21,7 +22,8 @@ export class CategorySavePage implements OnInit {
     private router: Router,
     private messageService: SweetalertService,
     private loadingService: LoadingService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
@@ -88,6 +90,19 @@ export class CategorySavePage implements OnInit {
       await this.loadingService.closeLoading();
       this.isOk = true;
     })
+  }
+  deleteCategory() {
+    this.alertService.showAlertConfirm(
+      `"${this.category?.name}" Bu kategoriyi silmek istediğinizden emin misiniz ?`,
+      "Silme işlemi",
+      () => { },
+      () => {
+        this.categoryService.delete(this.category?.id).subscribe(response => {
+          if (response.success) {
+            this.messageService.showMessage("Silme başarılı");
+          }
+        })
+      })
   }
 
   getDate(dateString: string) {
