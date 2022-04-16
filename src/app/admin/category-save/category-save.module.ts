@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,10 @@ import { CategorySavePage } from './category-save.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CategorySavePageRoutingModule
+    CategorySavePageRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [CategorySavePage]
 })
-export class CategorySavePageModule {}
+export class CategorySavePageModule { }

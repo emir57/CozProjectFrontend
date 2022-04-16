@@ -12,7 +12,7 @@ import { SweetalertService } from 'src/app/services/common/sweetalert.service';
 })
 export class CategorySavePage implements OnInit {
 
-  @Input() category: CategoryModel
+  @Input() category: CategoryModel = undefined;
   categoryForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -27,8 +27,8 @@ export class CategorySavePage implements OnInit {
 
   createCategoryForm() {
     this.categoryForm = this.formBuilder.group({
-      id: [this.category.id, []],
-      name: [this.category.name, [Validators.required, Validators.maxLength(30)]]
+      id: [this.category?.id ?? 0, []],
+      name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]]
     })
   }
 
