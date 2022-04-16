@@ -17,4 +17,12 @@ export class CategoryService {
     let url = `${this.baseUrl}api/categories/add`;
     return this.http.post<ResponseModel>(url, categoryModel)
   }
+  update(categoryModel: CategoryModel) {
+    let url = `${this.baseUrl}api/categories/update`;
+    return this.http.put<ResponseModel>(url, categoryModel)
+  }
+  delete(categoryId: number) {
+    let url = `${this.baseUrl}api/categories/delete?id=${categoryId}`;
+    return this.http.delete<ResponseModel>(url)
+  }
 }
