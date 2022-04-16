@@ -35,7 +35,7 @@ export class SettingsPage implements OnInit {
     return this.roleService.isTeacher;
   }
   goAdminPage() {
-    this.router.navigateByUrl("/admin");
+    this.router.navigateByUrl("/admin/categories");
   }
 
   async logout() {
