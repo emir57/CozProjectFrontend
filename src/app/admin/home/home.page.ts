@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonItemSliding } from '@ionic/angular';
+import { RoleService } from 'src/app/services/common/role.service';
 
 @Component({
   selector: 'app-home',
@@ -10,13 +10,16 @@ import { IonItemSliding } from '@ionic/angular';
 export class HomePage implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private roleService: RoleService
   ) { }
 
   ngOnInit() {
 
   }
-
+  isAdmin(){
+    return this.roleService.isAdmin;
+  }
   listCategoryPage() {
     this.router.navigateByUrl("/admin/categories");
   }
@@ -29,13 +32,13 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl("/admin/answers");
   }
 
-  addCategoryPage(){
+  addCategoryPage() {
     this.router.navigateByUrl("/admin/category-save");
   }
-  addQuestionPage(){
+  addQuestionPage() {
     this.router.navigateByUrl("/admin/question-save");
   }
-  addAnswerPage(){
+  addAnswerPage() {
     this.router.navigateByUrl("/admin/answer-save");
   }
 
