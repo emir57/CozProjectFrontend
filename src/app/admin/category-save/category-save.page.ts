@@ -37,29 +37,50 @@ export class CategorySavePage implements OnInit {
   async save() {
     if (this.categoryForm.valid) {
       await this.loadingService.showLoading("Ekleniyor...");
-      let categoryModel = this.categoryForm.value;
+      let categoryModel: CategoryModel = this.categoryForm.value;
       if (!this.category) {
-        delete categoryModel.id;
-        this.categoryService.add(categoryModel).subscribe(async response => {
-          if (response.success) {
-            this.messageService.showMessage(response.message);
-          }
-          await this.loadingService.closeLoading();
-        }, async responseErr => {
-          if (responseErr.error.Errors) {
-            for (let i = 0; i < responseErr.error.Errors.length; i++) {
-              const error = responseErr.error.Errors[i];
-              this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error })
-            }
-          }else{
-            this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
-          }
-          await this.loadingService.closeLoading();
-        })
+        await this.add(categoryModel)
       } else {
-
       }
     }
+  }
+
+  async add(categoryModel: CategoryModel) {
+    delete categoryModel.id;
+    this.categoryService.add(categoryModel).subscribe(async response => {
+      if (response.success) {
+        this.messageService.showMessage(response.message);
+      }
+      await this.loadingService.closeLoading();
+    }, async responseErr => {
+      if (responseErr.error.Errors) {
+        for (let i = 0; i < responseErr.error.Errors.length; i++) {
+          const error = responseErr.error.Errors[i];
+          this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error })
+        }
+      } else {
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
+      }
+      await this.loadingService.closeLoading();
+    })
+  }
+  update(categoryModel: CategoryModel) {
+    this.categoryService.update(categoryModel).subscribe(async response => {
+      if (response.success) {
+        this.messageService.showMessage(response.message);
+      }
+      await this.loadingService.closeLoading();
+    }, async responseErr => {
+      if (responseErr.error.Errors) {
+        for (let i = 0; i < responseErr.error.Errors.length; i++) {
+          const error = responseErr.error.Errors[i];
+          this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error })
+        }
+      } else {
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
+      }
+      await this.loadingService.closeLoading();
+    })
   }
 
   getDate(dateString: string) {
