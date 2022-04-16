@@ -34,9 +34,12 @@ export class SettingsPage implements OnInit {
   isTeacher() {
     return this.roleService.isTeacher;
   }
+  goAdminPage() {
+    this.router.navigateByUrl("/admin");
+  }
 
   async logout() {
-    this.alertService.showAlertConfirm("Çıkış yapmak istediğinizden eminmisiniz","Çıkış",
+    this.alertService.showAlertConfirm("Çıkış yapmak istediğinizden eminmisiniz", "Çıkış",
       (cancel) => { console.log("cancel") },
       async (ok) => {
         this.authService.setIsLogin(false);
