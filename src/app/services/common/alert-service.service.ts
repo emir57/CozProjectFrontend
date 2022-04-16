@@ -9,10 +9,10 @@ export class AlertService {
   constructor(
     private alertController: AlertController
   ) { }
-  async showAlertConfirm(message: string, cancelFunction, okFunction) {
+  async showAlertConfirm(message: string,title:string, cancelFunction, okFunction) {
     const alert = await this.alertController.create({
-      header: 'Confirm!',
-      message: 'Message <strong>text</strong>!!!',
+      header: title,
+      message: message,
       buttons: [
         {
           text: 'İptal',
