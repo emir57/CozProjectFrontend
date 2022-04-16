@@ -124,4 +124,8 @@ export class CategorySavePage implements OnInit {
     return this.categoryForm.get("textColor");
   }
 
+  getExampleStyle(){
+    return `width: 100%;height: 50px;color:${this.chosedTextColor};background-color: ${this.chosedBackgroundColor};`;
+  }
+
 }

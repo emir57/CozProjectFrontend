@@ -69,7 +69,7 @@
     <span *ngIf="!isOk">Ekleniyor...</span>
   </ion-button>
   <div class="display-4 p-2"
-    style="width: 100%;height: 50px;color:{{chosedTextColor}};background-color: {{chosedBackgroundColor}};">
+    [style]="getExampleStyle()">
     {{name.value=="" ? "Javascript":name.value}}
   </div>
 </ion-content>
