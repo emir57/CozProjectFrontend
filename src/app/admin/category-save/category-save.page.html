@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>categorySave</ion-title>
+    <ion-title>
+      <span *ngIf="category">Kategori Güncelle</span>
+      <span *ngIf="!category">Kategori Ekle</span>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
