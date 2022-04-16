@@ -9,10 +9,21 @@ import { KeyType, StorageService } from './services/common/storage.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor() {
+  constructor(
+    private storageService: StorageService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
+    this.checkStorage();
+  }
 
+  async checkStorage() {
+    const user = await this.storageService.checkName(KeyType.User);
+    const token = await this.storageService.checkName(KeyType.Token);
+    if (user && token) {
+      this.router.navigateByUrl("/home/questions")
+    }
   }
 }
