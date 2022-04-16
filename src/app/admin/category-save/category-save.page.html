@@ -21,18 +21,23 @@
       <ion-label position="floating">Kategori İsmi</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
+    <div class="text-danger ">
+
+    </div>
     <ion-item>
       <ion-label position="floating">Arka Plan Rengi</ion-label>
-      <ion-input [(colorPicker)]="chosedColor" [(ngModel)]="chosedColor" formControlName="color"></ion-input>
-      <div>
-
-      </div>
+      <ion-input [(colorPicker)]="chosedColor" [(ngModel)]="chosedColor" formControlName="backgroundColor"></ion-input>
     </ion-item>
+    <div class="text-danger text-small" *ngIf="(backgroundColor.touched || backgroundColor.dirty) && backgroundColor.errors">
+      <div *ngIf="(backgroundColor.errors.required)">Renk boş olamaz</div>
+      <div *ngIf="(backgroundColor.errors.minlength)">Renk en az {{backgroundColor.errors.minlength.requiredLength}} karakter olabilir</div>
+      <div *ngIf="(backgroundColor.errors.maxlength)">Renk en fazla {{backgroundColor.errors.maxlength.requiredLength}} karakter olabilir</div>
+    </div>
   </form>
   <div *ngIf="category?.createdDate">Ekleme tarihi{{getDate(category?.createdDate)}}</div>
   <div *ngIf="category?.updatedDate">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
   <div *ngIf="category?.deletedDate">Silme tarihi {{getDate(category?.deletedDate)}}</div>
-  <ion-button [disabled]="!isOk" [disabled]="!this.categoryForm.valid" (click)="save()" expand="block" shape="round">
+  <ion-button [disabled]="!isOk"  (click)="save()" expand="block" shape="round">
     <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
     <span *ngIf="isOk">Ekle</span>
     <span *ngIf="!isOk">Ekleniyor...</span>

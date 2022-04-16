@@ -35,12 +35,12 @@ export class CategorySavePage implements OnInit {
     this.categoryForm = this.formBuilder.group({
       id: [this.category?.id ?? 0, []],
       name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]],
-      color: ["", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
+      backgroundColor: [this.category?.backgroundColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
     })
   }
 
   async save() {
-    if (this.categoryForm.valid) {
+    if (!this.categoryForm.valid) {
       this.isOk = false;
       await this.loadingService.showLoading("Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
@@ -115,8 +115,8 @@ export class CategorySavePage implements OnInit {
   get name() {
     return this.categoryForm.get("name");
   }
-  get color() {
-    return this.categoryForm.get("color");
+  get backgroundColor() {
+    return this.categoryForm.get("backgroundColor");
   }
 
 }
