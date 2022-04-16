@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CategorySavePageRoutingModule } from './category-save-routing.module';
 
 import { CategorySavePage } from './category-save.page';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CategorySavePage } from './category-save.page';
     IonicModule,
     CategorySavePageRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ColorPickerModule
   ],
   declarations: [CategorySavePage]
 })
