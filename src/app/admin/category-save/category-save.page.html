@@ -16,7 +16,7 @@
   </form>
   <div *ngIf="category?.createdDate">Ekleme tarihi{{getDate(category?.createdDate)}}</div>
   <div *ngIf="category?.updatedDate">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
-  <ion-button [disabled]="!this.categoryForm.valid" (click)="add()" expand="block" shape="round">
+  <ion-button [disabled]="!this.categoryForm.valid" (click)="save()" expand="block" shape="round">
     Ekle
   </ion-button>
 </ion-content>
