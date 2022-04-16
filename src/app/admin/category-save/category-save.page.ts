@@ -45,8 +45,7 @@ export class CategorySavePage implements OnInit {
       await this.loadingService.showLoading("Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
       if (!this.category) {
-        console.log(this.color)
-        // await this.add(categoryModel);
+        await this.add(categoryModel);
       } else {
         await this.update(categoryModel);
       }
