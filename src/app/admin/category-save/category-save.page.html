@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       <span *ngIf="category">Kategori Güncelle</span>
       <span *ngIf="!category">Kategori Ekle</span>
