@@ -35,7 +35,7 @@ export class CategorySavePage implements OnInit {
     this.categoryForm = this.formBuilder.group({
       id: [this.category?.id ?? 0, []],
       name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]],
-      color: ["", []]
+      color: ["", [Validators.required,Validators.maxLength(7),Validators.minLength(7)]]
     })
   }
 
