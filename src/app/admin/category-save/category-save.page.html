@@ -14,7 +14,7 @@
       <ion-input formControlName="name"></ion-input>
     </ion-item>
   </form>
-  <ion-button (click)="add()" expand="block" shape="round">
+  <ion-button [disabled]="!this.categoryForm.valid" (click)="add()" expand="block" shape="round">
     Ekle
   </ion-button>
 </ion-content>
