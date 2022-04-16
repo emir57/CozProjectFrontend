@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import ResponseModel from 'src/app/models/responseModel';
+import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { CategoryModel } from 'src/app/models/tables/categoryMode';
 
 @Injectable({
@@ -24,5 +25,9 @@ export class CategoryService {
   delete(categoryId: number) {
     let url = `${this.baseUrl}api/categories/delete?id=${categoryId}`;
     return this.http.delete<ResponseModel>(url)
+  }
+  getById(categoryId: number) {
+    let url = `${this.baseUrl}api/categories/getbyid?id=${categoryId}`;
+    return this.http.get<ResponseSingleModel<CategoryModel>>(url);
   }
 }
