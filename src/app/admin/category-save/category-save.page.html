@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/admin/home"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button color="danger" (click)="deleteCategory()">
+      <ion-button *ngIf="category?.id" color="danger" (click)="deleteCategory()">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
