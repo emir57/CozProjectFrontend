@@ -31,6 +31,10 @@ const routes: Routes = [
   {
     path: 'answer-save',
     loadChildren: () => import('./answer-save/answer-save.module').then( m => m.AnswerSavePageModule)
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
 ];
 
