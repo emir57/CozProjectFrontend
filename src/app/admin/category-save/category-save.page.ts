@@ -14,8 +14,8 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class CategorySavePage implements OnInit {
 
-  chosedBackgroundColor: string;
-  chosedTextColor: string;
+  chosedBackgroundColor: string = "#0275d8";
+  chosedTextColor: string = "#ffffff";
   isOk = true;
   @Input() category: CategoryModel = undefined;
   categoryForm: FormGroup;
@@ -37,7 +37,7 @@ export class CategorySavePage implements OnInit {
       id: [this.category?.id ?? 0, []],
       name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]],
       backgroundColor: [this.category?.backgroundColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]],
-      textColor: [this.category?.backgroundColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
+      textColor: [this.category?.textColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
     })
   }
 
