@@ -29,4 +29,14 @@ export class HomePage implements OnInit {
     this.router.navigateByUrl("/admin/answers");
   }
 
+  addCategoryPage(){
+    this.router.navigateByUrl("/admin/category-save");
+  }
+  addQuestionPage(){
+    this.router.navigateByUrl("/admin/question-save");
+  }
+  addAnswerPage(){
+    this.router.navigateByUrl("/admin/answer-save");
+  }
+
 }
