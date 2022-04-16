@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
     private loadingService: LoadingService
   ) { }
   ngOnInit() {
+    this.checkStorage();
     this.createLoginForm();
     this.activatedRoute.params.subscribe(param => {
       if (param["email"]) {
@@ -41,6 +42,13 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]],
       password: ['', [Validators.required, Validators.minLength(5)]]
     })
+  }
+  async checkStorage() {
+    const user = await this.storageService.checkName(KeyType.User);
+    const token = await this.storageService.checkName(KeyType.Token);
+    if (user && token) {
+      this.router.navigateByUrl("/home/questions")
+    }
   }
 
   async login() {

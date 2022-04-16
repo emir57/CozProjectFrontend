@@ -14,7 +14,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class CategorySavePage implements OnInit {
 
-  color:string;
+  chosedColor: string;
   isOk = true;
   @Input() category: CategoryModel = undefined;
   categoryForm: FormGroup;
@@ -35,7 +35,7 @@ export class CategorySavePage implements OnInit {
     this.categoryForm = this.formBuilder.group({
       id: [this.category?.id ?? 0, []],
       name: [this.category?.name ?? "", [Validators.required, Validators.maxLength(30)]],
-      color: ["", [Validators.required,Validators.maxLength(7),Validators.minLength(7)]]
+      color: ["", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
     })
   }
 
@@ -110,6 +110,13 @@ export class CategorySavePage implements OnInit {
   getDate(dateString: string) {
     let date = new Date(dateString);
     return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours}:${date.getMinutes()}`;
+  }
+
+  get name() {
+    return this.categoryForm.get("name");
+  }
+  get color() {
+    return this.categoryForm.get("color");
   }
 
 }
