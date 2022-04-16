@@ -13,6 +13,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class CategorySavePage implements OnInit {
 
+  isOk = true;
   @Input() category: CategoryModel = undefined;
   categoryForm: FormGroup;
   constructor(
@@ -36,6 +37,7 @@ export class CategorySavePage implements OnInit {
 
   async save() {
     if (this.categoryForm.valid) {
+      this.isOk = false;
       await this.loadingService.showLoading("Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
       if (!this.category) {
@@ -53,6 +55,7 @@ export class CategorySavePage implements OnInit {
         this.messageService.showMessage(response.message);
       }
       await this.loadingService.closeLoading();
+      this.isOk = true;
     }, async responseErr => {
       if (responseErr.error.Errors) {
         for (let i = 0; i < responseErr.error.Errors.length; i++) {
@@ -63,6 +66,7 @@ export class CategorySavePage implements OnInit {
         this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
       }
       await this.loadingService.closeLoading();
+      this.isOk = true;
     })
   }
   update(categoryModel: CategoryModel) {
@@ -71,6 +75,7 @@ export class CategorySavePage implements OnInit {
         this.messageService.showMessage(response.message);
       }
       await this.loadingService.closeLoading();
+      this.isOk = true;
     }, async responseErr => {
       if (responseErr.error.Errors) {
         for (let i = 0; i < responseErr.error.Errors.length; i++) {
@@ -81,6 +86,7 @@ export class CategorySavePage implements OnInit {
         this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
       }
       await this.loadingService.closeLoading();
+      this.isOk = true;
     })
   }
 
