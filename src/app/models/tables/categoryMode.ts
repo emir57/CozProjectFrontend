@@ -3,4 +3,5 @@ export interface CategoryModel{
   name:string;
   createdDate:string;
   updatedDate:string;
+  deletedDate:string;
 }
