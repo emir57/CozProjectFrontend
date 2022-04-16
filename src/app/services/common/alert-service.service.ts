@@ -4,12 +4,12 @@ import { AlertController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
-export class AlertSErviceService {
+export class AlertService {
 
   constructor(
     private alertController: AlertController
   ) { }
-  async showAlertConfirm(message: string, cancelFunction: Function, okFunction: Function) {
+  async showAlertConfirm(message: string, cancelFunction, okFunction) {
     const alert = await this.alertController.create({
       header: 'Confirm!',
       message: 'Message <strong>text</strong>!!!',
@@ -18,10 +18,10 @@ export class AlertSErviceService {
           text: 'İptal',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: cancelFunction()
+          handler: cancelFunction
         }, {
-          text: 'Okay',
-          handler: okFunction()
+          text: 'Tamam',
+          handler: okFunction
         }
       ]
     });

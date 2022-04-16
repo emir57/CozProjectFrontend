@@ -11,7 +11,7 @@
   <ion-button *ngIf="isTeacher()" expand="block" shape="round" class="m-3">
     Öğretmen İşlemleri
   </ion-button>
-  <ion-button expand="block" color="danger" shape="round" class="m-3">
+  <ion-button (click)="logout()" expand="block" color="danger" shape="round" class="m-3">
     Çıkış Yap
   </ion-button>
 </ion-content>

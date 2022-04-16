@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertService } from 'src/app/services/common/alert-service.service';
 import { RoleService } from 'src/app/services/common/role.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class SettingsPage implements OnInit {
 
   roles: string[] = [];
   constructor(
-    private roleService: RoleService
+    private roleService: RoleService,
+    private alertService:AlertService
   ) { }
 
   ngOnInit() {
@@ -23,5 +25,11 @@ export class SettingsPage implements OnInit {
   }
   isTeacher(){
     return this.roleService.isTeacher;
+  }
+
+  logout(){
+    this.alertService.showAlertConfirm("Çıkış yapmak istediğinizden eminmisiniz",
+    (cancel)=>{console.log("cancel")},
+    (ok)=>{console.log("ok")})
   }
 }
