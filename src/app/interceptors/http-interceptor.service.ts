@@ -19,6 +19,9 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   async handle(req: HttpRequest<unknown>, next: HttpHandler) {
     this.tokenModel = JSON.parse(await this.storageService.checkName(KeyType.Token));
+    if (!this.tokenModel) {
+      return next.handle(req).toPromise();
+    }
     let newRequest = req.clone({
       headers: req.headers.set("Authorization", "Bearer " + this.tokenModel.token)
     })
