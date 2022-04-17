@@ -6,10 +6,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { CustomInterceptorDirective } from './interceptors/custom-interceptor.directive'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CustomInterceptorDirective],
   entryComponents: [],
   imports: [
     BrowserModule,
