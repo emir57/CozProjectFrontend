@@ -17,7 +17,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
 
   }
-  isAdmin(){
+  isAdmin() {
     return this.roleService.isAdmin;
   }
   listCategoryPage() {
@@ -31,6 +31,9 @@ export class HomePage implements OnInit {
   listAnswerPage() {
     this.router.navigateByUrl("/admin/answers");
   }
+  listUserPage() {
+    this.router.navigateByUrl("/admin/users");
+  }
 
   addCategoryPage() {
     this.router.navigateByUrl("/admin/category-save");
@@ -40,6 +43,9 @@ export class HomePage implements OnInit {
   }
   addAnswerPage() {
     this.router.navigateByUrl("/admin/answer-save");
+  }
+  addUserPage() {
+    this.router.navigateByUrl("/admin/user-save");
   }
 
 }
