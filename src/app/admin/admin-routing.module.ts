@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { IsLoginGuard } from '../guards/is-login.guard';
 
 import { AdminPage } from './admin.page';
 
@@ -10,31 +11,38 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    loadChildren: () => import('./categories/categories.module').then( m => m.CategoriesPageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesPageModule)
   },
   {
     path: 'answers',
-    loadChildren: () => import('./answers/answers.module').then( m => m.AnswersPageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./answers/answers.module').then(m => m.AnswersPageModule)
   },
   {
     path: 'questions',
-    loadChildren: () => import('./questions/questions.module').then( m => m.QuestionsPageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsPageModule)
   },
   {
     path: 'question-save',
-    loadChildren: () => import('./question-save/question-save.module').then( m => m.QuestionSavePageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./question-save/question-save.module').then(m => m.QuestionSavePageModule)
   },
   {
     path: 'category-save',
-    loadChildren: () => import('./category-save/category-save.module').then( m => m.CategorySavePageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./category-save/category-save.module').then(m => m.CategorySavePageModule)
   },
   {
     path: 'answer-save',
-    loadChildren: () => import('./answer-save/answer-save.module').then( m => m.AnswerSavePageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./answer-save/answer-save.module').then(m => m.AnswerSavePageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    canActivate: [IsLoginGuard],
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   }
 ];
 
@@ -42,4 +50,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminPageRoutingModule {}
+export class AdminPageRoutingModule { }
