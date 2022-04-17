@@ -16,7 +16,7 @@ export class CheckRoleGuard implements CanActivate {
     let subject = new Subject<boolean>();
     let isAdmin = this.roleService.isAdmin;
     let isTeacher = this.roleService.isTeacher;
-    console.log(isAdmin)
+    console.log(isTeacher)
     if(isAdmin || isTeacher){
       return true;
     }
