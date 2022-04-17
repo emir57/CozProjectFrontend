@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'home',
     canActivate: [IsLoginGuard, CheckAdminAndTeacherGuard],
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
   }
 ];
 
