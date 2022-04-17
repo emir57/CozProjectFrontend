@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CheckRoleGuard } from '../guards/check-role.guard';
 import { IsLoginGuard } from '../guards/is-login.guard';
 
 import { AdminPage } from './admin.page';
@@ -11,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckRoleGuard],
     loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesPageModule)
   },
   {
