@@ -7,7 +7,7 @@ import { RoleService } from '../services/common/role.service';
 @Injectable({
   providedIn: 'root'
 })
-export class CheckAdminRoleGuard implements CanActivate {
+export class CheckAdminAndTeacherGuard implements CanActivate {
   constructor(
     private roleService: RoleService,
     private location: Location
@@ -16,7 +16,8 @@ export class CheckAdminRoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     let isAdmin = this.roleService.isAdmin;
-    if (isAdmin) {
+    let isTeacher = this.roleService.isTeacher;
+    if (isAdmin || isTeacher) {
       return true;
     } else {
       this.location.back();

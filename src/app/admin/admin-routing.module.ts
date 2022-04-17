@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CheckRoleGuard } from '../guards/check-role.guard';
+import { CheckAdminRoleGuard } from '../guards/check-admin-role.guard';
+import { CheckTeacherRoleGuard } from '../guards/check-teacher-role-guard';
 import { IsLoginGuard } from '../guards/is-login.guard';
 
 import { AdminPage } from './admin.page';
@@ -12,37 +13,37 @@ const routes: Routes = [
   },
   {
     path: 'categories',
-    canActivate: [IsLoginGuard, CheckRoleGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesPageModule)
   },
   {
     path: 'answers',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./answers/answers.module').then(m => m.AnswersPageModule)
   },
   {
     path: 'questions',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsPageModule)
   },
   {
     path: 'question-save',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./question-save/question-save.module').then(m => m.QuestionSavePageModule)
   },
   {
     path: 'category-save',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./category-save/category-save.module').then(m => m.CategorySavePageModule)
   },
   {
     path: 'answer-save',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./answer-save/answer-save.module').then(m => m.AnswerSavePageModule)
   },
   {
     path: 'home',
-    canActivate: [IsLoginGuard],
+    canActivate: [IsLoginGuard, CheckTeacherRoleGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   }
 ];
