@@ -69,7 +69,7 @@ export class CategorySavePage implements OnInit {
           this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error })
         }
       } else {
-        this.messageService.showMessage(responseErr.error.Message, { iconType: SweetIconType.Error })
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error })
       }
       await this.loadingService.closeLoading();
       this.isOk = true;

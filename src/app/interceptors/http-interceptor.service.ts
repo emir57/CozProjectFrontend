@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import TokenModel from '../models/auth/tokenModel';
 import { KeyType, StorageService } from '../services/common/storage.service';
 
@@ -13,17 +13,15 @@ export class HttpInterceptorService implements HttpInterceptor {
   constructor(
     private storageService: StorageService
   ) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.getToken();
-    console.log(this.tokenModel)
+  intercept(req: HttpRequest<unknown>, next: HttpHandler) {
+    return from(this.handle(req, next));
+  }
+
+  async handle(req: HttpRequest<unknown>, next: HttpHandler) {
+    this.tokenModel = JSON.parse(await this.storageService.checkName(KeyType.Token));
     let newRequest = req.clone({
       headers: req.headers.set("Authorization", "Bearer " + this.tokenModel.token)
     })
-
-    return next.handle(newRequest);
-  }
-
-  async getToken() {
-    this.tokenModel = JSON.parse(await this.storageService.checkName(KeyType.Token));
+    return next.handle(newRequest).toPromise();
   }
 }
