@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: () => import('./users/users.module').then( m => m.UsersPageModule)
+  },
+  {
+    path: 'user-save',
+    loadChildren: () => import('./user-save/user-save.module').then( m => m.UserSavePageModule)
   }
 ];
 
