@@ -9,15 +9,21 @@ import { KeyType, StorageService } from '../services/common/storage.service';
 })
 export class HttpInterceptorService implements HttpInterceptor {
 
-  token: TokenModel
+  tokenModel: TokenModel
   constructor(
     private storageService: StorageService
   ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    throw new Error('Method not implemented.');
+    this.getToken();
+    console.log(this.tokenModel)
+    let newRequest = req.clone({
+      headers: req.headers.set("Authorization", "Bearer " + this.tokenModel.token)
+    })
+
+    return next.handle(newRequest);
   }
 
   async getToken() {
-    this.token = JSON.parse(await this.storageService.checkName(KeyType.Token));
+    this.tokenModel = JSON.parse(await this.storageService.checkName(KeyType.Token));
   }
 }
