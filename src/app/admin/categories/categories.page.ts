@@ -46,18 +46,20 @@ export class CategoriesPage implements OnInit {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");
     setInterval(() => {
-      arrows1.animate({
-        opacity: 1
-      }, 500)
-      arrows2.animate({
-        opacity: 1
-      }, 800)
-      arrows1.animate({
-        opacity: 0
-      }, 800)
-      arrows2.animate({
-        opacity: 0
-      }, 500)
+      setTimeout(() => {
+        arrows1.animate({
+          opacity: 1
+        }, 500)
+        arrows2.animate({
+          opacity: 1
+        }, 800)
+        arrows1.animate({
+          opacity: 0
+        }, 800)
+        arrows2.animate({
+          opacity: 0
+        }, 500)
+      }, 1000);
     })
   }
 }
