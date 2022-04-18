@@ -41,6 +41,9 @@ export class CategoriesPage implements OnInit {
       component: CategorySavePage,
       componentProps: { category: category }
     })
+    modal.onDidDismiss().then(()=>{
+      this.getCategories();
+    })
     return await modal.present();
   }
   getBgColor(category: CategoryModel) {
