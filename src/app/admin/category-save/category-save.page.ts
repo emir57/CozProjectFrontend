@@ -47,7 +47,7 @@ export class CategorySavePage implements OnInit {
   async save() {
     if (this.categoryForm.valid) {
       this.isOk = false;
-      await this.loadingService.showLoading("Ekleniyor...");
+      await this.loadingService.showLoading(this.category ? "Güncelleniyor...":"Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
       if (!this.category) {
         await this.add(categoryModel);
