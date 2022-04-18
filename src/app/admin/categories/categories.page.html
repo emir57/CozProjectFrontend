@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <div class="display-5 p-2" *ngFor="let category of categories" [ngStyle]="
+  <div class="categoryCard display-5 p-2 m-2" *ngFor="let category of categories" [ngStyle]="
   {'background-color':category.backgroundColor,'color':category.textColor}">
     <i [ngStyle]="{}">{{category.name.toUpperCase()}}</i>
     <span style="float:right;margin:0;padding:0;">
