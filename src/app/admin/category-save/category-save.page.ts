@@ -31,6 +31,7 @@ export class CategorySavePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.category)
     this.createCategoryForm();
   }
 
@@ -113,7 +114,10 @@ export class CategorySavePage implements OnInit {
 
   getDate(dateString: string) {
     let date = new Date(dateString);
-    return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours}:${date.getMinutes()}`;
+    if(dateString == null){
+      return "-";
+    }
+    return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
   }
 
   get name() {

@@ -63,9 +63,9 @@
       </div>
     </div>
   </form>
-  <div *ngIf="category?.createdDate">Ekleme tarihi{{getDate(category?.createdDate)}}</div>
-  <div *ngIf="category?.updatedDate">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
-  <div *ngIf="category?.deletedDate">Silme tarihi {{getDate(category?.deletedDate)}}</div>
+  <div *ngIf="category.createdDate">Ekleme tarihi {{getDate(category.createdDate)}}</div>
+  <div *ngIf="category.updatedDate != null">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
+  <div *ngIf="category.deletedDate != null">Silme tarihi {{getDate(category?.deletedDate)}}</div>
   <ion-button [disabled]="!isOk" [disabled]="!categoryForm.valid" (click)="save()" expand="block" shape="round">
     <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
     <span *ngIf="isOk">Ekle</span>
