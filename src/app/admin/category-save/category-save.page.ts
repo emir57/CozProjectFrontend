@@ -88,7 +88,8 @@ export class CategorySavePage implements OnInit {
   update(categoryModel: CategoryModel) {
     this.categoryService.update(categoryModel).subscribe(async response => {
       if (response.success) {
-        this.messageService.showMessage(response.message);
+        await this.modalController.dismiss();
+        this.messageService.showMessage(response.message,{time:2000});
       }
       await this.loadingService.closeLoading();
       this.isOk = true;
