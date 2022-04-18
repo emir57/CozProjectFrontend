@@ -20,17 +20,14 @@ export class CategoriesPage implements OnInit {
   }
 
 
-  getCategories() {
-    this.categoryService.getall().subscribe(response => {
+  async getCategories() {
+    this.categoryService.getall().subscribe(async response => {
       if (response.success) {
         this.categories = response.data;
         setTimeout(() => {
           this.animationArrows();
         }, 0);
       }
-    }, responseErr => { },
-    () => {
-
     })
   }
 
@@ -45,16 +42,19 @@ export class CategoriesPage implements OnInit {
     return "color:" + category.textColor + ";"
   }
 
-  async animationArrows() {
+  animationArrows() {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");
-    console.log(arrows2)
-    arrows2.animate({
-      opacity: 0
-    })
-
     arrows1.animate({
       opacity: 1
-    })
+    }, 500)
+    arrows2.animate({
+      opacity: 1
+    }, 1000)
+    setTimeout(() => {
+      arrows1.animate({
+        opacity: 0
+      }, 500)
+    }, 500);
   }
 }
