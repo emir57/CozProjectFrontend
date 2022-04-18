@@ -17,6 +17,7 @@ export class CategoriesPage implements OnInit {
 
   ngOnInit() {
     this.getCategories();
+    this.animationArrows();
   }
 
   getCategories() {
@@ -38,8 +39,14 @@ export class CategoriesPage implements OnInit {
     return "color:" + category.textColor + ";"
   }
 
-  animationArrows() {
+  async animationArrows() {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");
+    arrows2.animate({
+      opacity: 0
+    })
+    arrows1.animate({
+      opacity: 1
+    })
   }
 }
