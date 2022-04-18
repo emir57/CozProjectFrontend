@@ -10,7 +10,9 @@
 </ion-header>
 
 <ion-content>
-  <div style="{{getBgColor(category)}}" style="{{getTextColor(category)}}" *ngFor="let category of categories">
-    {{category.name.toUpperCase()}}
+  <div class="display-4 p-2" *ngFor="let category of categories" [ngStyle]="
+  {'background-color':category.backgroundColor,
+  'color':category.textColor}">
+    <i>{{category.name.toUpperCase()}}</i>
   </div>
 </ion-content>
