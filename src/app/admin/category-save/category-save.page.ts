@@ -33,6 +33,7 @@ export class CategorySavePage implements OnInit {
   ngOnInit() {
     console.log(this.category)
     this.createCategoryForm();
+    this.checkCateogry();
   }
 
   createCategoryForm() {
@@ -42,6 +43,12 @@ export class CategorySavePage implements OnInit {
       backgroundColor: [this.category?.backgroundColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]],
       textColor: [this.category?.textColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
     })
+  }
+  checkCateogry(){
+    if(this.category){
+      this.chosedBackgroundColor = this.category.backgroundColor;
+      this.chosedTextColor = this.category.textColor;
+    }
   }
 
   async save() {
