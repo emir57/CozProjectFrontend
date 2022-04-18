@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { LoadingService } from './loading.service';
 import { KeyType, StorageService } from './storage.service';
+import { SweetalertService, SweetIconType } from './sweetalert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,9 @@ export class RoleService {
     @Inject("baseUrl") private baseUrl: string,
     private http: HttpClient,
     private storageService: StorageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: SweetalertService,
+    private router: Router
   ) {
     this.getUserRoles();
   }
@@ -34,6 +38,14 @@ export class RoleService {
         }
       })
       this.loadingService.closeLoading();
+    }, async responseErr => {
+      console.log(responseErr)
+      this.messageService.showMessage("Bilinmeyen bir hata meydana geldi lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
+      await this.loadingService.closeLoading();
+      await this.storageService.removeName(KeyType.Token);
+      await this.storageService.removeName(KeyType.User);
+      this.router.navigateByUrl("/login");
+
     })
   }
 }
