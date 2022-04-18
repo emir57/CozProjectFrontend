@@ -29,11 +29,12 @@ export class CategoriesPage implements OnInit {
   categoryEditPage(){
 
   }
-  getBgColor(){
-
+  getBgColor(category:CategoryModel){
+    console.log(category.backgroundColor)
+    return "background-color:"+category.backgroundColor+";";
   }
-  getTextColor(){
-
+  getTextColor(category:CategoryModel){
+    return "color:"+category.textColor+";"
   }
 
 }
