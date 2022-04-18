@@ -26,7 +26,7 @@ export class CategorySavePage implements OnInit {
     private loadingService: LoadingService,
     private categoryService: CategoryService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.createCategoryForm();
