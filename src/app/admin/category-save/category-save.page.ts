@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { CategoryModel } from 'src/app/models/tables/categoryMode';
 import { AlertService } from 'src/app/services/common/alert-service.service';
 import { CategoryService } from 'src/app/services/common/category.service';
@@ -25,8 +26,9 @@ export class CategorySavePage implements OnInit {
     private messageService: SweetalertService,
     private loadingService: LoadingService,
     private categoryService: CategoryService,
-    private alertService: AlertService
-  ) {}
+    private alertService: AlertService,
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() {
     this.createCategoryForm();
@@ -124,8 +126,12 @@ export class CategorySavePage implements OnInit {
     return this.categoryForm.get("textColor");
   }
 
-  getExampleStyle(){
+  getExampleStyle() {
     return `width: 100%;height: 50px;color:${this.chosedTextColor};background-color: ${this.chosedBackgroundColor};`;
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
 }
