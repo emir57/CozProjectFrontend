@@ -26,4 +26,14 @@ export class CategoriesPage implements OnInit {
     })
   }
 
+  categoryEditPage(){
+
+  }
+  getBgColor(){
+
+  }
+  getTextColor(){
+
+  }
+
 }
