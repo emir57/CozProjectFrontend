@@ -11,9 +11,9 @@
 
 <ion-content>
   <div class="display-4 p-2" *ngFor="let category of categories" [ngStyle]="
-  {'background-color':category.backgroundColor,
-  'color':category.textColor}">
-    <i>{{category.name.toUpperCase()}}</i>
+  {'background-color':category.backgroundColor}">
+    <i [ngStyle]="{'color':category.textColor}"
+    >{{category.name.toUpperCase()}}</i>
     <span style="float:right;margin:0;padding:0;">
       <ion-icon class="arrow1" name="chevron-forward-outline"></ion-icon>
       <ion-icon class="arrow2" name="chevron-forward-outline"></ion-icon>

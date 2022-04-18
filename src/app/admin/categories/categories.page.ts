@@ -17,14 +17,20 @@ export class CategoriesPage implements OnInit {
 
   ngOnInit() {
     this.getCategories();
-    this.animationArrows();
   }
+
 
   getCategories() {
     this.categoryService.getall().subscribe(response => {
       if (response.success) {
         this.categories = response.data;
+        setTimeout(() => {
+          this.animationArrows();
+        }, 0);
       }
+    }, responseErr => { },
+    () => {
+
     })
   }
 
@@ -42,9 +48,11 @@ export class CategoriesPage implements OnInit {
   async animationArrows() {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");
+    console.log(arrows2)
     arrows2.animate({
       opacity: 0
     })
+
     arrows1.animate({
       opacity: 1
     })
