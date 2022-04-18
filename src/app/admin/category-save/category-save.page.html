@@ -70,8 +70,10 @@
   </div>
   <ion-button [disabled]="!isOk" [disabled]="!categoryForm.valid" (click)="save()" expand="block" shape="round">
     <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
-    <span *ngIf="isOk">Ekle</span>
-    <span *ngIf="!isOk">Ekleniyor...</span>
+    <span *ngIf="isOk && !category">Ekle</span>
+    <span *ngIf="!isOk && !category">Ekleniyor...</span>
+    <span *ngIf="isOk && category">Güncelle</span>
+    <span *ngIf="!isOk && category">Güncelleniyor...</span>
   </ion-button>
   <div class="display-4 p-2" [style]="getExampleStyle()">
     {{name.value=="" ? "Javascript":name.value}}
