@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from 'src/app/models/tables/categoryMode';
 import { CategoryService } from 'src/app/services/common/category.service';
+declare var $: any;
 
 @Component({
   selector: 'app-categories',
@@ -26,15 +27,19 @@ export class CategoriesPage implements OnInit {
     })
   }
 
-  categoryEditPage(){
+  categoryEditPage() {
 
   }
-  getBgColor(category:CategoryModel){
+  getBgColor(category: CategoryModel) {
     console.log(category.backgroundColor)
-    return "background-color:"+category.backgroundColor+";";
+    return "background-color:" + category.backgroundColor + ";";
   }
-  getTextColor(category:CategoryModel){
-    return "color:"+category.textColor+";"
+  getTextColor(category: CategoryModel) {
+    return "color:" + category.textColor + ";"
   }
 
+  animationArrows() {
+    let arrows1 = $(".arrow1");
+    let arrows2 = $(".arrow2");
+  }
 }
