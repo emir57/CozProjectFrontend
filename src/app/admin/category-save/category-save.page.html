@@ -63,16 +63,17 @@
       </div>
     </div>
   </form>
-  <div *ngIf="category.createdDate">Ekleme tarihi {{getDate(category.createdDate)}}</div>
-  <div *ngIf="category.updatedDate != null">Son güncelleme tarihi {{getDate(category?.updatedDate)}}</div>
-  <div *ngIf="category.deletedDate != null">Silme tarihi {{getDate(category?.deletedDate)}}</div>
+  <div class="p-2">
+    <div *ngIf="category.createdDate">Ekleme tarihi <span class="text-primary">{{getDate(category.createdDate)}}</span></div>
+    <div *ngIf="category.updatedDate">Son güncelleme tarihi <span class="text-primary">{{getDate(category?.updatedDate)}}</span></div>
+    <div *ngIf="category.deletedDate">Silme tarihi <span class="text-primary">{{getDate(category?.deletedDate)}}</span></div>
+  </div>
   <ion-button [disabled]="!isOk" [disabled]="!categoryForm.valid" (click)="save()" expand="block" shape="round">
     <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
     <span *ngIf="isOk">Ekle</span>
     <span *ngIf="!isOk">Ekleniyor...</span>
   </ion-button>
-  <div class="display-4 p-2"
-    [style]="getExampleStyle()">
+  <div class="display-4 p-2" [style]="getExampleStyle()">
     {{name.value=="" ? "Javascript":name.value}}
   </div>
 </ion-content>
