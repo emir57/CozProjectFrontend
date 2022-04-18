@@ -68,6 +68,7 @@ export class CategorySavePage implements OnInit {
     delete categoryModel.id;
     this.categoryService.add(categoryModel).subscribe(async response => {
       if (response.success) {
+        this.router.navigateByUrl("/admin/categories")
         this.messageService.showMessage(response.message);
       }
       await this.loadingService.closeLoading();
