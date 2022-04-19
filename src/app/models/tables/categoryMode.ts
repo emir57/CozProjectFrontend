@@ -6,4 +6,5 @@ export interface CategoryModel {
   createdDate: string;
   updatedDate: string;
   deletedDate: string;
+  isComplete?: boolean;
 }
