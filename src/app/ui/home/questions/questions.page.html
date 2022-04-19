@@ -6,16 +6,14 @@
 
 <ion-content class="p-2">
   <i style="font-size: large;" class="">Toplamda <span class="text-primary">{{categories.length}}</span> kategori</i>
-  <div class="categoryCard display-5 p-2 m-2" *ngFor="let category of categories" [ngStyle]="
+  <div [style]="checkCompleteDiv(category)" class="categoryCard display-5 p-2 m-2" *ngFor="let category of categories" [ngStyle]="
   {'background-color':category.backgroundColor,'color':category.textColor}">
-    <div class="categoryisComplete" *ngIf="category.isComplete">
-      Tamamlandı!
-    </div>
+    <span [style]="checkCompleteSpan(category)" *ngIf="category.isComplete">Tamamlandı!</span>
     <i [ngStyle]="{}">{{category.name.toUpperCase()}}</i>
     <span style="float:right;margin:0;padding:0;">
-      <ion-icon style="opacity: 0;" class="arrow1" name="chevron-forward-outline"></ion-icon>
-      <ion-icon style="opacity: 0;" class="arrow2" name="chevron-forward-outline"></ion-icon>
-      <ion-icon name="terminal-outline"></ion-icon>
+      <ion-icon *ngIf="!category.isComplete" style="opacity: 0;" class="arrow1" name="chevron-forward-outline"></ion-icon>
+      <ion-icon *ngIf="!category.isComplete" style="opacity: 0;" class="arrow2" name="chevron-forward-outline"></ion-icon>
+      <ion-icon *ngIf="!category.isComplete" name="terminal-outline"></ion-icon>
     </span>
   </div>
 </ion-content>

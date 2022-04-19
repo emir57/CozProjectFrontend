@@ -38,6 +38,23 @@ export class QuestionsPage implements OnInit {
       }
     })
   }
+  checkCompleteDiv(category: CategoryModel) {
+    if (category.isComplete) {
+      return `
+      z-index: 99;
+      background-color: black;
+      opacity: .3; `;
+    }
+  }
+  checkCompleteSpan(category: CategoryModel){
+    if (category.isComplete) {
+      return `
+      z-index: 102;
+      color:black;
+      float:right;
+      `;
+    }
+  }
   animationArrows() {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");
