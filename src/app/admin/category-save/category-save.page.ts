@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { CategoryModel } from 'src/app/models/tables/categoryMode';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { AlertService } from 'src/app/services/common/alert-service.service';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { LoadingService } from 'src/app/services/common/loading.service';

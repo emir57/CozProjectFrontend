@@ -3,7 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import ResponseListModel from 'src/app/models/responseListModel';
 import ResponseModel from 'src/app/models/responseModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
-import { CategoryModel } from 'src/app/models/tables/categoryMode';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 
 @Injectable({
   providedIn: 'root'

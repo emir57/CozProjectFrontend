@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { CategoryModel } from 'src/app/models/tables/categoryMode';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { CategorySavePage } from '../category-save/category-save.page';
 declare var $: any;

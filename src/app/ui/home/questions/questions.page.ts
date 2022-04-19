@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
-import { CategoryModel } from 'src/app/models/tables/categoryMode';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 declare var $: any;
