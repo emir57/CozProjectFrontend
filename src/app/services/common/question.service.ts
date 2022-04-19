@@ -17,4 +17,8 @@ export class QuestionService {
     let url = `${this.baseUrl}}api/questions/getall`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
+  getallWithAnswers() {
+    let url = `${this.baseUrl}}api/questions/getallwithanswers`;
+    return this.http.get<ResponseListModel<QuestionModel>>(url);
+  }
 }
