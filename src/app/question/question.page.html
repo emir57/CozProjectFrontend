@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
+      <ion-button color="danger" (click)="dismiss()">
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{category.name}} - sorular</ion-title>
+    <ion-title>
+      <span>{{category.name}} - sorular</span>
+      <span>Score : <span>0</span></span>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
