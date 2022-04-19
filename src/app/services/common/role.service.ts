@@ -39,7 +39,6 @@ export class RoleService {
       })
       this.loadingService.closeLoading();
     }, async responseErr => {
-      console.log(responseErr)
       this.messageService.showMessage("Bilinmeyen bir hata meydana geldi lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
       await this.loadingService.closeLoading();
       await this.storageService.removeName(KeyType.Token);
