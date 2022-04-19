@@ -35,4 +35,9 @@ export class QuestionPage implements OnInit {
     })
   }
 
+
+  async dismiss(){
+    await this.modalController.dismiss();
+  }
+
 }
