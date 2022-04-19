@@ -13,6 +13,7 @@ import { SweetalertService } from '../services/common/sweetalert.service';
 })
 export class QuestionPage implements OnInit {
 
+  currentQuestion: QuestionModel;
   questions: QuestionModel[] = [];
   @Input() user: LoginedUser;
   @Input() category: CategoryModel
@@ -30,13 +31,13 @@ export class QuestionPage implements OnInit {
     this.questionService.getallWithAnswersByUserId(this.user.id).subscribe(response => {
       if (response.success) {
         this.questions = response.data;
-        console.log(this.questions)
+        this.currentQuestion = this.questions[0];
       }
     })
   }
 
 
-  async dismiss(){
+  async dismiss() {
     await this.modalController.dismiss();
   }
 
