@@ -8,6 +8,9 @@
   <i style="font-size: large;" class="">Toplamda <span class="text-primary">{{categories.length}}</span> kategori</i>
   <div class="categoryCard display-5 p-2 m-2" *ngFor="let category of categories" [ngStyle]="
   {'background-color':category.backgroundColor,'color':category.textColor}">
+    <div class="categoryisComplete" *ngIf="category.isComplete">
+      Tamamlandı!
+    </div>
     <i [ngStyle]="{}">{{category.name.toUpperCase()}}</i>
     <span style="float:right;margin:0;padding:0;">
       <ion-icon style="opacity: 0;" class="arrow1" name="chevron-forward-outline"></ion-icon>
