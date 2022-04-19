@@ -5,7 +5,7 @@ import { CategoryModel } from '../models/tables/categoryModel';
 import { QuestionModel } from '../models/tables/questionModel';
 import { QuestionService } from '../services/common/question.service';
 import { SweetalertService } from '../services/common/sweetalert.service';
-
+import { AnswerModel } from "../models/tables/answerModel";
 @Component({
   selector: 'app-question',
   templateUrl: './question.page.html',
@@ -13,6 +13,7 @@ import { SweetalertService } from '../services/common/sweetalert.service';
 })
 export class QuestionPage implements OnInit {
 
+  choosedAnswer: AnswerModel;
   currentQuestion: QuestionModel;
   questions: QuestionModel[] = [];
   @Input() user: LoginedUser;
@@ -25,6 +26,13 @@ export class QuestionPage implements OnInit {
 
   ngOnInit() {
     this.getQuestions();
+  }
+  setChooseAnswer(answer: AnswerModel) {
+    this.choosedAnswer = answer;
+  }
+
+  checkAnswer() {
+    console.log(this.choosedAnswer)
   }
 
   getQuestions() {
