@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
+import { AnswerPage } from 'src/app/answer/answer.page';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { CategoryService } from 'src/app/services/common/category.service';
@@ -17,7 +18,8 @@ export class QuestionsPage implements OnInit {
   categories: CategoryModel[] = []
   constructor(
     private categoryService: CategoryService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class QuestionsPage implements OnInit {
       opacity: .3; `;
     }
   }
-  checkCompleteSpan(category: CategoryModel){
+  checkCompleteSpan(category: CategoryModel) {
     if (category.isComplete) {
       return `
       z-index: 102;
@@ -54,6 +56,13 @@ export class QuestionsPage implements OnInit {
       float:right;
       `;
     }
+  }
+  async openAnswerModal(category: CategoryModel) {
+    const modal = await this.modalController.create({
+      component: AnswerPage,
+      componentProps: { category: category, user: this.user }
+    })
+    await modal.present();
   }
   animationArrows() {
     let arrows1 = $(".arrow1");
