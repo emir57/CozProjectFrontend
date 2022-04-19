@@ -4,7 +4,7 @@ import LoginedUser from '../models/auth/loginedUserModel';
 import { CategoryModel } from '../models/tables/categoryModel';
 import { QuestionModel } from '../models/tables/questionModel';
 import { QuestionService } from '../services/common/question.service';
-import { SweetalertService } from '../services/common/sweetalert.service';
+import { SweetalertService, SweetIconType } from '../services/common/sweetalert.service';
 import { AnswerModel } from "../models/tables/answerModel";
 @Component({
   selector: 'app-question',
@@ -32,7 +32,11 @@ export class QuestionPage implements OnInit {
   }
 
   checkAnswer() {
+    if (!this.choosedAnswer) {
+      this.messageService.showMessage("Lütfen cevap seçiniz", { iconType: SweetIconType.Warning, time: 1000 })
+    }
     console.log(this.choosedAnswer)
+    this.choosedAnswer = undefined;
   }
 
   getQuestions() {
