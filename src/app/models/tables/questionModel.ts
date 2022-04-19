@@ -10,4 +10,5 @@ export interface QuestionModel {
   updatedDate?: string;
   deletedDate?: string;
   answers?: AnswerModel[]
+  result?: boolean;
 }
