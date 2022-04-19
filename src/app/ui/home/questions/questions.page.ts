@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { CategoryModel } from 'src/app/models/tables/categoryMode';
 import { CategoryService } from 'src/app/services/common/category.service';
+import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 declare var $: any;
 
 @Component({
@@ -11,17 +13,23 @@ declare var $: any;
 })
 export class QuestionsPage implements OnInit {
 
+  user: LoginedUser
   categories: CategoryModel[] = []
   constructor(
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
     this.getCategories();
   }
+  async getUser() {
+    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+  }
 
-  getCategories() {
-    this.categoryService.getall().subscribe(response => {
+  async getCategories() {
+    await this.getUser();
+    this.categoryService.getallWithCheckComplete(this.user.id).subscribe(response => {
       if (response.success) {
         this.categories = response.data;
         setTimeout(() => {
