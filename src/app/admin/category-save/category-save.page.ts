@@ -31,7 +31,6 @@ export class CategorySavePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.category)
     this.createCategoryForm();
     this.checkCateogry();
   }
