@@ -30,4 +30,8 @@ export class QuestionService {
     let url = `${this.baseUrl}}api/questions/update`;
     return this.http.post<ResponseModel>(url,questionModel);
   }
+  delete(questionModelId: number) {
+    let url = `${this.baseUrl}}api/questions/delete?id=${questionModelId}`;
+    return this.http.delete<ResponseModel>(url);
+  }
 }
