@@ -26,4 +26,8 @@ export class QuestionService {
     let url = `${this.baseUrl}}api/questions/add`;
     return this.http.post<ResponseModel>(url,questionModel);
   }
+  update(questionModel: QuestionModel) {
+    let url = `${this.baseUrl}}api/questions/update`;
+    return this.http.post<ResponseModel>(url,questionModel);
+  }
 }
