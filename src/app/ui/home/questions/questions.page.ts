@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, ModalController } from '@ionic/angular';
-import { AnswerPage } from 'src/app/answer/answer.page';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
+import { QuestionPage } from 'src/app/question/question.page';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 declare var $: any;
@@ -59,7 +59,7 @@ export class QuestionsPage implements OnInit {
   }
   async openAnswerModal(category: CategoryModel) {
     const modal = await this.modalController.create({
-      component: AnswerPage,
+      component: QuestionPage,
       componentProps: { category: category, user: this.user }
     })
     await modal.present();

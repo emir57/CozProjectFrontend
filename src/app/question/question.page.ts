@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import LoginedUser from '../models/auth/loginedUserModel';
+import { CategoryModel } from '../models/tables/categoryModel';
+import { QuestionModel } from '../models/tables/questionModel';
+import { QuestionService } from '../services/common/question.service';
+import { SweetalertService } from '../services/common/sweetalert.service';
 
 @Component({
   selector: 'app-question',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionPage implements OnInit {
 
-  constructor() { }
+  questions: QuestionModel[] = [];
+  @Input() user: LoginedUser;
+  @Input() category: CategoryModel
+  constructor(
+    private modalController: ModalController,
+    private messageService: SweetalertService,
+    private questionService: QuestionService
+  ) { }
 
   ngOnInit() {
+  }
+
+  getQuestions() {
+    this.questionService.getallWithAnswersByUserId(this.user.id).subscribe(response => {
+      if (response.success) {
+        this.questions = response.data;
+        console.log(this.questions)
+      }
+    })
   }
 
 }
