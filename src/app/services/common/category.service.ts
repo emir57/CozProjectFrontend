@@ -35,4 +35,8 @@ export class CategoryService {
     let url = `${this.baseUrl}api/categories/getall`;
     return this.http.get<ResponseListModel<CategoryModel>>(url);
   }
+  getallWithCheckComplete(userId: number) {
+    let url = `${this.baseUrl}api/categories/getallwithcheckcomplete=userId=${userId}`;
+    return this.http.get<ResponseListModel<CategoryModel>>(url);
+  }
 }
