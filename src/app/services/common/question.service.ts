@@ -15,27 +15,27 @@ export class QuestionService {
   ) { }
 
   getall() {
-    let url = `${this.baseUrl}}api/questions/getall`;
+    let url = `${this.baseUrl}api/questions/getall`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
   getallWithAnswers() {
-    let url = `${this.baseUrl}}api/questions/getallwithanswers`;
+    let url = `${this.baseUrl}api/questions/getallwithanswers`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
   getallWithAnswersByUserId(userId:number) {
-    let url = `${this.baseUrl}}api/questions/getallwithanswersbyuserid?id=${userId}`;
+    let url = `${this.baseUrl}api/questions/getallwithanswersbyuserid?id=${userId}`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
   add(questionModel: QuestionModel) {
-    let url = `${this.baseUrl}}api/questions/add`;
+    let url = `${this.baseUrl}api/questions/add`;
     return this.http.post<ResponseModel>(url,questionModel);
   }
   update(questionModel: QuestionModel) {
-    let url = `${this.baseUrl}}api/questions/update`;
+    let url = `${this.baseUrl}api/questions/update`;
     return this.http.post<ResponseModel>(url,questionModel);
   }
   delete(questionModelId: number) {
-    let url = `${this.baseUrl}}api/questions/delete?id=${questionModelId}`;
+    let url = `${this.baseUrl}api/questions/delete?id=${questionModelId}`;
     return this.http.delete<ResponseModel>(url);
   }
 }

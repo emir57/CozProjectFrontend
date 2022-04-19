@@ -23,6 +23,7 @@ export class QuestionPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getQuestions();
   }
 
   getQuestions() {
