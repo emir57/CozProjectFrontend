@@ -60,10 +60,12 @@ export class QuestionPage implements OnInit {
     })
   }
   prevQuestion() {
-
+    this.currentQuestionIndex--;
+    this.currentQuestion = this.questions[this.currentQuestionIndex];
   }
   nextQuestion() {
-
+    this.currentQuestionIndex++;
+    this.currentQuestion = this.questions[this.currentQuestionIndex];
   }
 
   getTrueAnswer() {
