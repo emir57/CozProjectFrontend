@@ -26,6 +26,14 @@
     <ion-button [disabled]="currentQuestion.result != null" (click)="checkAnswer()" expand="block" fill="clear" shape="round">
       Cevapla
     </ion-button>
+    <div style="display: flex;justify-content: space-around;">
+      <ion-button (click)="prevQuestion()" fill="clear" shape="round">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="nextQuestion()" fill="clear" shape="round">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
   </div>
   <div style="width: 100%;height: 20%;background-color: red;">
 
