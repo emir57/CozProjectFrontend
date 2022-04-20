@@ -22,17 +22,21 @@ export class QuestionService {
     let url = `${this.baseUrl}api/questions/getallwithanswers`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
-  getallWithAnswersByUserId(userId:number) {
+  getallWithAnswersByUserId(userId: number) {
     let url = `${this.baseUrl}api/questions/getallwithanswersbyuserid?id=${userId}`;
+    return this.http.get<ResponseListModel<QuestionModel>>(url);
+  }
+  getByCategoryIdWithAnswersByUserId(categoryId: number, userId: number) {
+    let url = `${this.baseUrl}api/questions/getbycategoryidwithanswersbyuserid?categoryId=${categoryId}&userId=${userId}`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
   }
   add(questionModel: QuestionModel) {
     let url = `${this.baseUrl}api/questions/add`;
-    return this.http.post<ResponseModel>(url,questionModel);
+    return this.http.post<ResponseModel>(url, questionModel);
   }
   update(questionModel: QuestionModel) {
     let url = `${this.baseUrl}api/questions/update`;
-    return this.http.post<ResponseModel>(url,questionModel);
+    return this.http.post<ResponseModel>(url, questionModel);
   }
   delete(questionModelId: number) {
     let url = `${this.baseUrl}api/questions/delete?id=${questionModelId}`;
