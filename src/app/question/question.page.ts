@@ -8,6 +8,8 @@ import { SweetalertService, SweetIconType } from '../services/common/sweetalert.
 import { AnswerModel } from "../models/tables/answerModel";
 import { ScoreService, UpdateScoreModel } from '../services/common/score.service';
 import * as signalR from "@microsoft/signalr";
+import { AlertService } from '../services/common/alert-service.service';
+import { KeyType, StorageService } from '../services/common/storage.service';
 
 @Component({
   selector: 'app-question',
@@ -30,7 +32,9 @@ export class QuestionPage implements OnInit {
     private modalController: ModalController,
     private messageService: SweetalertService,
     private questionService: QuestionService,
-    private scoreService: ScoreService
+    private scoreService: ScoreService,
+    private alertService: AlertService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
@@ -79,7 +83,7 @@ export class QuestionPage implements OnInit {
   }
 
   getQuestions() {
-    this.questionService.getByCategoryIdWithAnswersByUserId(this.category.id,this.user.id).subscribe(response => {
+    this.questionService.getByCategoryIdWithAnswersByUserId(this.category.id, this.user.id).subscribe(response => {
       if (response.success) {
         this.questions = response.data;
         this.currentQuestion = this.questions[this.currentQuestionIndex];
@@ -100,7 +104,14 @@ export class QuestionPage implements OnInit {
     return this.currentQuestion.answers.find(a => a.isTrue);
   }
   async dismiss() {
-    await this.modalController.dismiss();
+    this.alertService.showAlertConfirm(
+      "Kapatmak üzeresiniz\nMerak etmeyin değişiklikleriniz kaydedilecek",
+      "Uyarı!",
+      () => { },
+      async () => {
+        this.user.score = this.score;
+        this.storageService.setName(KeyType.User, this.user);
+        await this.modalController.dismiss();
+      })
   }
-
 }
