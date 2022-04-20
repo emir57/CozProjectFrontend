@@ -27,10 +27,10 @@
       Cevapla
     </ion-button>
     <div style="display: flex;justify-content: space-around;">
-      <ion-button (click)="prevQuestion()" fill="clear" shape="round">
+      <ion-button [disabled]="currentQuestionIndex == 0" (click)="prevQuestion()" fill="clear" shape="round">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
-      <ion-button (click)="nextQuestion()" fill="clear" shape="round">
+      <ion-button [disabled]="currentQuestionIndex == questions.length-1" (click)="nextQuestion()" fill="clear" shape="round">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </div>

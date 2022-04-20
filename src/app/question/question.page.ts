@@ -59,6 +59,12 @@ export class QuestionPage implements OnInit {
       }
     })
   }
+  prevQuestion() {
+
+  }
+  nextQuestion() {
+
+  }
 
   getTrueAnswer() {
     return this.currentQuestion.answers.find(a => a.isTrue);
