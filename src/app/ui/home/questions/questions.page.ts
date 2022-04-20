@@ -4,6 +4,7 @@ import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { QuestionPage } from 'src/app/question/question.page';
 import { CategoryService } from 'src/app/services/common/category.service';
+import { LoadingService } from 'src/app/services/common/loading.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 declare var $: any;
 
@@ -19,7 +20,8 @@ export class QuestionsPage implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private storageService: StorageService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -30,12 +32,14 @@ export class QuestionsPage implements OnInit {
   }
 
   async getCategories() {
+    await this.loadingService.showLoading("Yükleniyor..");
     await this.getUser();
     this.categoryService.getallWithCheckComplete(this.user.id).subscribe(response => {
       if (response.success) {
         this.categories = response.data;
-        setTimeout(() => {
+        setTimeout(async () => {
           this.animationArrows();
+          await this.loadingService.closeLoading();
         }, 0);
       }
     })
