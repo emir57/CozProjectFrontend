@@ -14,7 +14,7 @@ import { ScoreService, UpdateScoreModel } from '../services/common/score.service
 })
 export class QuestionPage implements OnInit {
 
-
+  currentQuestionIndex = 0;
   choosedAnswer: AnswerModel;
   currentQuestion: QuestionModel;
   questions: QuestionModel[] = [];
@@ -44,7 +44,7 @@ export class QuestionPage implements OnInit {
       result: this.choosedAnswer.isTrue,
       score: this.currentQuestion.score
     }
-    this.scoreService.updateScore(updateScoreModel).subscribe(response=>{
+    this.scoreService.updateScore(updateScoreModel).subscribe(response => {
 
     });
     this.choosedAnswer = undefined;
@@ -54,14 +54,14 @@ export class QuestionPage implements OnInit {
     this.questionService.getallWithAnswersByUserId(this.user.id).subscribe(response => {
       if (response.success) {
         this.questions = response.data;
-        this.currentQuestion = this.questions[0];
+        this.currentQuestion = this.questions[this.currentQuestionIndex];
         console.log(response.data)
       }
     })
   }
 
-  getTrueAnswer(){
-    return this.currentQuestion.answers.find(a=>a.isTrue);
+  getTrueAnswer() {
+    return this.currentQuestion.answers.find(a => a.isTrue);
   }
   async dismiss() {
     await this.modalController.dismiss();
