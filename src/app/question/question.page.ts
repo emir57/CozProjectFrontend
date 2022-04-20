@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import LoginedUser from '../models/auth/loginedUserModel';
 import { CategoryModel } from '../models/tables/categoryModel';
@@ -7,6 +7,8 @@ import { QuestionService } from '../services/common/question.service';
 import { SweetalertService, SweetIconType } from '../services/common/sweetalert.service';
 import { AnswerModel } from "../models/tables/answerModel";
 import { ScoreService, UpdateScoreModel } from '../services/common/score.service';
+import * as signalR from "@microsoft/signalr";
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.page.html',
@@ -14,6 +16,9 @@ import { ScoreService, UpdateScoreModel } from '../services/common/score.service
 })
 export class QuestionPage implements OnInit {
 
+
+  score: number = 0;
+  signalRHubConnection: signalR.HubConnection;
   currentQuestionIndex = 0;
   choosedAnswer: AnswerModel;
   currentQuestion: QuestionModel;
@@ -21,6 +26,7 @@ export class QuestionPage implements OnInit {
   @Input() user: LoginedUser;
   @Input() category: CategoryModel
   constructor(
+    @Inject("baseUrl") private baseUrl: string,
     private modalController: ModalController,
     private messageService: SweetalertService,
     private questionService: QuestionService,
@@ -28,10 +34,26 @@ export class QuestionPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.score = this.user.score
     this.getQuestions();
+    this.connectHub();
   }
   setChooseAnswer(answer: AnswerModel) {
     this.choosedAnswer = answer;
+  }
+  connectHub() {
+    this.signalRHubConnection = new signalR.HubConnectionBuilder()
+      .withUrl(`${this.baseUrl}scorehub`, {
+        skipNegotiation: true,
+        transport:signalR.HttpTransportType.WebSockets
+      })
+      .build()
+    this.signalRHubConnection.start()
+      .then(() => console.log("Connected"))
+      .catch(() => this.messageService.showMessage("Bağlantı Sağlanamadı", { iconType: SweetIconType.Error }))
+  }
+  getScore() {
+    this.signalRHubConnection;
   }
 
   checkAnswer() {

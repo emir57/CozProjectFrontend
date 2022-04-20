@@ -9,7 +9,7 @@ export class ScoreService {
 
   constructor(
     @Inject("baseUrl") private baseUrl: string,
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
   updateScore(updateScoreModel: UpdateScoreModel) {
