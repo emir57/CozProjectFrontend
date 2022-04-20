@@ -6,8 +6,10 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <span>{{category.name}} - sorular</span>
-      <span>Score : <span>0</span></span>
+      <div style="display: flex;justify-content: start;">
+        <span>{{category.name}}</span>&nbsp;
+        <span style="margin-left: auto;">Skor : <span>0</span></span>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,20 +19,24 @@
     <div>{{currentQuestion.content}}</div>
     <br>
     <div *ngFor="let answer of currentQuestion.answers" class="form-check">
-      <input [disabled]="(currentQuestion.result != null)" [checked]="(currentQuestion.result != null) && answer.isTrue" class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
+      <input [disabled]="(currentQuestion.result != null)" [checked]="(currentQuestion.result != null) && answer.isTrue"
+        class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
       <label class="form-check-label" for="answer{{answer.id}}">
         {{answer.content}}
       </label>
     </div>
-    <span *ngIf="currentQuestion.result == false">Doğru Cevap: <span class="text-primary">{{getTrueAnswer().content}}</span></span>
-    <ion-button [disabled]="currentQuestion.result != null" (click)="checkAnswer()" expand="block" fill="clear" shape="round">
+    <span *ngIf="currentQuestion.result == false">Doğru Cevap: <span
+        class="text-primary">{{getTrueAnswer().content}}</span></span>
+    <ion-button [disabled]="currentQuestion.result != null" (click)="checkAnswer()" expand="block" fill="clear"
+      shape="round">
       Cevapla
     </ion-button>
     <div style="display: flex;justify-content: space-around;">
       <ion-button [disabled]="currentQuestionIndex == 0" (click)="prevQuestion()" fill="clear" shape="round">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
-      <ion-button [disabled]="currentQuestionIndex == questions.length-1" (click)="nextQuestion()" fill="clear" shape="round">
+      <ion-button [disabled]="currentQuestionIndex == questions.length-1" (click)="nextQuestion()" fill="clear"
+        shape="round">
         <ion-icon name="chevron-forward-outline"></ion-icon>
       </ion-button>
     </div>
