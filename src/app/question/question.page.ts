@@ -45,7 +45,7 @@ export class QuestionPage implements OnInit {
     this.signalRHubConnection = new signalR.HubConnectionBuilder()
       .withUrl(`${this.baseUrl}scorehub`, {
         skipNegotiation: true,
-        transport:signalR.HttpTransportType.WebSockets
+        transport: signalR.HttpTransportType.WebSockets
       })
       .build()
     this.signalRHubConnection.start()
@@ -53,7 +53,11 @@ export class QuestionPage implements OnInit {
       .catch(() => this.messageService.showMessage("Bağlantı Sağlanamadı", { iconType: SweetIconType.Error }))
   }
   getScore() {
-    this.signalRHubConnection;
+    this.signalRHubConnection.on("SendScore", (userId: number, score: number) => {
+      if (this.user.id == userId) {
+        this.score = score;
+      }
+    });
   }
 
   checkAnswer() {
@@ -69,7 +73,9 @@ export class QuestionPage implements OnInit {
     this.scoreService.updateScore(updateScoreModel).subscribe(response => {
 
     });
+    this.getScore();
     this.choosedAnswer = undefined;
+    this.nextQuestion();
   }
 
   getQuestions() {
