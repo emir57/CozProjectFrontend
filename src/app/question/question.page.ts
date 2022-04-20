@@ -14,6 +14,7 @@ import { ScoreService, UpdateScoreModel } from '../services/common/score.service
 })
 export class QuestionPage implements OnInit {
 
+
   choosedAnswer: AnswerModel;
   currentQuestion: QuestionModel;
   questions: QuestionModel[] = [];
@@ -54,11 +55,14 @@ export class QuestionPage implements OnInit {
       if (response.success) {
         this.questions = response.data;
         this.currentQuestion = this.questions[0];
+        console.log(response.data)
       }
     })
   }
 
-
+  getTrueAnswer(){
+    return this.currentQuestion.answers.find(a=>a.isTrue);
+  }
   async dismiss() {
     await this.modalController.dismiss();
   }

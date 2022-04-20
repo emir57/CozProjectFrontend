@@ -17,12 +17,13 @@
     <div>{{currentQuestion.content}}</div>
     <br>
     <div *ngFor="let answer of currentQuestion.answers" class="form-check">
-      <input class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
+      <input [checked]="!(currentQuestion.result) && answer.isTrue" class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
       <label class="form-check-label" for="answer{{answer.id}}">
         {{answer.content}}
       </label>
     </div>
-    <ion-button (click)="checkAnswer()" expand="block" fill="clear" shape="round">
+    <span *ngIf="currentQuestion.result == false">Doğru Cevap: <span class="text-primary">{{getTrueAnswer().content}}</span></span>
+    <ion-button [disabled]="currentQuestion.result != null" (click)="checkAnswer()" expand="block" fill="clear" shape="round">
       Cevapla
     </ion-button>
   </div>
