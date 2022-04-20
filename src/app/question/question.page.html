@@ -17,7 +17,7 @@
     <div>{{currentQuestion.content}}</div>
     <br>
     <div *ngFor="let answer of currentQuestion.answers" class="form-check">
-      <input [checked]="!(currentQuestion.result) && answer.isTrue" class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
+      <input [disabled]="!(currentQuestion.result)" [checked]="!(currentQuestion.result) && answer.isTrue" class="form-check-input" (click)="setChooseAnswer(answer)" type="radio" name="answer" id="answer{{answer.id}}">
       <label class="form-check-label" for="answer{{answer.id}}">
         {{answer.content}}
       </label>
