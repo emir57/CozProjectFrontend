@@ -79,7 +79,7 @@ export class QuestionPage implements OnInit {
   }
 
   getQuestions() {
-    this.questionService.getallWithAnswersByUserId(this.user.id).subscribe(response => {
+    this.questionService.getByCategoryIdWithAnswersByUserId(this.category.id,this.user.id).subscribe(response => {
       if (response.success) {
         this.questions = response.data;
         this.currentQuestion = this.questions[this.currentQuestionIndex];
