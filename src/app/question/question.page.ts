@@ -6,6 +6,7 @@ import { QuestionModel } from '../models/tables/questionModel';
 import { QuestionService } from '../services/common/question.service';
 import { SweetalertService, SweetIconType } from '../services/common/sweetalert.service';
 import { AnswerModel } from "../models/tables/answerModel";
+import { ScoreService, UpdateScoreModel } from '../services/common/score.service';
 @Component({
   selector: 'app-question',
   templateUrl: './question.page.html',
@@ -21,7 +22,8 @@ export class QuestionPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private messageService: SweetalertService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private scoreService: ScoreService
   ) { }
 
   ngOnInit() {
@@ -35,7 +37,15 @@ export class QuestionPage implements OnInit {
     if (!this.choosedAnswer) {
       this.messageService.showMessage("Lütfen cevap seçiniz", { iconType: SweetIconType.Warning, time: 1000 })
     }
-    console.log(this.choosedAnswer)
+    let updateScoreModel: UpdateScoreModel = {
+      userId: this.user.id,
+      questionId: this.currentQuestion.id,
+      result: this.choosedAnswer.isTrue,
+      score: this.currentQuestion.score
+    }
+    this.scoreService.updateScore(updateScoreModel).subscribe(response=>{
+
+    });
     this.choosedAnswer = undefined;
   }
 
