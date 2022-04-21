@@ -33,6 +33,9 @@ export class QuestionsPage implements OnInit {
       }
     })
   }
+  editQuestion(question:QuestionModel){
+
+  }
 
 
   checkisTrue(answer: AnswerModel) {

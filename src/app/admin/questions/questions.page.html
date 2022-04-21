@@ -18,5 +18,9 @@
         <span [class]="checkisTrue(answer)">{{answer.content}}</span>
       </div>
     </ion-card-content>
+    <ion-button (click)="editQuestion(question)" expand="block" fill="clear" shape="round">
+      <ion-icon name="create-outline"></ion-icon>
+      Düzenle
+    </ion-button>
   </ion-card>
 </ion-content>
