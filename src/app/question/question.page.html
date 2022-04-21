@@ -33,7 +33,7 @@
       Cevapla
     </ion-button>
     <div style="display: flex;justify-content: space-around;">
-      <ion-button [disabled]="currentQuestionIndex == 0 || true" (click)="prevQuestion()" fill="clear" shape="round">
+      <ion-button [disabled]="currentQuestionIndex == 0 || !(questions[currentQuestionIndex-1].result)" (click)="prevQuestion()" fill="clear" shape="round">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
       <ion-button [disabled]="currentQuestionIndex == questions.length-1" (click)="nextQuestion()" fill="clear"
