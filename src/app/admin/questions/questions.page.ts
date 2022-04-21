@@ -22,7 +22,7 @@ export class QuestionsPage implements OnInit {
 
   getQuestions() {
     this.loadingService.showLoading("Yükleniyor..");
-    this.questionService.getall().subscribe(response => {
+    this.questionService.getallWithAnswers().subscribe(response => {
       if (response.success) {
         this.questions = response.data;
         this.loadingService.closeLoading();
