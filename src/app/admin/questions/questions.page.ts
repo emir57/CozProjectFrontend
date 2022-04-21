@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { LoadingService } from 'src/app/services/common/loading.service';
@@ -14,7 +15,8 @@ export class QuestionsPage implements OnInit {
   questions: QuestionModel[] = [];
   constructor(
     private questionService: QuestionService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class QuestionsPage implements OnInit {
       }
     })
   }
-  editQuestion(question:QuestionModel){
+  editQuestion(question: QuestionModel) {
 
   }
 
