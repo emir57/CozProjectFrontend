@@ -27,13 +27,16 @@ export class QuestionsPage implements OnInit {
       if (response.success) {
         this.questions = response.data;
         this.loadingService.closeLoading();
+        this.questions.forEach(question => {
+          question.answers.sort((x, y) => 0.5 - Math.random());
+        })
       }
     })
   }
 
 
-  checkisTrue(answer:AnswerModel){
-    return answer.isTrue ? "text-success":"";
+  checkisTrue(answer: AnswerModel) {
+    return answer.isTrue ? "text-success" : "";
   }
 
 }
