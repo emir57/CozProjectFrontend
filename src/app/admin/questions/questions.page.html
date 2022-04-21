@@ -14,7 +14,9 @@
     </ion-card-header>
 
     <ion-card-content>
-      <div *ngFor="let answer of question.answers">{{answer.content}}</div>
+      <div *ngFor="let answer of question.answers">
+        <span [class]="checkisTrue(answer)">{{answer.content}}</span>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

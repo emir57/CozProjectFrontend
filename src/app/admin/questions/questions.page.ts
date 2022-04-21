@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
@@ -28,6 +29,11 @@ export class QuestionsPage implements OnInit {
         this.loadingService.closeLoading();
       }
     })
+  }
+
+
+  checkisTrue(answer:AnswerModel){
+    return answer.isTrue ? "text-success":"";
   }
 
 }
