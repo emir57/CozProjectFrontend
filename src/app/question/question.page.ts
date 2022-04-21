@@ -87,7 +87,9 @@ export class QuestionPage implements OnInit {
       if (response.success) {
         this.questions = response.data;
         this.currentQuestion = this.questions[this.currentQuestionIndex];
-        console.log(response.data)
+        this.questions.forEach(question => {
+          question.answers.sort((x, y) => 0.5 - Math.random());
+        })
       }
     })
   }
