@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
+import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class QuestionsPage implements OnInit {
 
   questions: QuestionModel[] = [];
   constructor(
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -19,9 +21,11 @@ export class QuestionsPage implements OnInit {
   }
 
   getQuestions() {
+    this.loadingService.showLoading("Yükleniyor..");
     this.questionService.getall().subscribe(response => {
       if (response.success) {
         this.questions = response.data;
+        this.loadingService.closeLoading();
       }
     })
   }
