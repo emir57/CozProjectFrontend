@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Soru Ekle</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button (click)="close()" fill="clear" shape="round">
         <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="deleteQuestion()">
+        <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
