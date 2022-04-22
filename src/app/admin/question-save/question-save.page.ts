@@ -32,8 +32,8 @@ export class QuestionSavePage implements OnInit {
     private storageService: StorageService
   ) { }
 
-  async ngOnInit() {
-    await this.getUser();
+  ngOnInit() {
+    this.getUser();
     this.createQuestionForm();
   }
   async getUser() {
@@ -42,11 +42,11 @@ export class QuestionSavePage implements OnInit {
 
   createQuestionForm() {
     this.questionForm = this.formBuilder.group({
-      id: [],
+      id: [0,[]],
       content: ["", [Validators.required, Validators.maxLength(255)]],
-      teacherId: [this.user.id],
-      categoryId: [, [Validators.required]],
-      score: [, [Validators.required]]
+      teacherId: [0,[]],
+      categoryId: ["", [Validators.required]],
+      score: [0, [Validators.required]]
     })
   }
 

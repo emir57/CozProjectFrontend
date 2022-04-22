@@ -8,7 +8,7 @@
       <ion-back-button *ngIf="!question" defaultHref="/admin/home"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button color="danger" (click)="deleteQuestion()">
+      <ion-button *ngIf="question" color="danger" (click)="deleteQuestion()">
         <ion-icon name="trash-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -19,7 +19,7 @@
   <form [formGroup]="questionForm">
     <ion-item>
       <ion-label position="floating">Soru</ion-label>
-      <ion-text formControlName="content"></ion-text>
+      <ion-textarea formControlName="content"></ion-textarea>
     </ion-item>
     <div class="text-danger text-small" *ngIf="(content.touched || content.dirty) && content.errors">
       <div *ngIf="(content.errors.required)">Soru boş olamaz</div>
