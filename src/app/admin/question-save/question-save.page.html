@@ -16,5 +16,66 @@
 </ion-header>
 
 <ion-content>
-
+  <form [formGroup]="questionForm">
+    <ion-item>
+      <ion-label position="floating">Soru</ion-label>
+      <ion-text formControlName="content"></ion-text>
+    </ion-item>
+    <div class="text-danger text-small" *ngIf="(name.touched || name.dirty) && name.errors">
+      <div *ngIf="(name.errors.required)">Kategori ismi boş olamaz</div>
+      <div *ngIf="(name.errors.maxlength)">Kategori ismi en fazla {{name.errors.maxlength.requiredLangth}} karakter
+        olabilir</div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <ion-item>
+          <ion-label position="floating">Arka Plan Rengi</ion-label>
+          <ion-input [(colorPicker)]="chosedBackgroundColor" [(ngModel)]="chosedBackgroundColor"
+            formControlName="backgroundColor"></ion-input>
+        </ion-item>
+        <div class="text-danger text-small"
+          *ngIf="(backgroundColor.touched || backgroundColor.dirty) && backgroundColor.errors">
+          <div *ngIf="(backgroundColor.errors.required)">Renk boş olamaz</div>
+          <div *ngIf="(backgroundColor.errors.minlength)">Renk en az {{backgroundColor.errors.minlength.requiredLength}}
+            karakter olabilir</div>
+          <div *ngIf="(backgroundColor.errors.maxlength)">Renk en fazla
+            {{backgroundColor.errors.maxlength.requiredLength}}
+            karakter olabilir</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <ion-item>
+          <ion-label position="floating">Yazı Rengi</ion-label>
+          <ion-input [cpPosition]="'bottom'" [cpPositionOffset]="'-70%'" [(colorPicker)]="chosedTextColor"
+            [(ngModel)]="chosedTextColor" formControlName="textColor">
+          </ion-input>
+        </ion-item>
+        <div class="text-danger text-small" *ngIf="(textColor.touched || textColor.dirty) && textColor.errors">
+          <div *ngIf="(textColor.errors.required)">Renk boş olamaz</div>
+          <div *ngIf="(textColor.errors.minlength)">Renk en az {{backgroundColor.errors.minlength.requiredLength}}
+            karakter olabilir</div>
+          <div *ngIf="(textColor.errors.maxlength)">Renk en fazla {{backgroundColor.errors.maxlength.requiredLength}}
+            karakter olabilir</div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="p-2">
+    <div *ngIf="category && category.createdDate">Ekleme tarihi <span
+        class="text-primary">{{getDate(category.createdDate)}}</span></div>
+    <div *ngIf="category && category.updatedDate">Son güncelleme tarihi <span
+        class="text-primary">{{getDate(category?.updatedDate)}}</span></div>
+    <div *ngIf="category && category.deletedDate">Silme tarihi <span
+        class="text-primary">{{getDate(category?.deletedDate)}}</span></div>
+  </div>
+  <ion-button [disabled]="!isOk" [disabled]="!categoryForm.valid" (click)="save()" expand="block" shape="round">
+    <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
+    <span *ngIf="isOk && !category">Ekle</span>
+    <span *ngIf="!isOk && !category">Ekleniyor...</span>
+    <span *ngIf="isOk && category">Güncelle</span>
+    <span *ngIf="!isOk && category">Güncelleniyor...</span>
+  </ion-button>
+  <div class="display-4 p-2" [style]="getExampleStyle()">
+    {{name.value=="" ? "Javascript":name.value}}
+  </div>
 </ion-content>
