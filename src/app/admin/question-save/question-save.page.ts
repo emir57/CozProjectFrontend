@@ -17,6 +17,7 @@ import { SweetalertService } from 'src/app/services/common/sweetalert.service';
 })
 export class QuestionSavePage implements OnInit {
 
+  isOk: boolean = true;
   questionForm: FormGroup;
   @Input() question: QuestionModel;
   @Input() user: LoginedUser;
@@ -31,11 +32,9 @@ export class QuestionSavePage implements OnInit {
     private storageService: StorageService
   ) { }
 
-  ngOnInit() {
-    this.getUser().then(() => {
-      this.createQuestionForm();
-    })
-
+  async ngOnInit() {
+    await this.getUser();
+    this.createQuestionForm();
   }
   async getUser() {
     this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
@@ -69,13 +68,13 @@ export class QuestionSavePage implements OnInit {
   update(questionModel: QuestionModel) {
 
   }
-  get content(){
+  get content() {
     return this.questionForm.get("content");
   }
-  get categoryId(){
+  get categoryId() {
     return this.questionForm.get("categoryId");
   }
-  get score(){
+  get score() {
     return this.questionForm.get("score");
   }
 
@@ -97,6 +96,11 @@ export class QuestionSavePage implements OnInit {
           }
         })
       })
+  }
+
+  getDate(dateString: string) {
+    let date = new Date(dateString);
+    return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
   }
 
 }
