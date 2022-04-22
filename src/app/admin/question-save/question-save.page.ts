@@ -37,7 +37,14 @@ export class QuestionSavePage implements OnInit {
   }
 
   save() {
-
+    if (this.questionForm.valid) {
+      let questionModel = this.questionForm.value;
+      if (this.question) {
+        this.update(questionModel);
+      } else {
+        this.add(questionModel)
+      }
+    }
   }
 
   add(questionModel: QuestionModel) {
