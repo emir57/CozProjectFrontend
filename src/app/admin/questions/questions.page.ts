@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
+import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { QuestionSavePage } from '../question-save/question-save.page';
 
 @Component({
@@ -14,14 +16,20 @@ import { QuestionSavePage } from '../question-save/question-save.page';
 export class QuestionsPage implements OnInit {
 
   questions: QuestionModel[] = [];
+  user: LoginedUser;
   constructor(
     private questionService: QuestionService,
     private loadingService: LoadingService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
+    this.getUser();
     this.getQuestions();
+  }
+  async getUser() {
+    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
   }
 
   getQuestions() {
@@ -39,7 +47,7 @@ export class QuestionsPage implements OnInit {
   async editQuestion(question: QuestionModel) {
     const modal = await this.modalController.create({
       component: QuestionSavePage,
-      componentProps: { question: question }
+      componentProps: { question: question, user: this.user }
     })
     return await modal.present();
   }
