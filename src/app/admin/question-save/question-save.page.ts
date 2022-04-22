@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
+import { AlertService } from 'src/app/services/common/alert-service.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { QuestionService } from 'src/app/services/common/question.service';
 import { SweetalertService } from 'src/app/services/common/sweetalert.service';
 
 @Component({
@@ -22,7 +24,9 @@ export class QuestionSavePage implements OnInit {
     private loadingService: LoadingService,
     private messageService: SweetalertService,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertService: AlertService,
+    private questionService: QuestionService
   ) { }
 
   ngOnInit() {
@@ -59,12 +63,24 @@ export class QuestionSavePage implements OnInit {
 
   }
 
-  async close(){
+  async close() {
     await this.modalController.dismiss();
   }
 
-  deleteQuestion(){
-
+  async deleteQuestion() {
+    this.alertService.showAlertConfirm(`Bu soruyu silemk istediğinizden emin misinizi?`,
+      "Siliniyor!",
+      () => { },
+      () => {
+        this.questionService.delete(this.question.id).subscribe(response=>{
+          if(response.success){
+            this.messageService.showMessage("Silme Başarılı")
+            setTimeout(() => {
+              this.modalController.dismiss();
+            }, 1000);
+          }
+        })
+      })
   }
 
 }
