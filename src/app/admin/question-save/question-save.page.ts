@@ -59,4 +59,8 @@ export class QuestionSavePage implements OnInit {
 
   }
 
+  async close(){
+    await this.modalController.dismiss();
+  }
+
 }
