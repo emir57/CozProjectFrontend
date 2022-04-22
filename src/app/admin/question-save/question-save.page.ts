@@ -32,8 +32,10 @@ export class QuestionSavePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser()
-    this.createQuestionForm();
+    this.getUser().then(() => {
+      this.createQuestionForm();
+    })
+
   }
   async getUser() {
     this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
