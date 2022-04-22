@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -11,10 +11,11 @@ import { QuestionsPage } from './questions.page';
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     IonicModule,
     QuestionsPageRoutingModule
   ],
   declarations: [QuestionsPage]
 })
-export class QuestionsPageModule {}
+export class QuestionsPageModule { }
