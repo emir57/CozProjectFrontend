@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
@@ -24,11 +24,16 @@ export class QuestionSavePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.question)
+    this.createQuestionForm();
   }
 
   createQuestionForm() {
-
+    this.questionForm = this.formBuilder.group({
+      id: [, []],
+      content: ["", [Validators.required, Validators.maxLength(255)]],
+      categoryId: [, [Validators.required]],
+      score: [, [Validators.required]]
+    })
   }
 
   save() {
