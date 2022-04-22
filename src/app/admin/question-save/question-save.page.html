@@ -21,9 +21,9 @@
       <ion-label position="floating">Soru</ion-label>
       <ion-text formControlName="content"></ion-text>
     </ion-item>
-    <div class="text-danger text-small" *ngIf="(name.touched || name.dirty) && name.errors">
-      <div *ngIf="(name.errors.required)">Kategori ismi boş olamaz</div>
-      <div *ngIf="(name.errors.maxlength)">Kategori ismi en fazla {{name.errors.maxlength.requiredLangth}} karakter
+    <div class="text-danger text-small" *ngIf="(content.touched || content.dirty) && content.errors">
+      <div *ngIf="(content.errors.required)">Soru boş olamaz</div>
+      <div *ngIf="(content.errors.maxlength)">Soru en fazla {{content.errors.maxlength.requiredLangth}} karakter
         olabilir</div>
     </div>
     <div class="row">

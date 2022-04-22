@@ -46,8 +46,8 @@ export class QuestionSavePage implements OnInit {
       id: [],
       content: ["", [Validators.required, Validators.maxLength(255)]],
       teacherId: [this.user.id],
-      categoryId: [0, [Validators.required]],
-      score: [0, [Validators.required]]
+      categoryId: [, [Validators.required]],
+      score: [, [Validators.required]]
     })
   }
 
@@ -68,6 +68,15 @@ export class QuestionSavePage implements OnInit {
   }
   update(questionModel: QuestionModel) {
 
+  }
+  get content(){
+    return this.questionForm.get("content");
+  }
+  get categoryId(){
+    return this.questionForm.get("categoryId");
+  }
+  get score(){
+    return this.questionForm.get("score");
   }
 
   async close() {
