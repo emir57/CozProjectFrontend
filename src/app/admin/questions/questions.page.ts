@@ -4,6 +4,7 @@ import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
+import { QuestionSavePage } from '../question-save/question-save.page';
 
 @Component({
   selector: 'app-questions',
@@ -35,8 +36,12 @@ export class QuestionsPage implements OnInit {
       }
     })
   }
-  editQuestion(question: QuestionModel) {
-
+  async editQuestion(question: QuestionModel) {
+    const modal = await this.modalController.create({
+      component: QuestionSavePage,
+      componentProps: { question: question }
+    })
+    return await modal.present();
   }
 
 
