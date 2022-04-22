@@ -7,6 +7,7 @@ import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { AlertService } from 'src/app/services/common/alert-service.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
+import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService } from 'src/app/services/common/sweetalert.service';
 
 @Component({
@@ -26,12 +27,16 @@ export class QuestionSavePage implements OnInit {
     private router: Router,
     private modalController: ModalController,
     private alertService: AlertService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
-    console.log(this.user)
+    this.getUser()
     this.createQuestionForm();
+  }
+  async getUser() {
+    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
   }
 
   createQuestionForm() {
@@ -72,8 +77,8 @@ export class QuestionSavePage implements OnInit {
       "Siliniyor!",
       () => { },
       () => {
-        this.questionService.delete(this.question.id).subscribe(response=>{
-          if(response.success){
+        this.questionService.delete(this.question.id).subscribe(response => {
+          if (response.success) {
             this.messageService.showMessage("Silme Başarılı")
             setTimeout(() => {
               this.modalController.dismiss();

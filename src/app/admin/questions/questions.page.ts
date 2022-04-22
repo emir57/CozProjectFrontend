@@ -20,17 +20,13 @@ export class QuestionsPage implements OnInit {
   constructor(
     private questionService: QuestionService,
     private loadingService: LoadingService,
-    private modalController: ModalController,
-    private storageService: StorageService
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
-    this.getUser();
     this.getQuestions();
   }
-  async getUser() {
-    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
-  }
+
 
   getQuestions() {
     this.loadingService.showLoading("Yükleniyor..");
@@ -47,7 +43,7 @@ export class QuestionsPage implements OnInit {
   async editQuestion(question: QuestionModel) {
     const modal = await this.modalController.create({
       component: QuestionSavePage,
-      componentProps: { question: question, user: this.user }
+      componentProps: { question: question}
     })
     return await modal.present();
   }
