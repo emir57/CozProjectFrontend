@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { QuestionModel } from 'src/app/models/tables/questionModel';
 
 @Component({
   selector: 'app-question-save',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionSavePage implements OnInit {
 
+  @Input() question: QuestionModel;
   constructor() { }
 
   ngOnInit() {
+    console.log(this.question)
   }
 
 }
