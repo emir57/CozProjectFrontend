@@ -15,4 +15,15 @@ export class QuestionSavePage implements OnInit {
     console.log(this.question)
   }
 
+  save() {
+
+  }
+
+  add(questionModel: QuestionModel) {
+
+  }
+  update(questionModel: QuestionModel) {
+
+  }
+
 }
