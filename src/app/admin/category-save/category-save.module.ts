@@ -17,7 +17,7 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CategorySavePageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ColorPickerModule
+    ColorPickerModule,
   ],
   declarations: [CategorySavePage]
 })

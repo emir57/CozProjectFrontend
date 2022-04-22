@@ -14,7 +14,6 @@ import { QuestionSavePage } from './question-save.page';
     FormsModule,
     IonicModule,
     QuestionSavePageRoutingModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   declarations: [QuestionSavePage]

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { SweetalertService } from 'src/app/services/common/sweetalert.service';
@@ -15,6 +16,7 @@ export class QuestionSavePage implements OnInit {
 
   questionForm: FormGroup;
   @Input() question: QuestionModel;
+  @Input() user: LoginedUser;
   constructor(
     private formBuilder: FormBuilder,
     private loadingService: LoadingService,
@@ -24,15 +26,17 @@ export class QuestionSavePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.user)
     this.createQuestionForm();
   }
 
   createQuestionForm() {
     this.questionForm = this.formBuilder.group({
-      id: [, []],
+      id: [],
       content: ["", [Validators.required, Validators.maxLength(255)]],
-      categoryId: [, [Validators.required]],
-      score: [, [Validators.required]]
+      teacherId: [this.user.id],
+      categoryId: [0, [Validators.required]],
+      score: [0, [Validators.required]]
     })
   }
 
