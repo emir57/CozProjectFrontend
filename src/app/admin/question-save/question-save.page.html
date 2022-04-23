@@ -31,8 +31,10 @@
     </div>
     <ion-item>
       <ion-label>Kategori</ion-label>
-      <ion-select placeholder="Kategori Seçiniz">
-        <ion-select-option value="f">Female</ion-select-option>
+      <ion-select formControlName="categoryId" placeholder="Kategori Seçiniz">
+        <ion-select-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </ion-select-option>
       </ion-select>
     </ion-item>
   </form>
