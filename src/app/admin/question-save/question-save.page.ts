@@ -60,7 +60,8 @@ export class QuestionSavePage implements OnInit {
       content: [this.question ? this.question.content : "", [Validators.required, Validators.maxLength(255)]],
       teacherId: [this.question ? this.question.teacherId : 0, []],
       categoryId: [this.question ? this.question.categoryId : 0, [Validators.required]],
-      score: [this.question ? this.question.score : 0, [Validators.required, Validators.min(1)]]
+      score: [this.question ? this.question.score : 0, [Validators.required, Validators.min(1)]],
+      answers: []
     })
   }
 
