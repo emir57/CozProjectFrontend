@@ -57,15 +57,17 @@ export class QuestionSavePage implements OnInit {
       id: [0, []],
       content: ["", [Validators.required, Validators.maxLength(255)]],
       teacherId: [0, []],
-      categoryId: ["", [Validators.required]],
-      score: [0, [Validators.required,Validators.min(1)]]
+      categoryId: [, [Validators.required]],
+      score: [0, [Validators.required, Validators.min(1)]]
     })
   }
 
   save() {
     if (this.questionForm.valid) {
+      this.isOk = false;
       let questionModel: QuestionModel = this.questionForm.value;
-      console.log(this.score.errors)
+      questionModel.score = +questionModel.score;
+      console.log(questionModel)
       if (this.question) {
         this.update(questionModel);
       } else {
@@ -76,7 +78,18 @@ export class QuestionSavePage implements OnInit {
   }
 
   add(questionModel: QuestionModel) {
-
+    this.loadingService.showLoading("Ekleniyor..");
+    this.questionService.add(questionModel).subscribe(response => {
+      if (response.success) {
+        this.messageService.showMessage(response.message);
+      }
+      this.isOk = true;
+      this.loadingService.closeLoading();
+    }, responseErr => {
+      console.log(responseErr)
+      this.isOk = true;
+      this.loadingService.closeLoading();
+    })
   }
   update(questionModel: QuestionModel) {
 
