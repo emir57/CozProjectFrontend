@@ -102,7 +102,26 @@ export class QuestionSavePage implements OnInit {
     })
   }
   update(questionModel: QuestionModel) {
-
+    this.loadingService.showLoading("Güncelleniyor..");
+    this.questionService.update(questionModel).subscribe(async response => {
+      if (response.success) {
+        this.messageService.showMessage(response.message);
+        await this.close();
+      }
+      this.isOk = true;
+      this.loadingService.closeLoading();
+    }, responseErr => {
+      if (responseErr.error.Errors) {
+        for (let i = 0; i < responseErr.error.Errors.length; i++) {
+          const error = responseErr.error.Errors[i];
+          this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error });
+        }
+      } else {
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
+      }
+      this.isOk = true;
+      this.loadingService.closeLoading();
+    })
   }
   get content() {
     return this.questionForm.get("content");
