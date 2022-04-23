@@ -144,7 +144,6 @@ export class QuestionSavePage implements OnInit {
       a.isTrue = false;
     })
     answer.isTrue = true;
-    console.log(this.question.answers)
   }
 
   async deleteQuestion() {
