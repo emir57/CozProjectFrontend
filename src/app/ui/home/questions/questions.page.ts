@@ -7,6 +7,7 @@ import { QuestionPage } from 'src/app/question/question.page';
 import { CategoryService } from 'src/app/services/common/category.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 declare var $: any;
 
 @Component({
@@ -24,6 +25,7 @@ export class QuestionsPage implements OnInit {
     private modalController: ModalController,
     private loadingService: LoadingService,
     private router: Router,
+    private messageService: SweetalertService
   ) { }
 
   ngOnInit() {
@@ -48,7 +50,7 @@ export class QuestionsPage implements OnInit {
       await this.storageService.removeName(KeyType.Token);
       await this.storageService.removeName(KeyType.User);
       await this.loadingService.closeLoading();
-
+      this.messageService.showMessage("Bir hata oluştu lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
       this.router.navigateByUrl("/login");
     })
   }
