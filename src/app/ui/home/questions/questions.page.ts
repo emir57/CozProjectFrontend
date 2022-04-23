@@ -42,6 +42,11 @@ export class QuestionsPage implements OnInit {
           await this.loadingService.closeLoading();
         }, 0);
       }
+    },async responseErr=>{
+      await this.storageService.removeName(KeyType.Token);
+      await this.storageService.removeName(KeyType.User);
+
+      await this.loadingService.closeLoading();
     })
   }
   checkCompleteDiv(category: CategoryModel) {
