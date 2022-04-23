@@ -54,11 +54,11 @@ export class QuestionSavePage implements OnInit {
 
   createQuestionForm() {
     this.questionForm = this.formBuilder.group({
-      id: [0, []],
-      content: ["", [Validators.required, Validators.maxLength(255)]],
-      teacherId: [0, []],
-      categoryId: [, [Validators.required]],
-      score: [0, [Validators.required, Validators.min(1)]]
+      id: [this.question ? this.question.id : 0, []],
+      content: [this.question ? this.question.content : "", [Validators.required, Validators.maxLength(255)]],
+      teacherId: [this.question ? this.question.teacherId : 0, []],
+      categoryId: [this.question ? this.question.categoryId : 0, [Validators.required]],
+      score: [this.question ? this.question.score : 0, [Validators.required, Validators.min(1)]]
     })
   }
 
@@ -94,7 +94,7 @@ export class QuestionSavePage implements OnInit {
           const error = responseErr.error.Errors[i];
           this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error });
         }
-      }else{
+      } else {
         this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
       }
       this.isOk = true;
