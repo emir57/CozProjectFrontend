@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
+import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { AlertService } from 'src/app/services/common/alert-service.service';
@@ -136,6 +137,14 @@ export class QuestionSavePage implements OnInit {
 
   async close() {
     await this.modalController.dismiss();
+  }
+
+  answersSetTrue(answer: AnswerModel) {
+    this.question.answers.forEach(a => {
+      a.isTrue = false;
+    })
+    answer.isTrue = true;
+    console.log(this.question.answers)
   }
 
   async deleteQuestion() {
