@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Soru Ekle</ion-title>
+    <ion-title>
+      <span *ngIf="!question">Soru Ekle</span>
+      <span *ngIf="question">Soru Güncelle</span>
+    </ion-title>
     <ion-buttons slot="start">
       <ion-button *ngIf="question" (click)="close()" fill="clear" shape="round">
         <ion-icon name="close-outline"></ion-icon>
