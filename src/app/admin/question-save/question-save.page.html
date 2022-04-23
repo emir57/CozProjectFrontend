@@ -51,7 +51,7 @@
   </form>
   <div>
     <ion-item *ngFor="let answer of question.answers">
-      <ion-input formControlName="answers" [value]="answer.content"></ion-input> <ion-checkbox [checked]="answer.isTrue"></ion-checkbox>
+      <ion-input [value]="answer.content"></ion-input> <ion-checkbox [checked]="answer.isTrue"></ion-checkbox>
     </ion-item>
   </div>
   <div class="p-2">
