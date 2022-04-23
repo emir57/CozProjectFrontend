@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { AlertService } from 'src/app/services/common/alert-service.service';
+import { CategoryService } from 'src/app/services/common/category.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
@@ -29,7 +30,8 @@ export class QuestionSavePage implements OnInit {
     private modalController: ModalController,
     private alertService: AlertService,
     private questionService: QuestionService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit() {
@@ -42,9 +44,9 @@ export class QuestionSavePage implements OnInit {
 
   createQuestionForm() {
     this.questionForm = this.formBuilder.group({
-      id: [0,[]],
+      id: [0, []],
       content: ["", [Validators.required, Validators.maxLength(255)]],
-      teacherId: [0,[]],
+      teacherId: [0, []],
       categoryId: ["", [Validators.required]],
       score: [0, [Validators.required]]
     })
