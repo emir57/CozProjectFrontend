@@ -93,7 +93,7 @@ export class QuestionSavePage implements OnInit {
           this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error });
         }
       }else{
-
+        this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
       }
       this.isOk = true;
       this.loadingService.closeLoading();
