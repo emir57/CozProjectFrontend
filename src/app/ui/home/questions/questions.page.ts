@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController, ModalController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
@@ -21,7 +22,8 @@ export class QuestionsPage implements OnInit {
     private categoryService: CategoryService,
     private storageService: StorageService,
     private modalController: ModalController,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -42,11 +44,12 @@ export class QuestionsPage implements OnInit {
           await this.loadingService.closeLoading();
         }, 0);
       }
-    },async responseErr=>{
+    }, async responseErr => {
       await this.storageService.removeName(KeyType.Token);
       await this.storageService.removeName(KeyType.User);
-
       await this.loadingService.closeLoading();
+
+      this.router.navigateByUrl("/login");
     })
   }
   checkCompleteDiv(category: CategoryModel) {
