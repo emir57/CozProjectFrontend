@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 import { AlertService } from 'src/app/services/common/alert-service.service';
 import { CategoryService } from 'src/app/services/common/category.service';
@@ -22,6 +23,7 @@ export class QuestionSavePage implements OnInit {
   questionForm: FormGroup;
   @Input() question: QuestionModel;
   @Input() user: LoginedUser;
+  categories: CategoryModel[] = [];
   constructor(
     private formBuilder: FormBuilder,
     private loadingService: LoadingService,
@@ -35,11 +37,19 @@ export class QuestionSavePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCategories();
     this.getUser();
     this.createQuestionForm();
   }
   async getUser() {
     this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+  }
+  getCategories() {
+    this.categoryService.getall().subscribe(response => {
+      if (response.success) {
+        this.categories = response.data;
+      }
+    })
   }
 
   createQuestionForm() {
