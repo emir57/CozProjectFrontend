@@ -49,6 +49,11 @@
       <div *ngIf="(score.errors.min)">Skor minimum {{score.errors.min.min}} olabilir</div>
     </div>
   </form>
+  <div>
+    <ion-item *ngFor="let answer of question.answers">
+      <ion-input formControlName="answers" [value]="answer.content"></ion-input> <ion-checkbox [checked]="answer.isTrue"></ion-checkbox>
+    </ion-item>
+  </div>
   <div class="p-2">
     <div *ngIf="question && question.createdDate">Ekleme tarihi <span
         class="text-primary">{{getDate(question.createdDate)}}</span></div>
