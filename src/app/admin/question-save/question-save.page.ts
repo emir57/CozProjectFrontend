@@ -58,7 +58,7 @@ export class QuestionSavePage implements OnInit {
       content: ["", [Validators.required, Validators.maxLength(255)]],
       teacherId: [0, []],
       categoryId: ["", [Validators.required]],
-      score: [0, [Validators.required]]
+      score: [, [Validators.required]]
     })
   }
 

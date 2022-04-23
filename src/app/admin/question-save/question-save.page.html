@@ -40,6 +40,13 @@
     <div class="text-danger text-small" *ngIf="(categoryId.touched || categoryId.dirty) && categoryId.errors">
       <div *ngIf="(categoryId.errors.required)">Kategori boş olamaz</div>
     </div>
+    <ion-item>
+      <ion-label position="floating">Skor</ion-label>
+      <ion-input formControlName="score"></ion-input>
+    </ion-item>
+    <div class="text-danger text-small" *ngIf="(score.touched || score.dirty) && score.errors">
+      <div *ngIf="(score.errors.required)">Skor boş olamaz</div>
+    </div>
   </form>
   <div class="p-2">
     <div *ngIf="question && question.createdDate">Ekleme tarihi <span
