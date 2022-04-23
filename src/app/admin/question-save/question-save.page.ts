@@ -80,9 +80,10 @@ export class QuestionSavePage implements OnInit {
 
   add(questionModel: QuestionModel) {
     this.loadingService.showLoading("Ekleniyor..");
-    this.questionService.add(questionModel).subscribe(response => {
+    this.questionService.add(questionModel).subscribe(async response => {
       if (response.success) {
         this.messageService.showMessage(response.message);
+        this.router.navigateByUrl("/admin/questions")
       }
       this.isOk = true;
       this.loadingService.closeLoading();
