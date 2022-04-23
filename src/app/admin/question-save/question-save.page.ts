@@ -58,13 +58,14 @@ export class QuestionSavePage implements OnInit {
       content: ["", [Validators.required, Validators.maxLength(255)]],
       teacherId: [0, []],
       categoryId: ["", [Validators.required]],
-      score: [, [Validators.required]]
+      score: [0, [Validators.required,Validators.min(1)]]
     })
   }
 
   save() {
     if (this.questionForm.valid) {
       let questionModel: QuestionModel = this.questionForm.value;
+      console.log(questionModel)
       if (this.question) {
         this.update(questionModel);
       } else {
