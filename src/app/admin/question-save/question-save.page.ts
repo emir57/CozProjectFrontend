@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/services/common/category.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
 import { QuestionService } from 'src/app/services/common/question.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
-import { SweetalertService } from 'src/app/services/common/sweetalert.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 
 @Component({
   selector: 'app-question-save',
@@ -87,6 +87,14 @@ export class QuestionSavePage implements OnInit {
       this.loadingService.closeLoading();
     }, responseErr => {
       console.log(responseErr)
+      if (responseErr.error.Errors) {
+        for (let i = 0; i < responseErr.error.Errors.length; i++) {
+          const error = responseErr.error.Errors[i];
+          this.messageService.showMessage(error.ErrorMessage, { iconType: SweetIconType.Error });
+        }
+      }else{
+
+      }
       this.isOk = true;
       this.loadingService.closeLoading();
     })
