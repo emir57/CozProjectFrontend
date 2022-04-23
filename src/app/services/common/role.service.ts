@@ -28,7 +28,7 @@ export class RoleService {
     this.loadingService.showLoading("İşlemler yapılıyor lütfen bekleyiniz.")
     const user: LoginedUser = JSON.parse(await this.storageService.checkName(KeyType.User))
     let url = `${this.baseUrl}api/users/getroles?userId=${user.id}`;
-    this.http.get<string[]>(url).subscribe(response => {
+    this.http.get<string[]>(url).subscribe(async response => {
       response.forEach(role => {
         if (role == "Admin") {
           this.isAdmin = true;
@@ -37,7 +37,7 @@ export class RoleService {
           this.isTeacher = true;
         }
       })
-      this.loadingService.closeLoading();
+      await this.loadingService.closeLoading();
     }, async responseErr => {
       this.messageService.showMessage("Bilinmeyen bir hata meydana geldi lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
       await this.loadingService.closeLoading();
