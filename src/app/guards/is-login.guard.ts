@@ -35,13 +35,10 @@ export class IsLoginGuard implements CanActivate {
           this.authService.setIsLogin(false);
           this.router.navigateByUrl("/login")
           subject.next(false);
+          return subject.asObservable();
         }
       })
     })
     return subject;
   }
-  async checkIsLogin() {
-
-  }
-
 }
