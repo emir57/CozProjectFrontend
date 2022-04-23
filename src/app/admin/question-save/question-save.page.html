@@ -46,6 +46,7 @@
     </ion-item>
     <div class="text-danger text-small" *ngIf="(score.touched || score.dirty) && score.errors">
       <div *ngIf="(score.errors.required)">Skor boş olamaz</div>
+      <div *ngIf="(score.errors.min)">Skor minimum {{score.errors.min.min}} olabilir</div>
     </div>
   </form>
   <div class="p-2">

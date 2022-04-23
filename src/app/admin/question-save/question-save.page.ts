@@ -65,7 +65,7 @@ export class QuestionSavePage implements OnInit {
   save() {
     if (this.questionForm.valid) {
       let questionModel: QuestionModel = this.questionForm.value;
-      console.log(questionModel)
+      console.log(this.score.errors)
       if (this.question) {
         this.update(questionModel);
       } else {
