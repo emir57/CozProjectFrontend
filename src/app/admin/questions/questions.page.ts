@@ -45,6 +45,9 @@ export class QuestionsPage implements OnInit {
       component: QuestionSavePage,
       componentProps: { question: question}
     })
+    modal.onDidDismiss().then(()=>{
+      this.getQuestions();
+    })
     return await modal.present();
   }
 
