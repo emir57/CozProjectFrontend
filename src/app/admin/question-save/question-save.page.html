@@ -29,6 +29,12 @@
       <div *ngIf="(content.errors.maxlength)">Soru en fazla {{content.errors.maxlength.requiredLangth}} karakter
         olabilir</div>
     </div>
+    <ion-item>
+      <ion-label>Kategori</ion-label>
+      <ion-select placeholder="Kategori Seçiniz">
+        <ion-select-option value="f">Female</ion-select-option>
+      </ion-select>
+    </ion-item>
   </form>
   <div class="p-2">
     <div *ngIf="question && question.createdDate">Ekleme tarihi <span
