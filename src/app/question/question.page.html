@@ -18,7 +18,7 @@
   <div class="p-4" *ngIf="currentQuestion" style="width: 100%;height: 80%;">
     <div *ngIf="currentQuestionIndex == 0" class="text-primary">{{currentQuestionIndex+1}}/{{questions.length}}</div>
     <div *ngIf="!(currentQuestionIndex == questions.length-1) && !(currentQuestionIndex == 0)" class="text-warning">{{currentQuestionIndex+1}}/{{questions.length}}</div>
-    <div *ngIf="currentQuestionIndex == questions.length-1" class="text-danger">{{currentQuestionIndex+1}}/{{questions.length}}</div>
+    <div *ngIf="currentQuestionIndex == questions.length-1 && questions.length != 1" class="text-danger">{{currentQuestionIndex+1}}/{{questions.length}}</div>
     <div>{{currentQuestion.content}}</div>
     <br>
     <div *ngFor="let answer of currentQuestion.answers" class="form-check">
