@@ -16,6 +16,9 @@
 
 <ion-content>
   <div class="p-4" *ngIf="currentQuestion" style="width: 100%;height: 80%;">
+    <div *ngIf="currentQuestionIndex == 0" class="text-primary">{{currentQuestionIndex+1}}/{{questions.length}}</div>
+    <div *ngIf="!(currentQuestionIndex == questions.length-1) && !(currentQuestionIndex == 0)" class="text-warning">{{currentQuestionIndex+1}}/{{questions.length}}</div>
+    <div *ngIf="currentQuestionIndex == questions.length-1" class="text-danger">{{currentQuestionIndex+1}}/{{questions.length}}</div>
     <div>{{currentQuestion.content}}</div>
     <br>
     <div *ngFor="let answer of currentQuestion.answers" class="form-check">
@@ -27,13 +30,14 @@
     </div>
     <span *ngIf="currentQuestion.result == false">Doğru Cevap: <span
         class="text-primary">{{getTrueAnswer().content}}</span></span>
-        <span class="text-success" *ngIf="currentQuestion.result == true">Tebrikler! doğru cevap</span>
+    <span class="text-success" *ngIf="currentQuestion.result == true">Tebrikler! doğru cevap</span>
     <ion-button [disabled]="currentQuestion.result != null" (click)="checkAnswer()" expand="block" fill="clear"
       shape="round">
       Cevapla
     </ion-button>
     <div style="display: flex;justify-content: space-around;">
-      <ion-button [disabled]="currentQuestionIndex == 0 || !(questions[currentQuestionIndex-1].result)" (click)="prevQuestion()" fill="clear" shape="round">
+      <ion-button [disabled]="currentQuestionIndex == 0 || !(questions[currentQuestionIndex-1].result)"
+        (click)="prevQuestion()" fill="clear" shape="round">
         <ion-icon name="chevron-back-outline"></ion-icon>
       </ion-button>
       <ion-button [disabled]="currentQuestionIndex == questions.length-1" (click)="nextQuestion()" fill="clear"
