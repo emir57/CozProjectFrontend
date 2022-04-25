@@ -69,14 +69,15 @@ export class QuestionSavePage implements OnInit {
       this.isOk = false;
       let questionModel: QuestionModel = this.questionForm.value;
       questionModel.score = +questionModel.score;
-      questionModel.answers = this.question.answers;
+      questionModel.answers = this.question ? this.question.answers : this.emptyAnswers;
       console.log(questionModel)
       if (this.question) {
         this.update(questionModel);
       } else {
         questionModel.teacherId = this.user.id;
         delete questionModel.id;
-        this.add(questionModel)
+        console.log(questionModel)
+        // this.add(questionModel)
       }
     }
   }
