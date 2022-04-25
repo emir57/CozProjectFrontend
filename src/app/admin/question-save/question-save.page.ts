@@ -20,7 +20,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class QuestionSavePage implements OnInit {
 
-  emptyAnswers: AnswerModel[] = [{}, {}, {}, {}, {}]
+  emptyAnswers: AnswerModel[] = [{}]
   isOk: boolean = true;
   questionForm: FormGroup;
   @Input() question: QuestionModel;
@@ -164,6 +164,10 @@ export class QuestionSavePage implements OnInit {
           }
         })
       })
+  }
+
+  answerAdd(){
+    this.emptyAnswers.push({});
   }
 
   getDate(dateString: string) {

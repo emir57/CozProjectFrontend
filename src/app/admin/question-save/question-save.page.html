@@ -60,6 +60,9 @@
       <ion-input [(ngModel)]="answer.content"></ion-input>
       <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
     </ion-item>
+    <ion-button (click)="answerAdd()" expand="block" fill="clear" shape="round">
+      Şık Ekle
+    </ion-button>
   </div>
   <div class="p-2">
     <div *ngIf="question && question.createdDate">Ekleme tarihi <span
