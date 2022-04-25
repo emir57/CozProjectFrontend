@@ -20,7 +20,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class QuestionSavePage implements OnInit {
 
-  emptyAnswers:AnswerModel[] = [{},{},{},{},{}]
+  emptyAnswers: AnswerModel[] = [{}, {}, {}, {}, {}]
   isOk: boolean = true;
   questionForm: FormGroup;
   @Input() question: QuestionModel;
@@ -142,10 +142,13 @@ export class QuestionSavePage implements OnInit {
   }
 
   answersSetTrue(answer: AnswerModel) {
-    this.question.answers.forEach(a => {
-      a.isTrue = false;
-    })
-    answer.isTrue = true;
+    if (this.question) {
+      this.question.answers.forEach(a => a.isTrue = false)
+      answer.isTrue = true;
+    } else {
+      this.emptyAnswers.forEach(a => a.isTrue = false);
+      answer.isTrue = true;
+    }
   }
 
   async deleteQuestion() {
