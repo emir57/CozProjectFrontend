@@ -166,7 +166,11 @@ export class QuestionSavePage implements OnInit {
       })
   }
 
-  answerAdd(){
+  answerAdd() {
+    if (this.emptyAnswers.length > 4) {
+      this.messageService.showMessage("Daha fazla şık eklenemez", { iconType: SweetIconType.Error })
+      return;
+    }
     this.emptyAnswers.push({});
   }
 
