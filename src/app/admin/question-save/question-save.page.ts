@@ -70,7 +70,6 @@ export class QuestionSavePage implements OnInit {
       let questionModel: QuestionModel = this.questionForm.value;
       questionModel.score = +questionModel.score;
       questionModel.answers = this.question ? this.question.answers : this.emptyAnswers;
-      console.log(questionModel)
       if (this.question) {
         this.update(questionModel);
       } else {
