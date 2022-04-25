@@ -62,11 +62,11 @@
       <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
         [value]="answer.isTrue" />
     </ion-item>
-    <div>
+    <div style="display: flex;justify-content: center;">
       <ion-button color="primary" [disabled]="emptyAnswers.length == 5" (click)="answerAdd()" fill="clear" shape="round">
         Şık Ekle
       </ion-button>
-      <ion-button color="danger" [disabled]="emptyAnswers.length == 1" (click)="answerRemove()" fill="clear"
+      <ion-button color="danger" [disabled]="emptyAnswers.length == 2" (click)="answerRemove()" fill="clear"
         shape="round">
         Şık Çıkar
       </ion-button>

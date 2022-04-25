@@ -20,7 +20,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class QuestionSavePage implements OnInit {
 
-  emptyAnswers: AnswerModel[] = [{}]
+  emptyAnswers: AnswerModel[] = [{}, {}]
   isOk: boolean = true;
   questionForm: FormGroup;
   @Input() question: QuestionModel;
@@ -173,7 +173,7 @@ export class QuestionSavePage implements OnInit {
     }
     this.emptyAnswers.push({});
   }
-  answerRemove(){
+  answerRemove() {
     this.emptyAnswers.pop();
   }
 
