@@ -173,6 +173,9 @@ export class QuestionSavePage implements OnInit {
     }
     this.emptyAnswers.push({});
   }
+  answerRemove(){
+    this.emptyAnswers.pop();
+  }
 
   getDate(dateString: string) {
     let date = new Date(dateString);
