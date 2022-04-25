@@ -49,8 +49,14 @@
       <div *ngIf="(score.errors.min)">Skor minimum {{score.errors.min.min}} olabilir</div>
     </div>
   </form>
-  <div>
+  <div *ngIf="question">
     <ion-item *ngFor="let answer of question.answers">
+      <ion-input [value]="answer.content"></ion-input>
+      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
+    </ion-item>
+  </div>
+  <div *ngIf="!question">
+    <ion-item *ngFor="let answer of emptyAnswers">
       <ion-input [value]="answer.content"></ion-input>
       <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
     </ion-item>

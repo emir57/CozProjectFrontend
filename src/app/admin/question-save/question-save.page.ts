@@ -20,6 +20,7 @@ import { SweetalertService, SweetIconType } from 'src/app/services/common/sweeta
 })
 export class QuestionSavePage implements OnInit {
 
+  emptyAnswers:AnswerModel[] = [{},{},{},{},{}]
   isOk: boolean = true;
   questionForm: FormGroup;
   @Input() question: QuestionModel;
@@ -41,7 +42,6 @@ export class QuestionSavePage implements OnInit {
     this.getCategories();
     this.getUser();
     this.createQuestionForm();
-    console.log(this.question)
   }
   async getUser() {
     this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
