@@ -57,7 +57,7 @@
   </div>
   <div *ngIf="!question">
     <ion-item *ngFor="let answer of emptyAnswers">
-      <ion-input [value]="answer.content"></ion-input>
+      <ion-input [(ngModel)]="answer.content"></ion-input>
       <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
     </ion-item>
   </div>

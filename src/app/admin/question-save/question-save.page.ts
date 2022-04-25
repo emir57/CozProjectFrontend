@@ -76,8 +76,7 @@ export class QuestionSavePage implements OnInit {
       } else {
         questionModel.teacherId = this.user.id;
         delete questionModel.id;
-        console.log(questionModel)
-        // this.add(questionModel)
+        this.add(questionModel)
       }
     }
   }
