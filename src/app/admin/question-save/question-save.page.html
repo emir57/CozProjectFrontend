@@ -52,17 +52,25 @@
   <div *ngIf="question">
     <ion-item *ngFor="let answer of question.answers">
       <ion-input [value]="answer.content"></ion-input>
-      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
+      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
+        [value]="answer.isTrue" />
     </ion-item>
   </div>
   <div *ngIf="!question">
     <ion-item *ngFor="let answer of emptyAnswers">
       <ion-input [(ngModel)]="answer.content"></ion-input>
-      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue" [value]="answer.isTrue"/>
+      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
+        [value]="answer.isTrue" />
     </ion-item>
-    <ion-button (click)="answerAdd()" expand="block" fill="clear" shape="round">
-      Şık Ekle
-    </ion-button>
+    <div>
+      <ion-button color="primary" [disabled]="emptyAnswers.length == 5" (click)="answerAdd()" fill="clear" shape="round">
+        Şık Ekle
+      </ion-button>
+      <ion-button color="danger" [disabled]="emptyAnswers.length == 1" (click)="answerRemove()" fill="clear"
+        shape="round">
+        Şık Çıkar
+      </ion-button>
+    </div>
   </div>
   <div class="p-2">
     <div *ngIf="question && question.createdDate">Ekleme tarihi <span
