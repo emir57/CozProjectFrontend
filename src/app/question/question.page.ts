@@ -117,8 +117,7 @@ export class QuestionPage implements OnInit {
       })
   }
 
-  addScore() {
-    let addedScore = 15;
+  addScore(addedScore: number) {
     let i = 0;
     setTimeout(() => {
       var interval = setInterval(() => {
