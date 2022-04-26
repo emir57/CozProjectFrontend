@@ -123,12 +123,12 @@ export class QuestionPage implements OnInit {
     $("#animatescore").fadeIn();
     $("#animatescore").animate({
       top: "-10px"
-    }, 500);
+    }, 700);
     setTimeout(() => {
       $("#animatescore").fadeOut();
       $("#animatescore").animate({
         top: "0px"
       }, 0);
-    }, 800);
+    }, 100);
   }
 }
