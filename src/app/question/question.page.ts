@@ -118,21 +118,26 @@ export class QuestionPage implements OnInit {
   }
 
   addScore() {
-    let addedScore = 5;
+    let addedScore = 15;
     let i = 0;
-    var interval = setInterval(() => {
-      $("#animatescore").html("+" + i);
-      if (i == addedScore) clearInterval(interval);
-      i++;
-    },70)
-    $("#score").fadeOut();
+    setTimeout(() => {
+      var interval = setInterval(() => {
+        $("#animatescore").html("+" + i);
+        if (i == addedScore) {
+          clearInterval(interval);
+          i = 0;
+        }
+        i++;
+      }, 70)
+    }, 200);
+    $("#score").css("opacity", ".5");
     $("#animatescore").fadeIn(500);
     $("#animatescore").animate({
       top: "-10px"
     }, 700);
     setTimeout(() => {
       $("#animatescore").fadeOut();
-      $("#score").fadeIn(1200);
+      $("#score").css("opacity", "1");
       $("#animatescore").animate({
         top: "0px"
       }, 0);
