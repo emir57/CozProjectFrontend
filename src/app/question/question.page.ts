@@ -119,7 +119,12 @@ export class QuestionPage implements OnInit {
 
   addScore() {
     let addedScore = 5;
-    $("#animatescore").html("+"+addedScore)
+    let i = 0;
+    var interval = setInterval(() => {
+      $("#animatescore").html("+" + i);
+      if (i == addedScore) clearInterval(interval);
+      i++;
+    },70)
     $("#score").fadeOut();
     $("#animatescore").fadeIn(500);
     $("#animatescore").animate({
