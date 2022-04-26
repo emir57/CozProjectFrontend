@@ -14,9 +14,7 @@
 
 #animatescore{
   color: #F5B041;
-  display: none;
+  display: inline-block;
+  margin-left:-15px;
   position: absolute;
-}
-#animatescore::before{
-  content: "+";
 }
