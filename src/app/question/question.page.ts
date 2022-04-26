@@ -134,7 +134,7 @@ export class QuestionPage implements OnInit {
     $("#animatescore").fadeIn(500);
     $("#animatescore").animate({
       top: "-10px"
-    }, 700);
+    }, 300);
     setTimeout(() => {
       $("#animatescore").fadeOut();
       $("#score").css("opacity", "1");
