@@ -1,0 +1,13 @@
+#categoryname{
+  color: #5DADE2;
+  animation: categorynameanimation 5s infinite .5s;
+}
+
+@keyframes categorynameanimation {
+  0%{
+    filter: hue-rotate(0deg);
+  }
+  100%{
+    filter: hue-rotate(360deg);
+  }
+}
