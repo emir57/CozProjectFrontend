@@ -120,12 +120,14 @@ export class QuestionPage implements OnInit {
   addScore() {
     let addedScore = 5;
     $("#animatescore").html(addedScore)
+    $("#score").fadeOut();
     $("#animatescore").fadeIn();
     $("#animatescore").animate({
       top: "-10px"
     }, 700);
     setTimeout(() => {
       $("#animatescore").fadeOut();
+      $("#score").fadeIn();
       $("#animatescore").animate({
         top: "0px"
       }, 0);
