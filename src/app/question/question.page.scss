@@ -11,3 +11,11 @@
     filter: hue-rotate(360deg);
   }
 }
+
+#animatescore{
+  color: #F5B041;
+  display: none;
+}
+#animatescore::before{
+  content: "+";
+}
