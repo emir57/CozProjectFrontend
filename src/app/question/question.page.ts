@@ -119,5 +119,6 @@ export class QuestionPage implements OnInit {
 
   addScore() {
     let addedScore = 5;
+    $("#animatescore").html(addedScore)
   }
 }

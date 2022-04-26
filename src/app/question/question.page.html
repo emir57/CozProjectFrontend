@@ -8,13 +8,16 @@
     <ion-title>
       <div style="display: flex;justify-content: start;">
         <span id="categoryname">{{category.name}}</span>&nbsp;
-        <span style="margin-left: auto;">Skor : <span>{{score}}</span></span>
+        <span style="margin-left: auto;">Skor : <span>{{score}}</span><span id="animatescore"></span></span>
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-button (click)="addScore()" expand="block" fill="clear" shape="round">
+    Click me
+  </ion-button>
   <div class="p-4" *ngIf="currentQuestion" style="width: 100%;height: 80%;">
     <div *ngIf="currentQuestionIndex == 0" class="text-primary">{{currentQuestionIndex+1}}/{{questions.length}}</div>
     <div *ngIf="!(currentQuestionIndex == questions.length-1) && !(currentQuestionIndex == 0)" class="text-warning">{{currentQuestionIndex+1}}/{{questions.length}}</div>
