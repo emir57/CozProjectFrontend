@@ -19,72 +19,75 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="questionForm">
-    <ion-item>
-      <ion-label position="floating">Soru</ion-label>
-      <ion-textarea formControlName="content"></ion-textarea>
-    </ion-item>
-    <div class="text-danger text-small" *ngIf="(content.touched || content.dirty) && content.errors">
-      <div *ngIf="(content.errors.required)">Soru boş olamaz</div>
-      <div *ngIf="(content.errors.maxlength)">Soru en fazla {{content.errors.maxlength.requiredLangth}} karakter
-        olabilir</div>
+  <div id="container">
+    <form [formGroup]="questionForm">
+      <ion-item>
+        <ion-label position="floating">Soru</ion-label>
+        <ion-textarea formControlName="content"></ion-textarea>
+      </ion-item>
+      <div class="text-danger text-small" *ngIf="(content.touched || content.dirty) && content.errors">
+        <div *ngIf="(content.errors.required)">Soru boş olamaz</div>
+        <div *ngIf="(content.errors.maxlength)">Soru en fazla {{content.errors.maxlength.requiredLangth}} karakter
+          olabilir</div>
+      </div>
+      <ion-item>
+        <ion-label>Kategori</ion-label>
+        <ion-select formControlName="categoryId" placeholder="Kategori Seçiniz">
+          <ion-select-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <div class="text-danger text-small" *ngIf="(categoryId.touched || categoryId.dirty) && categoryId.errors">
+        <div *ngIf="(categoryId.errors.required)">Kategori boş olamaz</div>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Skor</ion-label>
+        <ion-input formControlName="score"></ion-input>
+      </ion-item>
+      <div class="text-danger text-small" *ngIf="(score.touched || score.dirty) && score.errors">
+        <div *ngIf="(score.errors.required)">Skor boş olamaz</div>
+        <div *ngIf="(score.errors.min)">Skor minimum {{score.errors.min.min}} olabilir</div>
+      </div>
+    </form>
+    <div *ngIf="question">
+      <ion-item *ngFor="let answer of question.answers">
+        <ion-input [value]="answer.content"></ion-input>
+        <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
+          [value]="answer.isTrue" />
+      </ion-item>
     </div>
-    <ion-item>
-      <ion-label>Kategori</ion-label>
-      <ion-select formControlName="categoryId" placeholder="Kategori Seçiniz">
-        <ion-select-option *ngFor="let category of categories" [value]="category.id">
-          {{category.name}}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <div class="text-danger text-small" *ngIf="(categoryId.touched || categoryId.dirty) && categoryId.errors">
-      <div *ngIf="(categoryId.errors.required)">Kategori boş olamaz</div>
+    <div *ngIf="!question">
+      <ion-item *ngFor="let answer of emptyAnswers">
+        <ion-input [(ngModel)]="answer.content"></ion-input>
+        <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
+          [value]="answer.isTrue" />
+      </ion-item>
+      <div style="display: flex;justify-content: center;">
+        <ion-button color="primary" [disabled]="emptyAnswers.length == 5" (click)="answerAdd()" fill="clear"
+          shape="round">
+          Şık Ekle
+        </ion-button>
+        <ion-button color="danger" [disabled]="emptyAnswers.length == 2" (click)="answerRemove()" fill="clear"
+          shape="round">
+          Şık Çıkar
+        </ion-button>
+      </div>
     </div>
-    <ion-item>
-      <ion-label position="floating">Skor</ion-label>
-      <ion-input formControlName="score"></ion-input>
-    </ion-item>
-    <div class="text-danger text-small" *ngIf="(score.touched || score.dirty) && score.errors">
-      <div *ngIf="(score.errors.required)">Skor boş olamaz</div>
-      <div *ngIf="(score.errors.min)">Skor minimum {{score.errors.min.min}} olabilir</div>
+    <div class="p-2">
+      <div *ngIf="question && question.createdDate">Ekleme tarihi <span
+          class="text-primary">{{getDate(question.createdDate)}}</span></div>
+      <div *ngIf="question && question.updatedDate">Son güncelleme tarihi <span
+          class="text-primary">{{getDate(question?.updatedDate)}}</span></div>
+      <div *ngIf="question && question.deletedDate">Silme tarihi <span
+          class="text-primary">{{getDate(question?.deletedDate)}}</span></div>
     </div>
-  </form>
-  <div *ngIf="question">
-    <ion-item *ngFor="let answer of question.answers">
-      <ion-input [value]="answer.content"></ion-input>
-      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
-        [value]="answer.isTrue" />
-    </ion-item>
+    <ion-button [disabled]="!isOk" [disabled]="!questionForm.valid" (click)="save()" expand="block" shape="round">
+      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
+      <span *ngIf="isOk && !question">Ekle</span>
+      <span *ngIf="!isOk && !question">Ekleniyor...</span>
+      <span *ngIf="isOk && question">Güncelle</span>
+      <span *ngIf="!isOk && question">Güncelleniyor...</span>
+    </ion-button>
   </div>
-  <div *ngIf="!question">
-    <ion-item *ngFor="let answer of emptyAnswers">
-      <ion-input [(ngModel)]="answer.content"></ion-input>
-      <input (click)="answersSetTrue(answer)" type="radio" [checked]="answer.isTrue" name="isTrue"
-        [value]="answer.isTrue" />
-    </ion-item>
-    <div style="display: flex;justify-content: center;">
-      <ion-button color="primary" [disabled]="emptyAnswers.length == 5" (click)="answerAdd()" fill="clear" shape="round">
-        Şık Ekle
-      </ion-button>
-      <ion-button color="danger" [disabled]="emptyAnswers.length == 2" (click)="answerRemove()" fill="clear"
-        shape="round">
-        Şık Çıkar
-      </ion-button>
-    </div>
-  </div>
-  <div class="p-2">
-    <div *ngIf="question && question.createdDate">Ekleme tarihi <span
-        class="text-primary">{{getDate(question.createdDate)}}</span></div>
-    <div *ngIf="question && question.updatedDate">Son güncelleme tarihi <span
-        class="text-primary">{{getDate(question?.updatedDate)}}</span></div>
-    <div *ngIf="question && question.deletedDate">Silme tarihi <span
-        class="text-primary">{{getDate(question?.deletedDate)}}</span></div>
-  </div>
-  <ion-button [disabled]="!isOk" [disabled]="!questionForm.valid" (click)="save()" expand="block" shape="round">
-    <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;
-    <span *ngIf="isOk && !question">Ekle</span>
-    <span *ngIf="!isOk && !question">Ekleniyor...</span>
-    <span *ngIf="isOk && question">Güncelle</span>
-    <span *ngIf="!isOk && question">Güncelleniyor...</span>
-  </ion-button>
 </ion-content>
