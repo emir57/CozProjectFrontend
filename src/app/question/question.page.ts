@@ -57,6 +57,7 @@ export class QuestionPage implements OnInit {
       .catch(() => this.messageService.showMessage("Bağlantı Sağlanamadı", { iconType: SweetIconType.Error }))
   }
   getScore() {
+    this.addScore(this.currentQuestion.score);
     this.signalRHubConnection.on("SendScore", (userId: number, score: number) => {
       if (this.user.id == userId) {
         this.score = score;
