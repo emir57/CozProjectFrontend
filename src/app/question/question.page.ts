@@ -10,7 +10,7 @@ import { ScoreService, UpdateScoreModel } from '../services/common/score.service
 import * as signalR from "@microsoft/signalr";
 import { AlertService } from '../services/common/alert-service.service';
 import { KeyType, StorageService } from '../services/common/storage.service';
-
+declare var $: any;
 @Component({
   selector: 'app-question',
   templateUrl: './question.page.html',
@@ -115,5 +115,9 @@ export class QuestionPage implements OnInit {
         this.storageService.setName(KeyType.User, this.user);
         await this.modalController.dismiss();
       })
+  }
+
+  addScore() {
+    let addedScore = 5;
   }
 }
