@@ -141,6 +141,6 @@ export class QuestionPage implements OnInit {
       $("#animatescore").animate({
         top: "0px"
       }, 0);
-    }, 100);
+    }, 700);
   }
 }
