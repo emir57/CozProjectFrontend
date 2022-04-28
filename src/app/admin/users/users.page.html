@@ -22,7 +22,7 @@
         <span class="text-danger" *ngIf="!user.emailConfirmed">Hayır</span>
       </p>
       <p>Skor: {{user.score}}</p>
-      <p>Kayıt olma tarihi: {{user.createdDate}}</p>
+      <p>Kayıt olma tarihi: <span class="text-info">{{getDate(user.createdDate)}}</span></p>
     </ion-card-content>
   </ion-card>
 </ion-content>
