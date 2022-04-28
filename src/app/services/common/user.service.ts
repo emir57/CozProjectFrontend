@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { HttpClient } from '@microsoft/signalr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(
+    @Inject("baseUrl") private baseUrl: string,
+    private http: HttpClient
+  ) { }
 }
