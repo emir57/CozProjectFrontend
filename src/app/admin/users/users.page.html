@@ -16,7 +16,11 @@
 
     <ion-card-content>
       <p>Eposta: {{user.email}}</p>
-      <p>Eposta doğrulama: {{user.emailConfirmed}}</p>
+      <p>
+        Eposta doğrulama:
+        <span class="text-success" *ngIf="user.emailConfirmed">Evet</span>
+        <span class="text-danger" *ngIf="!user.emailConfirmed">Hayır</span>
+      </p>
       <p>Skor: {{user.score}}</p>
       <p>Kayıt olma tarihi: {{user.createdDate}}</p>
     </ion-card-content>
