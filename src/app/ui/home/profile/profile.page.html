@@ -25,7 +25,7 @@
       Kaydet
     </ion-button>
     <hr>
-    <form>
+    <form [formGroup]="resetPasswordForm">
       <h3>Şifremi Sıfırla</h3>
       <ion-item>
         <ion-label position="floating">Eski Şifre</ion-label>
@@ -39,6 +39,9 @@
         <ion-label position="floating">Yeni Şifre Tekrar</ion-label>
         <ion-input type="password" formControlName="newRePassword"></ion-input>
       </ion-item>
+      <small class="text-danger" *ngIf="(resetPasswordForm.hasError('notSame'))">
+        <div>Şifreler uyuşmuyor</div>
+      </small>
     </form>
     <ion-button (click)="resetPassword()" expand="block">
       Sıfırla
