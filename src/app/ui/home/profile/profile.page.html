@@ -43,7 +43,7 @@
         <div>Şifreler uyuşmuyor</div>
       </small>
     </form>
-    <ion-button (click)="resetPassword()" expand="block">
+    <ion-button [disabled]="!resetPasswordForm.valid" (click)="resetPassword()" expand="block">
       Sıfırla
     </ion-button>
   </div>
