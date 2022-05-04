@@ -5,21 +5,23 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="saveForm">
-    <ion-item>
-      <ion-label position="floating">Ad</ion-label>
-      <ion-input formControlName="firstName"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Soyad</ion-label>
-      <ion-input formControlName="lastName"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Şifre</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
-  </form>
-  <ion-button [disabled]="!saveForm.valid" (click)="save()" expand="block">
-    Kaydet
-  </ion-button>
+  <div id="container">
+    <form [formGroup]="saveForm">
+      <ion-item>
+        <ion-label position="floating">Ad</ion-label>
+        <ion-input formControlName="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Soyad</ion-label>
+        <ion-input formControlName="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Şifre</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </form>
+    <ion-button [disabled]="!saveForm.valid" (click)="save()" expand="block">
+      Kaydet
+    </ion-button>
+  </div>
 </ion-content>
