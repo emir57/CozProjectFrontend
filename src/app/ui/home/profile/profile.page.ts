@@ -25,14 +25,14 @@ export class ProfilePage implements OnInit {
     this.saveForm = this.formBuilder.group({
       firstName: ["", [Validators.required, Validators.maxLength(20)]],
       lastName: ["", [Validators.required, Validators.maxLength(30)]],
-      password: ["", [Validators.required]]
+      password: ["", [Validators.required,Validators.minLength(5)]]
     })
   }
   createResetPasswordForm() {
     this.resetPasswordForm = this.formBuilder.group({
-      oldPassword: ["", [Validators.required]],
-      newPassword: ["", [Validators.required]],
-      newRePassword: ["", Validators.required]
+      oldPassword: ["", [Validators.required, Validators.minLength(5)]],
+      newPassword: ["", [Validators.required, Validators.minLength(5)]],
+      newRePassword: ["", [Validators.required, Validators.minLength(5)]]
     }, { validators: this.checkpassword })
   }
 
