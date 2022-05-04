@@ -30,7 +30,7 @@ export class UserService {
     })
   }
 
-  updateProfile(updateUserModel: UpdateUserModel, errorCallBack?: (responseErr) => void, successCallBack?: (response) => void) {
+  updateProfile(updateUserModel: UpdateUserModel, errorCallBack?: (responseErr) => void, successCallBack?: (response: ResponseModel) => void) {
     let url = `${this.baseUrl}api/users/updateprofile`;
     this.http.post<ResponseModel>(url, updateUserModel).subscribe(response => {
       if (response.success) {
