@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UpdateUserModel } from 'src/app/models/tables/updateUserModel';
 import { User } from 'src/app/models/tables/user';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { UserService } from 'src/app/services/common/user.service';
@@ -45,6 +46,14 @@ export class ProfilePage implements OnInit {
   save() {
     if (this.saveForm.valid) {
       this.isOk = false;
+      let updateUser: UpdateUserModel = this.saveForm.value;
+      updateUser.email = this.currentUser.email;
+      this.userService.updateProfile(updateUser,
+        (responseErr) => {
+          console.log(responseErr);
+        }, (response) => {
+          console.log(response)
+        })
     }
   }
   resetPassword() {
