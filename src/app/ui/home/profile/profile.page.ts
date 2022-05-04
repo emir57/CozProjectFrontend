@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import ResponseModel from 'src/app/models/responseModel';
 import { UpdateUserModel } from 'src/app/models/tables/updateUserModel';
 import { User } from 'src/app/models/tables/user';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 import { UserService } from 'src/app/services/common/user.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class ProfilePage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private messageService: SweetalertService
   ) { }
 
   async ngOnInit() {
@@ -50,9 +53,13 @@ export class ProfilePage implements OnInit {
       updateUser.email = this.currentUser.email;
       this.userService.updateProfile(updateUser,
         (responseErr) => {
+          this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
           console.log(responseErr);
-        }, (response) => {
-          console.log(response)
+          this.isOk = true;
+        }, (response: ResponseModel) => {
+          this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
+          console.log(response);
+          this.isOk = true;
         })
     }
   }
