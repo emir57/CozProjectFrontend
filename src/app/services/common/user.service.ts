@@ -28,4 +28,9 @@ export class UserService {
     })
   }
 
+  updateProfile() {
+    let url = `${this.baseUrl}api/users/updateprofile`;
+    this.http.post<ResponseModel>(url)
+  }
+
 }
