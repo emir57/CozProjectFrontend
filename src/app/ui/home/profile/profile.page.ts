@@ -25,7 +25,7 @@ export class ProfilePage implements OnInit {
     this.saveForm = this.formBuilder.group({
       firstName: ["", [Validators.required, Validators.maxLength(20)]],
       lastName: ["", [Validators.required, Validators.maxLength(30)]],
-      password: ["", [Validators.required,Validators.minLength(5)]]
+      password: ["", [Validators.required, Validators.minLength(5)]]
     })
   }
   createResetPasswordForm() {
@@ -38,10 +38,14 @@ export class ProfilePage implements OnInit {
 
 
   save() {
-
+    if (this.saveForm.valid) {
+      this.isOk = false;
+    }
   }
   resetPassword() {
-
+    if (this.resetPasswordForm.valid) {
+      this.isOk = false;
+    }
   }
 
   checkpassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
