@@ -39,5 +39,8 @@ export class UserService {
       errorCallBack(responseErr);
     })
   }
+  resetPassword(){
+
+  }
 
 }
