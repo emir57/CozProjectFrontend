@@ -24,5 +24,20 @@
     <ion-button [disabled]="!saveForm.valid" (click)="save()" expand="block">
       Kaydet
     </ion-button>
+    <form>
+      <h3>Şifremi Sıfırla</h3>
+      <ion-item>
+        <ion-label position="floating">Eski Şifre</ion-label>
+        <ion-input type="password" formControlName="oldPassword"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Yeni Şifre</ion-label>
+        <ion-input type="password" formControlName="newPassword"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Yeni Şifre Tekrar</ion-label>
+        <ion-input type="password" formControlName="newRePassword"></ion-input>
+      </ion-item>
+    </form>
   </div>
 </ion-content>
