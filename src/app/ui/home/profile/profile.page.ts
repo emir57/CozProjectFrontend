@@ -18,6 +18,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.createSaveForm();
+    this.createResetPasswordForm();
   }
   createSaveForm() {
     this.saveForm = this.formBuilder.group({
@@ -27,7 +28,11 @@ export class ProfilePage implements OnInit {
     })
   }
   createResetPasswordForm() {
-
+    this.resetPasswordForm = this.formBuilder.group({
+      oldPassword: ["", [Validators.required]],
+      newPassword: ["", [Validators.required]],
+      newRePassword: ["", Validators.required]
+    })
   }
 
 
