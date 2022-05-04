@@ -21,8 +21,9 @@
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
     </form>
-    <ion-button [disabled]="!saveForm.valid" (click)="save()" expand="block">
-      Kaydet
+    <ion-button [disabled]="!isOk" [disabled]="!saveForm.valid" (click)="save()" expand="block">
+      <span *ngIf="isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      &nbsp;Kaydet
     </ion-button>
     <hr>
     <form [formGroup]="resetPasswordForm">
@@ -43,8 +44,9 @@
         <div>Şifreler uyuşmuyor</div>
       </small>
     </form>
-    <ion-button [disabled]="!resetPasswordForm.valid" (click)="resetPassword()" expand="block">
-      Sıfırla
+    <ion-button [disabled]="!isOk" [disabled]="!resetPasswordForm.valid" (click)="resetPassword()" expand="block">
+      <span *ngIf="isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      &nbsp;Sıfırla
     </ion-button>
   </div>
 </ion-content>
