@@ -1,4 +1,4 @@
-export interface UserResetPasswordmodel{
+export interface UserResetPasswordModel{
   email:string;
   oldPassword:string;
   newPassword:string;
