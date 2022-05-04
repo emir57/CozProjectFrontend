@@ -24,6 +24,7 @@
     <ion-button [disabled]="!saveForm.valid" (click)="save()" expand="block">
       Kaydet
     </ion-button>
+    <hr>
     <form>
       <h3>Şifremi Sıfırla</h3>
       <ion-item>
@@ -39,5 +40,8 @@
         <ion-input type="password" formControlName="newRePassword"></ion-input>
       </ion-item>
     </form>
+    <ion-button (click)="resetPassword()" expand="block">
+      Sıfırla
+    </ion-button>
   </div>
 </ion-content>
