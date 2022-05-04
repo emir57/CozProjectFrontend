@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/common/user.service';
 })
 export class ProfilePage implements OnInit {
 
+  isOk: boolean = true;
   saveForm: FormGroup;
   resetPasswordForm: FormGroup;
   constructor(
