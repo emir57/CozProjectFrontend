@@ -9,7 +9,8 @@ import { UserService } from 'src/app/services/common/user.service';
 })
 export class ProfilePage implements OnInit {
 
-  saveForm: FormGroup
+  saveForm: FormGroup;
+  resetPasswordForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService
@@ -25,12 +26,15 @@ export class ProfilePage implements OnInit {
       password: ["", [Validators.required]]
     })
   }
+  createResetPasswordForm() {
+
+  }
 
 
   save() {
 
   }
-  resetPassword(){
+  resetPassword() {
 
   }
 
