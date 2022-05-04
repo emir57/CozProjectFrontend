@@ -6,7 +6,7 @@
 
 <ion-content>
   <div id="container">
-    <form [formGroup]="saveForm">
+    <form [formGroup]="saveForm" *ngIf="currentUser">
       <h3>Bilgilerimi Düzenle</h3>
       <ion-item>
         <ion-label position="floating">Ad</ion-label>
