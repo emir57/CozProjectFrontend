@@ -10,11 +10,11 @@
       <h3>Bilgilerimi Düzenle</h3>
       <ion-item>
         <ion-label position="floating">Ad</ion-label>
-        <ion-input formControlName="firstName"></ion-input>
+        <ion-input [(ngModel)]="currentUser.firstName" formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Soyad</ion-label>
-        <ion-input formControlName="lastName"></ion-input>
+        <ion-input [(ngModel)]="currentUser.lastName" formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Şifre</ion-label>
