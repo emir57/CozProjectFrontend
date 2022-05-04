@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/common/user.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class ProfilePage implements OnInit {
       oldPassword: ["", [Validators.required]],
       newPassword: ["", [Validators.required]],
       newRePassword: ["", Validators.required]
-    })
+    }, { validators:})
   }
 
 
@@ -43,4 +43,9 @@ export class ProfilePage implements OnInit {
 
   }
 
+  checkpassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+    let password = group.get("newPassword").value;
+    let repassword = group.get("newRePassword").value;
+    return password === repassword ? null : { notSame: true };
+  }
 }
