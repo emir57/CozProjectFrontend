@@ -30,5 +30,8 @@ export class ProfilePage implements OnInit {
   save() {
 
   }
+  resetPassword(){
+
+  }
 
 }
