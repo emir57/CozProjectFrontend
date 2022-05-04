@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import ResponseListModel from 'src/app/models/responseListModel';
 import ResponseModel from 'src/app/models/responseModel';
+import { UpdateUserModel } from 'src/app/models/tables/updateUserModel';
 import { User } from 'src/app/models/tables/user';
 import { SweetalertService, SweetIconType } from './sweetalert.service';
 
@@ -28,9 +29,15 @@ export class UserService {
     })
   }
 
-  updateProfile() {
+  updateProfile(updateUserModel: UpdateUserModel, errorCallBack?: (responseErr) => void, successCallBack?: (response) => void) {
     let url = `${this.baseUrl}api/users/updateprofile`;
-    this.http.post<ResponseModel>(url)
+    this.http.post<ResponseModel>(url, updateUserModel).subscribe(response => {
+      if (response.success) {
+        successCallBack(response);
+      }
+    }, responseErr => {
+      errorCallBack(responseErr);
+    })
   }
 
 }
