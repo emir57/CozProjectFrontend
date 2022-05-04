@@ -54,11 +54,9 @@ export class ProfilePage implements OnInit {
       this.userService.updateProfile(updateUser,
         (responseErr) => {
           this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
-          console.log(responseErr);
           this.isOk = true;
         }, (response: ResponseModel) => {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
-          console.log(response);
           this.isOk = true;
         })
     }
