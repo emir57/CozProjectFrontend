@@ -32,7 +32,7 @@ export class ProfilePage implements OnInit {
       oldPassword: ["", [Validators.required]],
       newPassword: ["", [Validators.required]],
       newRePassword: ["", Validators.required]
-    }, { validators:})
+    }, { validators: this.checkpassword })
   }
 
 
