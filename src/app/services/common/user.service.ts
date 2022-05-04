@@ -4,6 +4,7 @@ import ResponseListModel from 'src/app/models/responseListModel';
 import ResponseModel from 'src/app/models/responseModel';
 import { UpdateUserModel } from 'src/app/models/tables/updateUserModel';
 import { User } from 'src/app/models/tables/user';
+import { UserResetPasswordModel } from 'src/app/models/tables/userResetPasswordModel';
 import { SweetalertService, SweetIconType } from './sweetalert.service';
 
 @Injectable({
@@ -39,8 +40,15 @@ export class UserService {
       errorCallBack(responseErr);
     })
   }
-  resetPassword(){
-
+  resetPassword(userResetPasswordModel: UserResetPasswordModel, errorCallBack?: (responseErr) => void, successCallBack?: (response: ResponseModel) => void) {
+    let url = `${this.baseUrl}api/users/resetpassword`;
+    this.http.post<ResponseModel>(url, userResetPasswordModel).subscribe(response => {
+      if (response.success) {
+        successCallBack(response);
+      }
+    }, responseErr => {
+      errorCallBack(responseErr);
+    })
   }
 
 }
