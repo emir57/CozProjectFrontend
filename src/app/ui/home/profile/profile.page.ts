@@ -58,7 +58,7 @@ export class ProfilePage implements OnInit {
         }, async (response: ResponseModel) => {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
           this.isOk = true;
-          await this.storageService.setName(KeyType.User, JSON.stringify(this.currentUser));
+          await this.storageService.setName(KeyType.User, this.currentUser);
           this.currentUser = JSON.parse(await this.storageService.checkName(KeyType.User));
         })
     }
