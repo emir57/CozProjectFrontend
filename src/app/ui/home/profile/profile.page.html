@@ -22,7 +22,7 @@
       </ion-item>
     </form>
     <ion-button [disabled]="!isOk" [disabled]="!saveForm.valid" (click)="save()" expand="block">
-      <span *ngIf="isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       &nbsp;Kaydet
     </ion-button>
     <hr>
@@ -45,7 +45,7 @@
       </small>
     </form>
     <ion-button [disabled]="!isOk" [disabled]="!resetPasswordForm.valid" (click)="resetPassword()" expand="block">
-      <span *ngIf="isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
       &nbsp;Sıfırla
     </ion-button>
   </div>
