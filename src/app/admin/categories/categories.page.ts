@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { CategoryService } from 'src/app/services/common/category.service';
+import { LoadingService } from 'src/app/services/common/loading.service';
 import { CategorySavePage } from '../category-save/category-save.page';
 declare var $: any;
 
@@ -17,7 +18,8 @@ export class CategoriesPage implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -26,12 +28,11 @@ export class CategoriesPage implements OnInit {
 
 
   async getCategories() {
+    await this.loadingService.showLoading("yükleniyor");
     this.categoryService.getall().subscribe(async response => {
       if (response.success) {
         this.categories = response.data;
-        setTimeout(() => {
-
-        }, 0);
+        await this.loadingService.closeLoading();
       }
     })
   }
