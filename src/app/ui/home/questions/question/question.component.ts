@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
 
   async ngOnInit() {
     await this.getUser();
+    this.animationArrows();
   }
 
   async getUser() {
@@ -52,6 +53,7 @@ export class QuestionComponent implements OnInit {
     })
     await modal.present();
   }
+
   animationArrows() {
     let arrows1 = $(".arrow1");
     let arrows2 = $(".arrow2");

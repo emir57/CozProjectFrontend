@@ -41,10 +41,9 @@ export class QuestionsPage implements OnInit {
     this.categoryService.getallWithCheckComplete(this.user.id).subscribe(response => {
       if (response.success) {
         this.categories = response.data;
-        // setTimeout(async () => {
-        //   this.animationArrows();
-        //   await this.loadingService.closeLoading();
-        // }, 0);
+        setTimeout(async () => {
+          await this.loadingService.closeLoading();
+        }, 0);
       }
     }, async responseErr => {
       await this.storageService.removeName(KeyType.Token);
