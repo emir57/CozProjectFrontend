@@ -10,5 +10,5 @@
 </ion-header>
 
 <ion-content>
-  <app-admin-category [category]="category" *ngFor="let category of categories"></app-admin-category>
+  <app-admin-category (getCategories)="getCategories()" [category]="category" *ngFor="let category of categories"></app-admin-category>
 </ion-content>
