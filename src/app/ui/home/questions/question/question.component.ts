@@ -4,6 +4,7 @@ import { CategoryModel } from 'src/app/models/tables/categoryModel';
 import { User } from 'src/app/models/tables/user';
 import { QuestionPage } from 'src/app/question/question.page';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
+declare var $: any;
 
 @Component({
   selector: 'app-question',
@@ -50,6 +51,26 @@ export class QuestionComponent implements OnInit {
       componentProps: { category: category, user: this.user }
     })
     await modal.present();
+  }
+  animationArrows() {
+    let arrows1 = $(".arrow1");
+    let arrows2 = $(".arrow2");
+    setInterval(() => {
+      setTimeout(() => {
+        arrows1.animate({
+          opacity: 1
+        }, 500)
+        arrows2.animate({
+          opacity: 1
+        }, 800)
+        arrows1.animate({
+          opacity: 0
+        }, 800)
+        arrows2.animate({
+          opacity: 0
+        }, 500)
+      }, 1000);
+    })
   }
 
 }

@@ -41,10 +41,10 @@ export class QuestionsPage implements OnInit {
     this.categoryService.getallWithCheckComplete(this.user.id).subscribe(response => {
       if (response.success) {
         this.categories = response.data;
-        setTimeout(async () => {
-          this.animationArrows();
-          await this.loadingService.closeLoading();
-        }, 0);
+        // setTimeout(async () => {
+        //   this.animationArrows();
+        //   await this.loadingService.closeLoading();
+        // }, 0);
       }
     }, async responseErr => {
       await this.storageService.removeName(KeyType.Token);
@@ -54,49 +54,4 @@ export class QuestionsPage implements OnInit {
       this.router.navigateByUrl("/login");
     })
   }
-  checkCompleteDiv(category: CategoryModel) {
-    if (category.isComplete) {
-      return `
-      z-index: 99;
-      background-color: black;
-      opacity: .3; `;
-    }
-  }
-  checkCompleteSpan(category: CategoryModel) {
-    if (category.isComplete) {
-      return `
-      z-index: 102;
-      color:black;
-      float:right;
-      `;
-    }
-  }
-  async openAnswerModal(category: CategoryModel) {
-    const modal = await this.modalController.create({
-      component: QuestionPage,
-      componentProps: { category: category, user: this.user }
-    })
-    await modal.present();
-  }
-  animationArrows() {
-    let arrows1 = $(".arrow1");
-    let arrows2 = $(".arrow2");
-    setInterval(() => {
-      setTimeout(() => {
-        arrows1.animate({
-          opacity: 1
-        }, 500)
-        arrows2.animate({
-          opacity: 1
-        }, 800)
-        arrows1.animate({
-          opacity: 0
-        }, 800)
-        arrows2.animate({
-          opacity: 0
-        }, 500)
-      }, 1000);
-    })
-  }
-
 }
