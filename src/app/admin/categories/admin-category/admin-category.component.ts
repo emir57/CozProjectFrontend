@@ -12,7 +12,7 @@ declare var $: any;
 export class AdminCategoryComponent implements OnInit,AfterViewInit {
 
   @Input() category: CategoryModel;
-  // @Output() getCategories: EventEmitter = new EventEmitter<any>();
+  @Output() getCategories: EventEmitter<any> = new EventEmitter<any>();
   constructor(
     private modalController: ModalController
   ) { }
@@ -29,7 +29,7 @@ export class AdminCategoryComponent implements OnInit,AfterViewInit {
       componentProps: { category: category }
     })
     modal.onDidDismiss().then(() => {
-
+      this.getCategories.emit();
     })
     return await modal.present();
   }
