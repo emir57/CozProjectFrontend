@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CategoryModel } from 'src/app/models/tables/categoryModel';
 
 @Component({
   selector: 'app-admin-category',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCategoryComponent implements OnInit {
 
+  @Input() category: CategoryModel;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
