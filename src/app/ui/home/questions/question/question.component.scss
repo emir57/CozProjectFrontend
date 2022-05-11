@@ -1,4 +1,4 @@
-.categoryisComplete{
+.categoryisComplete {
   width: 100%;
   height: 100%;
   z-index: 99;
@@ -9,7 +9,8 @@
 .categoryCard {
   border-radius: 5px;
   border: 2px solid #E5E7E9;
-  // -webkit-box-shadow: 8px 12px 11px -11px rgba(0, 0, 0, 0.75);
-  // -moz-box-shadow: 8px 12px 11px -11px rgba(0, 0, 0, 0.75);
-  // box-shadow: 8px 12px 11px -11px rgba(0, 0, 0, 0.75);
+
+  -webkit-box-shadow: 7px 7px 9px -3px rgba(0, 0, 0, 0.23);
+  -moz-box-shadow: 7px 7px 9px -3px rgba(0, 0, 0, 0.23);
+  box-shadow: 7px 7px 9px -3px rgba(0, 0, 0, 0.23);
 }
