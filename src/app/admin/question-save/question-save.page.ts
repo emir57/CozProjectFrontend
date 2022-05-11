@@ -136,7 +136,7 @@ export class QuestionSavePage implements OnInit {
   }
 
   async close() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss(false);
   }
 
   answersSetTrue(answer: AnswerModel) {
@@ -158,7 +158,7 @@ export class QuestionSavePage implements OnInit {
           if (response.success) {
             this.messageService.showMessage("Silme Başarılı")
             setTimeout(() => {
-              this.modalController.dismiss();
+              this.modalController.dismiss(true);
             }, 1000);
           }
         })
