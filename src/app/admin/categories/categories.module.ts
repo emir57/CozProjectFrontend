@@ -8,6 +8,7 @@ import { CategoriesPageRoutingModule } from './categories-routing.module';
 
 import { CategoriesPage } from './categories.page';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { AdminCategoryModule } from './admin-category/admin-category.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
     CategoriesPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    AdminCategoryModule
   ],
   declarations: [CategoriesPage]
 })

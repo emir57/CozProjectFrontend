@@ -10,13 +10,5 @@
 </ion-header>
 
 <ion-content>
-  <div class="categoryCard display-5 p-2 m-2" *ngFor="let category of categories" [ngStyle]="
-  {'background-color':category.backgroundColor,'color':category.textColor}">
-    <i [ngStyle]="{}">{{category.name.toUpperCase()}}</i>
-    <span style="float:right;margin:0;padding:0;">
-      <ion-icon style="opacity: 0;" class="arrow1" name="chevron-forward-outline"></ion-icon>
-      <ion-icon style="opacity: 0;" class="arrow2" name="chevron-forward-outline"></ion-icon>
-      <ion-icon (click)="categoryEditPage(category)" name="create-outline"></ion-icon>
-    </span>
-  </div>
+  <app-admin-category [category]="category" *ngFor="let category of categories"></app-admin-category>
 </ion-content>

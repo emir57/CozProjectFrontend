@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { CategoryModel } from 'src/app/models/tables/categoryModel';
-import { EventEmitter } from 'stream';
 import { CategorySavePage } from '../../category-save/category-save.page';
 declare var $: any;
 
@@ -13,7 +12,7 @@ declare var $: any;
 export class AdminCategoryComponent implements OnInit,AfterViewInit {
 
   @Input() category: CategoryModel;
-  @Output() getCategories: EventEmitter = new EventEmitter();
+  // @Output() getCategories: EventEmitter = new EventEmitter<any>();
   constructor(
     private modalController: ModalController
   ) { }
