@@ -43,8 +43,8 @@ export class CategorySavePage implements OnInit {
       textColor: [this.category?.textColor ?? "", [Validators.required, Validators.maxLength(7), Validators.minLength(7)]]
     })
   }
-  checkCateogry(){
-    if(this.category){
+  checkCateogry() {
+    if (this.category) {
       this.chosedBackgroundColor = this.category.backgroundColor;
       this.chosedTextColor = this.category.textColor;
     }
@@ -53,7 +53,7 @@ export class CategorySavePage implements OnInit {
   async save() {
     if (this.categoryForm.valid) {
       this.isOk = false;
-      await this.loadingService.showLoading(this.category ? "Güncelleniyor...":"Ekleniyor...");
+      await this.loadingService.showLoading(this.category ? "Güncelleniyor..." : "Ekleniyor...");
       let categoryModel: CategoryModel = this.categoryForm.value;
       if (!this.category) {
         await this.add(categoryModel);
@@ -89,7 +89,7 @@ export class CategorySavePage implements OnInit {
     this.categoryService.update(categoryModel).subscribe(async response => {
       if (response.success) {
         await this.modalController.dismiss();
-        this.messageService.showMessage(response.message,{time:2000});
+        this.messageService.showMessage(response.message, { time: 2000 });
       }
       await this.loadingService.closeLoading();
       this.isOk = true;
@@ -122,7 +122,7 @@ export class CategorySavePage implements OnInit {
 
   getDate(dateString: string) {
     let date = new Date(dateString);
-    if(dateString == null){
+    if (dateString == null) {
       return "-";
     }
     return `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
@@ -143,7 +143,7 @@ export class CategorySavePage implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(false);
   }
 
 }
