@@ -28,8 +28,10 @@ export class AdminCategoryComponent implements OnInit,AfterViewInit {
       component: CategorySavePage,
       componentProps: { category: category }
     })
-    modal.onDidDismiss().then(() => {
-      this.getCategories.emit();
+    modal.onDidDismiss().then((value) => {
+      if(value.data){
+        this.getCategories.emit();
+      }
     })
     return await modal.present();
   }
