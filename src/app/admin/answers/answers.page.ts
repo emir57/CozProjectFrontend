@@ -24,7 +24,6 @@ export class AnswersPage implements OnInit {
   }
 
   async getAnswers() {
-    this.loadingService.showLoading("yükleniyor");
     this.answerService.getAll(
       async (response) => {
         if (response.success) {
@@ -34,7 +33,6 @@ export class AnswersPage implements OnInit {
               answer.question = response.data;
             })
           })
-          await this.loadingService.closeLoading();
         }
       },
       async (responseErr) => {
