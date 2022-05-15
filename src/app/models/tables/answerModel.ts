@@ -1,4 +1,5 @@
 import { CategoryModel } from "./categoryModel";
+import { QuestionModel } from "./questionModel";
 
 export interface AnswerModel {
   id?: number;
@@ -8,5 +9,5 @@ export interface AnswerModel {
   createdDate?: string;
   updatedDate?: string;
   deletedDate?: string;
-  category?: CategoryModel
+  question?: QuestionModel
 }
