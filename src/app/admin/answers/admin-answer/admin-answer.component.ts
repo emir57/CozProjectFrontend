@@ -37,7 +37,7 @@ export class AdminAnswerComponent implements OnInit {
     }
     const modal = await this.modalController.create({
       component: QuestionSavePage,
-      componentProps: { question: answer.question, user: 2 }
+      componentProps: { question: answer.question, user: this.user }
     })
 
     return await modal.present();
