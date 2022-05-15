@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AnswersPageRoutingModule } from './answers-routing.module';
 
 import { AnswersPage } from './answers.page';
+import { AdminAnswerModule } from './admin-answer/admin-answer.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AnswersPageRoutingModule
+    AnswersPageRoutingModule,
+    AdminAnswerModule
   ],
   declarations: [AnswersPage]
 })
