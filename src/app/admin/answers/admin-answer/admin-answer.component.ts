@@ -1,9 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { AnswerService } from 'src/app/services/common/answer.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { KeyType, StorageService } from 'src/app/services/common/storage.service';
+import { UserService } from 'src/app/services/common/user.service';
 import { QuestionSavePage } from '../../question-save/question-save.page';
 
 @Component({
@@ -14,11 +17,19 @@ import { QuestionSavePage } from '../../question-save/question-save.page';
 export class AdminAnswerComponent implements OnInit {
 
   @Input() answer: AnswerModel;
+  user: LoginedUser;
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private storageService: StorageService
   ) { }
 
-  ngOnInit() { }
+  async ngOnInit() {
+    await this.getUser();
+  }
+
+  async getUser(){
+    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+  }
 
   async goQuestionPage(answer: AnswerModel) {
     const modal = await this.modalController.create({
