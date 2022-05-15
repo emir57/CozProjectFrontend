@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { AnswerModel } from 'src/app/models/tables/answerModel';
 import { AnswerService } from 'src/app/services/common/answer.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { QuestionSavePage } from '../../question-save/question-save.page';
 
 @Component({
   selector: 'app-admin-answer',
@@ -19,8 +20,13 @@ export class AdminAnswerComponent implements OnInit {
 
   ngOnInit() { }
 
-  goQuestionPage(answer: AnswerModel) {
+  async goQuestionPage(answer: AnswerModel) {
+    const modal = await this.modalController.create({
+      component: QuestionSavePage,
+      componentProps: { question: answer.question, user: 2 }
+    })
 
+    return await modal.present();
   }
 
 }
