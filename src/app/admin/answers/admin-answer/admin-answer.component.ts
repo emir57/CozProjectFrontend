@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AnswerModel } from 'src/app/models/tables/answerModel';
+import { LoadingService } from 'src/app/services/common/loading.service';
 
 @Component({
   selector: 'app-admin-answer',
@@ -7,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminAnswerComponent implements OnInit {
 
-  constructor() { }
+  answers: AnswerModel[]
+  constructor(
+    private loadingService: LoadingService,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  getAnswers() {
+
+  }
 
 }
