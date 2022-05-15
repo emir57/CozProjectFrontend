@@ -28,15 +28,15 @@ export class QuestionsPage implements OnInit {
   }
 
 
-  getQuestions() {
-    this.loadingService.showLoading("Yükleniyor..");
-    this.questionService.getallWithAnswers().subscribe(response => {
+  async getQuestions() {
+    await this.loadingService.showLoading("Yükleniyor..");
+    this.questionService.getallWithAnswers().subscribe(async response => {
       if (response.success) {
         this.questions = response.data;
-        this.loadingService.closeLoading();
         this.questions.forEach(question => {
           question.answers.sort((x, y) => 0.5 - Math.random());
         })
+        await this.loadingService.closeLoading();
       }
     })
   }
