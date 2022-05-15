@@ -14,7 +14,6 @@ export class AnswersPage implements OnInit {
 
   answers: AnswerModel[]
   constructor(
-    private loadingService: LoadingService,
     private answerService: AnswerService,
     private questionService: QuestionService
   ) { }
@@ -37,7 +36,6 @@ export class AnswersPage implements OnInit {
       },
       async (responseErr) => {
         console.log(responseErr)
-        await this.loadingService.closeLoading();
       }
     )
   }
