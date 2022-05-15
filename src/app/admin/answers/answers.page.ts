@@ -30,7 +30,9 @@ export class AnswersPage implements OnInit {
         if (response.success) {
           this.answers = response.data;
           this.answers.forEach(answer => {
-            this.questionService.getById()
+            this.questionService.getById(answer.questionId).subscribe(response => {
+              answer.question = response.data;
+            })
           })
           await this.loadingService.closeLoading();
         }
