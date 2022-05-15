@@ -23,8 +23,8 @@ export class AnswersPage implements OnInit {
   }
 
   async getAnswers() {
-    this.answerService.getAll(
-      async (response) => {
+    await this.answerService.getAll(
+      (response) => {
         if (response.success) {
           this.answers = response.data;
           this.answers.forEach(answer => {
@@ -34,7 +34,7 @@ export class AnswersPage implements OnInit {
           })
         }
       },
-      async (responseErr) => {
+      (responseErr) => {
         console.log(responseErr)
       }
     )
