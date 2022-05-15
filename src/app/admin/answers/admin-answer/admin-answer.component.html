@@ -2,7 +2,8 @@
   <ion-card-header>
     <ion-card-subtitle>ID: {{answer.id}}</ion-card-subtitle>
     <ion-card-title>
-      <span class="text-success">{{answer.content}}</span>
+      <span *ngIf="answer.isTrue" class="text-success">{{answer.content}}</span>
+      <span *ngIf="!answer.isTrue" class="text-danger">{{answer.content}}</span>
     </ion-card-title>
   </ion-card-header>
 
