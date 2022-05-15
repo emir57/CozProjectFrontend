@@ -38,12 +38,10 @@ export class QuestionsPage implements OnInit {
   async getCategories() {
     await this.loadingService.showLoading("Yükleniyor..");
     await this.getUser();
-    this.categoryService.getallWithCheckComplete(this.user.id).subscribe(response => {
+    this.categoryService.getallWithCheckComplete(this.user.id).subscribe(async response => {
       if (response.success) {
         this.categories = response.data;
-        setTimeout(async () => {
-          await this.loadingService.closeLoading();
-        }, 0);
+        await this.loadingService.closeLoading();
       }
     }, async responseErr => {
       await this.storageService.removeName(KeyType.Token);
