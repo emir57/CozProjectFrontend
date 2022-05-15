@@ -1,10 +1,10 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-subtitle>{{answer.id}}</ion-card-subtitle>
-    <ion-card-title>{{answer.question.content}}</ion-card-title>
+    <ion-card-subtitle>ID: {{answer.id}}</ion-card-subtitle>
+    <ion-card-title>{{answer.content}}</ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
-    {{answer.content}}
+    {{answer.question?.content}}
   </ion-card-content>
 </ion-card>
