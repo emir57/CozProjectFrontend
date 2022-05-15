@@ -17,6 +17,13 @@ export class AnswerService {
     successCallBack?: (response: ResponseListModel<AnswerModel>) => void,
     errorCallBack?: (responseErr: HttpErrorResponse) => void) {
     let url = `${this.baseUrl}api/answers/getall`;
-    this.http.get<ResponseListModel<AnswerModel>>(url).subscribe();
+    this.http.get<ResponseListModel<AnswerModel>>(url).subscribe(
+      (response) => {
+        successCallBack(response);
+      },
+      (responseErr) => {
+        errorCallBack(responseErr);
+      }
+    );
   }
 }
