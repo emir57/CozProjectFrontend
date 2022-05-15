@@ -1,10 +1,17 @@
 <ion-card>
   <ion-card-header>
     <ion-card-subtitle>ID: {{answer.id}}</ion-card-subtitle>
-    <ion-card-title>{{answer.content}}</ion-card-title>
+    <ion-card-title>
+      <span class="text-success">{{answer.content}}</span>
+    </ion-card-title>
   </ion-card-header>
 
   <ion-card-content>
-    {{answer.question?.content}}
+    <p>{{answer.question?.content}}</p>
+    <p>
+      <ion-button (click)="goQuestionPage()" fill="clear" shape="round">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </p>
   </ion-card-content>
 </ion-card>
