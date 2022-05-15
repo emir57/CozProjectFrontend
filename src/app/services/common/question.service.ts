@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import ResponseListModel from 'src/app/models/responseListModel';
 import ResponseModel from 'src/app/models/responseModel';
+import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { QuestionModel } from 'src/app/models/tables/questionModel';
 
 @Injectable({
@@ -17,6 +18,10 @@ export class QuestionService {
   getall() {
     let url = `${this.baseUrl}api/questions/getall`;
     return this.http.get<ResponseListModel<QuestionModel>>(url);
+  }
+  getById(id: number) {
+    let url = `${this.baseUrl}api/questions/getbyid?id=${id}`;
+    return this.http.get<ResponseSingleModel<QuestionModel>>(url);
   }
   getallWithAnswers() {
     let url = `${this.baseUrl}api/questions/getallwithanswers`;
