@@ -27,11 +27,14 @@ export class AdminAnswerComponent implements OnInit {
     await this.getUser();
   }
 
-  async getUser(){
+  async getUser() {
     this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
   }
 
   async goQuestionPage(answer: AnswerModel) {
+    if (!this.user) {
+      return;
+    }
     const modal = await this.modalController.create({
       component: QuestionSavePage,
       componentProps: { question: answer.question, user: 2 }
