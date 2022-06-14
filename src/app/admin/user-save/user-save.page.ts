@@ -37,7 +37,6 @@ export class UserSavePage implements OnInit {
       }
       await this.loadingService.closeLoading();
     }, async responseErr => {
-      console.log(responseErr);
       this.messageService.showMessage(responseErr.error.message, {
         iconType: SweetIconType.Error
       })
