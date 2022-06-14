@@ -24,12 +24,22 @@ export class UserSavePage implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.getUser();
     this.createForm();
   }
 
-  getUser(){
-
+  async getUser(){
+    await this.loadingService.showLoading();
+    this.userService.getById(this.userId).subscribe(async response=>{
+      if(response.success){
+        this.user = response.data;
+      }
+      await this.loadingService.closeLoading();
+    },async responseErr=>{
+      console.log(responseErr);
+      await this.loadingService.closeLoading();
+    })
   }
 
   createForm() {
