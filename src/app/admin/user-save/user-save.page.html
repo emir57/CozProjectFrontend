@@ -18,6 +18,7 @@
 <ion-content>
   <div id="container">
     <form [formGroup]="form">
+      <input type="hidden" [(ngModel)]="user && user.id" formControlName="id">
       <ion-item>
         <ion-label position="floating">Ad</ion-label>
         <ion-input [(ngModel)]="user && user.firstName" formControlName="firstName"></ion-input>
