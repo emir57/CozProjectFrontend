@@ -2,7 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { UpdateUserAdmin } from 'src/app/models/admin/updateUserAdmin';
+import { Role } from 'src/app/models/tables/role';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { RoleService } from 'src/app/services/common/role.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 import { UserService } from 'src/app/services/common/user.service';
 
@@ -13,6 +15,7 @@ import { UserService } from 'src/app/services/common/user.service';
 })
 export class UserSavePage implements OnInit {
 
+  allRoles: Role[] = [];
   form: FormGroup;
   user: UpdateUserAdmin;
   @Input() userId: number;
@@ -21,12 +24,14 @@ export class UserSavePage implements OnInit {
     private messageService: SweetalertService,
     private userService: UserService,
     private loadingService: LoadingService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private roleService: RoleService
   ) { }
 
   async ngOnInit() {
     this.createForm();
     await this.getUser();
+    await this.getAllRoles();
   }
 
   async getUser() {
@@ -44,6 +49,18 @@ export class UserSavePage implements OnInit {
       setTimeout(async () => {
         await this.close();
       }, 500);
+      await this.loadingService.closeLoading();
+    })
+  }
+
+  async getAllRoles() {
+    await this.loadingService.showLoading();
+    this.roleService.getRoles().subscribe(async response => {
+      if (response.success) {
+        this.allRoles = response.data;
+      }
+      await this.loadingService.closeLoading();
+    }, async responseErr => {
       await this.loadingService.closeLoading();
     })
   }
