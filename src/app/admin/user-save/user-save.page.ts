@@ -25,8 +25,8 @@ export class UserSavePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.getUser();
     this.createForm();
+    await this.getUser();
   }
 
   async getUser() {
