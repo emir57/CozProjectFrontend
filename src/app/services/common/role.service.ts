@@ -54,4 +54,8 @@ export class RoleService {
     let newUrl = `${this.baseUrl}api/roles/getall`;
     return this.http.get<ResponseListModel<Role>>(newUrl);
   }
+  getUserRolesAdmin(userId: number) {
+    let newUrl = `${this.baseUrl}api/roles/getuserroles`;
+    return this.http.get<ResponseListModel<Role>>(newUrl);
+  }
 }
