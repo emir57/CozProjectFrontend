@@ -79,6 +79,10 @@ export class UserSavePage implements OnInit {
     })
   }
 
+  checkInrole(role: Role) {
+    return this.userRoles.findIndex(x=>x.id === role.id) !== -1;
+  }
+
   createForm() {
     this.form = this.formBuilder.group({
       id: ["", [Validators.required]],
