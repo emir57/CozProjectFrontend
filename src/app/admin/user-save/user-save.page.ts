@@ -30,6 +30,7 @@ export class UserSavePage implements OnInit {
   }
 
   async getUser() {
+    if (!this.userId) return;
     await this.loadingService.showLoading();
     this.userService.getById(this.userId).subscribe(async response => {
       if (response.success) {
@@ -63,7 +64,7 @@ export class UserSavePage implements OnInit {
 
   }
 
-  async close(data?:any){
+  async close(data?: any) {
     await this.modalController.dismiss();
   }
 
