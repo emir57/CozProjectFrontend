@@ -81,6 +81,16 @@ export class UserSavePage implements OnInit {
     return this.userRoles.findIndex(x => x.id === role.id) !== -1;
   }
 
+  updateSelectedRoles(role: Role) {
+    let index = this.userRoles.findIndex(x => x.id === role.id);
+    if (index !== -1) {
+      this.userRoles.splice(index, 1);
+    } else {
+      this.userRoles.push(role);
+    }
+    console.log(this.userRoles);
+  }
+
   createForm() {
     this.form = this.formBuilder.group({
       id: ["", [Validators.required]],
@@ -89,11 +99,13 @@ export class UserSavePage implements OnInit {
       email: ["", [Validators.required, Validators.maxLength(50)]],
       emailConfirmed: [false, [Validators.required]],
       score: [0, [Validators.required, Validators.min(0)]],
-      profilePhotoUrl: [""]
+      profilePhotoUrl: [""],
+      roles: [[], []]
     })
   }
 
   async update() {
+    console.log(this.form.value)
     if (this.form.valid) {
       this.form.get("score").setValue(+this.form.get("score").value);
       await this.loadingService.showLoading();
