@@ -60,14 +60,24 @@ export class UserSavePage implements OnInit {
     })
   }
 
-  update() {
-    if(this.form.valid){
-      this.userService;
+  async update() {
+    if (this.form.valid) {
+      await this.loadingService.showLoading();
+      this.userService.updateUserAdmin(this.form.value).subscribe(async response => {
+        if (response.success) {
+          this.messageService.showMessage(response.message);
+          this.close(this.form.value);
+        }
+        await this.loadingService.closeLoading();
+      }, async responseErr => {
+        this.messageService.showMessage(responseErr.error.message);
+        await this.loadingService.closeLoading();
+      })
     }
   }
 
   async close(data?: any) {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss(data);
   }
 
 }
