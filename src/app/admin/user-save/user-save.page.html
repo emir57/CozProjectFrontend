@@ -47,8 +47,7 @@
       <br>
       <ion-item *ngFor="let role of allRoles">
         <ion-label>{{role.name}}</ion-label>
-        <ion-checkbox [checked]="role.checked" (click)="updateSelectedRoles(role)" [value]="role.id" slot="end">
-        </ion-checkbox>
+        <input class="form-check-input" [checked]="role.checked" (click)="updateSelectedRoles(role)" type="checkbox" slot="end"/>
       </ion-item>
     </form>
     <ion-button (click)="update()" expand="block">
