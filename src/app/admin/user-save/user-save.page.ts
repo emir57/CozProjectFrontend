@@ -69,10 +69,8 @@ export class UserSavePage implements OnInit {
 
   async getUserRoles() {
     await this.loadingService.showLoading();
-    this.roleService.getUserRolesAdmin(this.userId).subscribe(async response => {
-      if (response.success) {
-        this.userRoles = response.data;
-      }
+    this.roleService.getUserRolesAdmin(this.userId).subscribe(async roles => {
+      this.userRoles = roles;
       await this.loadingService.closeLoading();
     }, async responseErr => {
       await this.loadingService.closeLoading();
@@ -80,7 +78,7 @@ export class UserSavePage implements OnInit {
   }
 
   checkInrole(role: Role) {
-    return this.userRoles.findIndex(x=>x.id === role.id) !== -1;
+    return this.userRoles.findIndex(x => x.id === role.id) !== -1;
   }
 
   createForm() {
