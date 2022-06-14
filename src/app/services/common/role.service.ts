@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import LoginedUser from 'src/app/models/auth/loginedUserModel';
+import ResponseListModel from 'src/app/models/responseListModel';
+import { Role } from 'src/app/models/tables/role';
 import { LoadingService } from './loading.service';
 import { KeyType, StorageService } from './storage.service';
 import { SweetalertService, SweetIconType } from './sweetalert.service';
@@ -46,5 +48,10 @@ export class RoleService {
       this.router.navigateByUrl("/login");
 
     })
+  }
+
+  getRoles() {
+    let newUrl = `${this.baseUrl}api/roles/getall`;
+    return this.http.get<ResponseListModel<Role>>(newUrl);
   }
 }
