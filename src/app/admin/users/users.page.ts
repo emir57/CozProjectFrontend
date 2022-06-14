@@ -38,7 +38,7 @@ export class UsersPage implements OnInit {
   async editUserModal(userId: number) {
     const modal = await this.modalController.create({
       component: UserSavePage,
-      componentProps: { userId: 6 }
+      componentProps: { userId: userId }
     })
     modal.onDidDismiss().then(async value=>{
       if(value.data){
