@@ -20,27 +20,27 @@
     <form [formGroup]="form">
       <ion-item>
         <ion-label position="floating">Ad</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Soyad</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Eposta</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Eposta Doğrulama</ion-label>
-        <ion-checkbox slot="end" [(ngModel)]="user.emailConfirmed"></ion-checkbox>
+        <ion-checkbox formControlName="emailConfirmed" slot="end" [(ngModel)]="user.emailConfirmed"></ion-checkbox>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Skor</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="score"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Profil Fotoğrafı</ion-label>
-        <ion-input></ion-input>
+        <ion-input formControlName="profilePhotoUrl"></ion-input>
       </ion-item>
     </form>
     <ion-button [disabled]="!form.valid" (click)="update()" expand="block">
