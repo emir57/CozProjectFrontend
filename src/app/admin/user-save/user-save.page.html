@@ -20,27 +20,28 @@
     <form [formGroup]="form">
       <ion-item>
         <ion-label position="floating">Ad</ion-label>
-        <ion-input formControlName="firstName"></ion-input>
+        <ion-input [(ngModel)]="user && user.firstName" formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Soyad</ion-label>
-        <ion-input formControlName="lastName"></ion-input>
+        <ion-input [(ngModel)]="user && user.lastName" formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Eposta</ion-label>
-        <ion-input formControlName="email"></ion-input>
+        <ion-input [(ngModel)]="user && user.email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Eposta Doğrulama</ion-label>
-        <ion-checkbox formControlName="emailConfirmed" slot="end" [(ngModel)]="user.emailConfirmed"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="user && user.emailConfirmed" formControlName="emailConfirmed" slot="end">
+        </ion-checkbox>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Skor</ion-label>
-        <ion-input formControlName="score"></ion-input>
+        <ion-input [(ngModel)]="user && user.score" formControlName="score"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Profil Fotoğrafı</ion-label>
-        <ion-input formControlName="profilePhotoUrl"></ion-input>
+        <ion-input [(ngModel)]="user && user.profilePhotoUrl" formControlName="profilePhotoUrl"></ion-input>
       </ion-item>
     </form>
     <ion-button [disabled]="!form.valid" (click)="update()" expand="block">
