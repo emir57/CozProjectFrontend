@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { UpdateUserAdmin } from 'src/app/models/admin/updateUserAdmin';
 import { LoadingService } from 'src/app/services/common/loading.service';
-import { SweetalertService } from 'src/app/services/common/sweetalert.service';
+import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 import { UserService } from 'src/app/services/common/user.service';
 
 @Component({
@@ -29,15 +29,21 @@ export class UserSavePage implements OnInit {
     this.createForm();
   }
 
-  async getUser(){
+  async getUser() {
     await this.loadingService.showLoading();
-    this.userService.getById(this.userId).subscribe(async response=>{
-      if(response.success){
+    this.userService.getById(this.userId).subscribe(async response => {
+      if (response.success) {
         this.user = response.data;
       }
       await this.loadingService.closeLoading();
-    },async responseErr=>{
+    }, async responseErr => {
       console.log(responseErr);
+      this.messageService.showMessage(responseErr.error.message, {
+        iconType: SweetIconType.Error
+      })
+      setTimeout(async () => {
+        await this.close();
+      }, 500);
       await this.loadingService.closeLoading();
     })
   }
@@ -56,6 +62,10 @@ export class UserSavePage implements OnInit {
 
   update() {
 
+  }
+
+  async close(data?:any){
+    await this.modalController.dismiss();
   }
 
 }
