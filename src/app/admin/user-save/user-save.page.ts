@@ -7,6 +7,7 @@ import { LoadingService } from 'src/app/services/common/loading.service';
 import { RoleService } from 'src/app/services/common/role.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 import { UserService } from 'src/app/services/common/user.service';
+declare var $: any;
 
 @Component({
   selector: 'app-user-save',
@@ -76,17 +77,12 @@ export class UserSavePage implements OnInit {
       await this.loadingService.closeLoading();
     })
   }
-
-  checkInrole(role: Role) {
-    return this.userRoles.findIndex(x => x.id === role.id) !== -1;
-  }
-
   updateSelectedRoles(role: Role) {
     let index = this.userRoles.findIndex(x => x.id === role.id);
-    if (index !== -1) {
-      this.userRoles.splice(index, 1);
-    } else {
+    if (index === -1) {
       this.userRoles.push(role);
+    } else {
+      this.userRoles.splice(index, 1);
     }
     console.log(this.userRoles);
   }
@@ -99,8 +95,7 @@ export class UserSavePage implements OnInit {
       email: ["", [Validators.required, Validators.maxLength(50)]],
       emailConfirmed: [false, [Validators.required]],
       score: [0, [Validators.required, Validators.min(0)]],
-      profilePhotoUrl: [""],
-      roles: [[], []]
+      profilePhotoUrl: [""]
     })
   }
 
