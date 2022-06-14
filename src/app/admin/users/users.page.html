@@ -23,6 +23,11 @@
       </p>
       <p>Skor: {{user.score}}</p>
       <p>Kayıt olma tarihi: <span class="text-info">{{getDate(user.createdDate)}}</span></p>
+      <p>
+        <ion-button (click)="editUserModal(user.id)" expand="block" fill="clear" shape="round">
+          <ion-icon name="create-outline"></ion-icon>&nbsp;Düzenle
+        </ion-button>
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>
