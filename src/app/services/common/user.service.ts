@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { UpdateUserAdmin } from 'src/app/models/admin/updateUserAdmin';
 import ResponseListModel from 'src/app/models/responseListModel';
 import ResponseModel from 'src/app/models/responseModel';
+import ResponseSingleModel from 'src/app/models/responseSingleModel';
 import { UpdateUserModel } from 'src/app/models/tables/updateUserModel';
 import { User } from 'src/app/models/tables/user';
 import { UserResetPasswordModel } from 'src/app/models/tables/userResetPasswordModel';
@@ -49,6 +51,11 @@ export class UserService {
     }, responseErr => {
       errorCallBack(responseErr);
     })
+  }
+
+  getById(userId: number) {
+    let newUrl = `${this.baseUrl}api/users/getbyid?userId=${userId}`;
+    return this.http.get<ResponseSingleModel<UpdateUserAdmin>>(newUrl);
   }
 
 }

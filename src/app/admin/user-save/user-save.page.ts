@@ -28,6 +28,10 @@ export class UserSavePage implements OnInit {
     this.createForm();
   }
 
+  getUser(){
+
+  }
+
   createForm() {
     this.form = this.formBuilder.group({
       id: ["", [Validators.required]],
