@@ -91,7 +91,6 @@ export class UserSavePage implements OnInit {
     } else {
       this.userRoles.splice(index, 1);
     }
-    console.log(this.userRoles);
   }
 
   createForm() {
@@ -107,11 +106,13 @@ export class UserSavePage implements OnInit {
   }
 
   async update() {
-    console.log(this.form.value)
     if (this.form.valid) {
+      let user: UpdateUserAdmin = Object.assign({
+        roles: this.allRoles
+      }, this.form.value)
       this.form.get("score").setValue(+this.form.get("score").value);
       await this.loadingService.showLoading();
-      this.userService.updateUserAdmin(this.form.value).subscribe(async response => {
+      this.userService.updateUserAdmin(user).subscribe(async response => {
         if (response.success) {
           this.messageService.showMessage(response.message);
           this.close(this.form.value);
