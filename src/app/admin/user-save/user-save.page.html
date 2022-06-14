@@ -1,6 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>userSave</ion-title>
+    <ion-title>
+      <span *ngIf="user">Kullanıcı Güncelle</span>
+      <span *ngIf="!user">Kullanıcı Ekle</span>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="user" (click)="close()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button *ngIf="!user"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
