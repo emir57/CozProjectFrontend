@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/common/user.service';
 export class UserSavePage implements OnInit {
 
   allRoles: Role[] = [];
+  userRoles: Role[] = [];
   form: FormGroup;
   user: UpdateUserAdmin;
   @Input() userId: number;
@@ -32,6 +33,7 @@ export class UserSavePage implements OnInit {
     this.createForm();
     await this.getUser();
     await this.getAllRoles();
+    await this.getUserRoles();
   }
 
   async getUser() {
@@ -58,6 +60,18 @@ export class UserSavePage implements OnInit {
     this.roleService.getRoles().subscribe(async response => {
       if (response.success) {
         this.allRoles = response.data;
+      }
+      await this.loadingService.closeLoading();
+    }, async responseErr => {
+      await this.loadingService.closeLoading();
+    })
+  }
+
+  async getUserRoles() {
+    await this.loadingService.showLoading();
+    this.roleService.getUserRolesAdmin(this.userId).subscribe(async response => {
+      if (response.success) {
+        this.userRoles = response.data;
       }
       await this.loadingService.closeLoading();
     }, async responseErr => {
