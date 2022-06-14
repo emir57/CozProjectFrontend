@@ -85,11 +85,11 @@ export class UserSavePage implements OnInit {
     })
   }
   updateSelectedRoles(role: Role) {
-    let index = this.userRoles.findIndex(x => x.id === role.id);
-    if (index === -1) {
-      this.userRoles.push(role);
+    let index = this.allRoles.findIndex(x => x.id === role.id);
+    if (this.allRoles[index].checked) {
+      this.allRoles[index].checked = false;
     } else {
-      this.userRoles.splice(index, 1);
+      this.allRoles[index].checked = true;
     }
   }
 
@@ -111,20 +111,21 @@ export class UserSavePage implements OnInit {
         roles: this.allRoles
       }, this.form.value)
       this.form.get("score").setValue(+this.form.get("score").value);
-      await this.loadingService.showLoading();
-      this.userService.updateUserAdmin(user).subscribe(async response => {
-        if (response.success) {
-          this.messageService.showMessage(response.message);
-          this.close(this.form.value);
-        }
-        await this.loadingService.closeLoading();
-      }, async responseErr => {
-        console.log(responseErr)
-        this.messageService.showMessage(responseErr.error.message, {
-          iconType: SweetIconType.Error
-        });
-        await this.loadingService.closeLoading();
-      })
+      console.log(this.allRoles)
+      // await this.loadingService.showLoading();
+      // this.userService.updateUserAdmin(user).subscribe(async response => {
+      //   if (response.success) {
+      //     this.messageService.showMessage(response.message);
+      //     this.close(this.form.value);
+      //   }
+      //   await this.loadingService.closeLoading();
+      // }, async responseErr => {
+      //   console.log(responseErr)
+      //   this.messageService.showMessage(responseErr.error.message, {
+      //     iconType: SweetIconType.Error
+      //   });
+      //   await this.loadingService.closeLoading();
+      // })
     }
   }
 
