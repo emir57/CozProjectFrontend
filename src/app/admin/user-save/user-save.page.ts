@@ -72,6 +72,13 @@ export class UserSavePage implements OnInit {
     await this.loadingService.showLoading();
     this.roleService.getUserRolesAdmin(this.userId).subscribe(async roles => {
       this.userRoles = roles;
+      this.allRoles.forEach(a => {
+        if (this.userRoles.findIndex(x => x.id == a.id) === -1) {
+          a.checked = false;
+        } else {
+          a.checked = true;
+        }
+      })
       await this.loadingService.closeLoading();
     }, async responseErr => {
       await this.loadingService.closeLoading();
