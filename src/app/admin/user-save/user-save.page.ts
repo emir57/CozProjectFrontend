@@ -111,21 +111,20 @@ export class UserSavePage implements OnInit {
         roles: this.allRoles
       }, this.form.value)
       this.form.get("score").setValue(+this.form.get("score").value);
-      console.log(this.allRoles)
-      // await this.loadingService.showLoading();
-      // this.userService.updateUserAdmin(user).subscribe(async response => {
-      //   if (response.success) {
-      //     this.messageService.showMessage(response.message);
-      //     this.close(this.form.value);
-      //   }
-      //   await this.loadingService.closeLoading();
-      // }, async responseErr => {
-      //   console.log(responseErr)
-      //   this.messageService.showMessage(responseErr.error.message, {
-      //     iconType: SweetIconType.Error
-      //   });
-      //   await this.loadingService.closeLoading();
-      // })
+      await this.loadingService.showLoading();
+      this.userService.updateUserAdmin(user).subscribe(async response => {
+        if (response.success) {
+          this.messageService.showMessage(response.message);
+          this.close(this.form.value);
+        }
+        await this.loadingService.closeLoading();
+      }, async responseErr => {
+        console.log(responseErr)
+        this.messageService.showMessage(responseErr.error.message, {
+          iconType: SweetIconType.Error
+        });
+        await this.loadingService.closeLoading();
+      })
     }
   }
 
