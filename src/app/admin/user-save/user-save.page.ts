@@ -62,6 +62,7 @@ export class UserSavePage implements OnInit {
 
   async update() {
     if (this.form.valid) {
+      this.form.get("score").setValue(+this.form.get("score").value);
       await this.loadingService.showLoading();
       this.userService.updateUserAdmin(this.form.value).subscribe(async response => {
         if (response.success) {
@@ -70,7 +71,10 @@ export class UserSavePage implements OnInit {
         }
         await this.loadingService.closeLoading();
       }, async responseErr => {
-        this.messageService.showMessage(responseErr.error.message);
+        console.log(responseErr)
+        this.messageService.showMessage(responseErr.error.message, {
+          iconType: SweetIconType.Error
+        });
         await this.loadingService.closeLoading();
       })
     }
