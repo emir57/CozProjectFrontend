@@ -44,6 +44,12 @@
         <ion-label position="floating">Profil Fotoğrafı</ion-label>
         <ion-input [(ngModel)]="user && user.profilePhotoUrl" formControlName="profilePhotoUrl"></ion-input>
       </ion-item>
+      <br>
+      <ion-item *ngFor="let role of allRoles">
+        <ion-label>{{role.name}}</ion-label>
+        <ion-checkbox [value]="role.id" slot="end">
+        </ion-checkbox>
+      </ion-item>
     </form>
     <ion-button [disabled]="!form.valid" (click)="update()" expand="block">
       Kaydet
