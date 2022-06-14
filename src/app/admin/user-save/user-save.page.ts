@@ -110,7 +110,7 @@ export class UserSavePage implements OnInit {
       let user: UpdateUserAdmin = Object.assign({
         roles: this.allRoles
       }, this.form.value)
-      this.form.get("score").setValue(+this.form.get("score").value);
+      user.score = +user.score;
       await this.loadingService.showLoading();
       this.userService.updateUserAdmin(user).subscribe(async response => {
         if (response.success) {
