@@ -57,5 +57,9 @@ export class UserService {
     let newUrl = `${this.baseUrl}api/users/getbyid?userId=${userId}`;
     return this.http.get<ResponseSingleModel<UpdateUserAdmin>>(newUrl);
   }
+  updateUserAdmin(user: UpdateUserAdmin) {
+    let newUrl = `${this.baseUrl}api/users/updateuseradmin`;
+    return this.http.post<ResponseModel>(newUrl, user);
+  }
 
 }
