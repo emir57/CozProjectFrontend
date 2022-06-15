@@ -113,7 +113,7 @@ export class QuestionPage implements OnInit {
       () => { },
       async () => {
         this.user.score = this.score;
-        this.storageService.setName(KeyType.User, this.user);
+        this.storageService.setValue(KeyType.User, this.user);
         await this.modalController.dismiss();
       })
   }
