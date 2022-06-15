@@ -7,6 +7,7 @@ import LoginResponseModel from 'src/app/models/auth/loginResponseModel';
 import RegisterModel from 'src/app/models/auth/registerModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import ResponseSingleModel from 'src/app/models/responseSingleModel';
+import { RoleService } from './role.service';
 import { KeyType, StorageService } from './storage.service';
 import { SweetalertService, SweetIconType } from './sweetalert.service';
 
@@ -20,7 +21,8 @@ export class AuthService {
     private http: HttpClient,
     private messageService: SweetalertService,
     private router: Router,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private roleService: RoleService
   ) { }
   private isLogin = false;
 
@@ -49,6 +51,7 @@ export class AuthService {
     await this.storageService.removeValue(KeyType.Token);
     await this.storageService.removeValue(KeyType.User);
     this.router.navigateByUrl("/login")
+    this.roleService.setRolesFalse();
     this.messageService.showMessage("Çıkış Başarılı", { iconType: SweetIconType.Success })
   }
 }
