@@ -44,7 +44,7 @@ export class QuestionSavePage implements OnInit {
     this.createQuestionForm();
   }
   async getUser() {
-    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+    this.user = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
   getCategories() {
     this.categoryService.getall().subscribe(response => {
