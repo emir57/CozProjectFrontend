@@ -32,7 +32,7 @@ export class QuestionsPage implements OnInit {
     this.getCategories();
   }
   async getUser() {
-    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+    this.user = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
 
   async getCategories() {
@@ -44,8 +44,8 @@ export class QuestionsPage implements OnInit {
         await this.loadingService.closeLoading();
       }
     }, async responseErr => {
-      await this.storageService.removeName(KeyType.Token);
-      await this.storageService.removeName(KeyType.User);
+      await this.storageService.removeValue(KeyType.Token);
+      await this.storageService.removeValue(KeyType.User);
       await this.loadingService.closeLoading();
       this.messageService.showMessage("Bir hata oluştu lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
       this.router.navigateByUrl("/login");
