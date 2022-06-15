@@ -40,7 +40,7 @@ export class SettingsPage implements OnInit {
 
   async logout() {
     this.alertService.showAlertConfirm("Çıkış yapmak istediğinizden eminmisiniz", "Çıkış",
-      (cancel) => { console.log("cancel") },
+      (cancel) => { },
       async (ok) => {
         await this.authService.logout();
       })
