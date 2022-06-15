@@ -26,7 +26,7 @@ export class QuestionComponent implements OnInit {
   }
 
   async getUser() {
-    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+    this.user = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
 
   checkCompleteDiv(category: CategoryModel) {
