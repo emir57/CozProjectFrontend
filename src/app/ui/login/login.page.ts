@@ -46,8 +46,8 @@ export class LoginPage implements OnInit {
     })
   }
   async checkStorage() {
-    const user = await this.storageService.checkName(KeyType.User);
-    const token = await this.storageService.checkName(KeyType.Token);
+    const user = await this.storageService.getValue(KeyType.User);
+    const token = await this.storageService.getValue(KeyType.Token);
     if (user && token) {
       this.router.navigateByUrl("/home/questions")
     }
@@ -103,8 +103,8 @@ export class LoginPage implements OnInit {
   async checkToken() {
     try {
       if (!this.token && !this.user) {
-        this.token = JSON.parse(await this.storageService.checkValue(KeyType.Token));
-        this.user = JSON.parse(await this.storageService.checkValue(KeyType.User));
+        this.token = JSON.parse(await this.storageService.getValue(KeyType.Token));
+        this.user = JSON.parse(await this.storageService.getValue(KeyType.User));
         throw new Error;
       } else {
         setTimeout(() => {
