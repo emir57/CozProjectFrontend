@@ -21,8 +21,8 @@ export class IsLoginGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const subject = new Subject<boolean>();
-    const token = this.storageService.checkName(KeyType.Token)
-    const user = this.storageService.checkName(KeyType.User)
+    const token = this.storageService.getValue(KeyType.Token)
+    const user = this.storageService.getValue(KeyType.User)
     user.then(userValue => {
       token.then((tokenValue) => {
         if (userValue && tokenValue) {
