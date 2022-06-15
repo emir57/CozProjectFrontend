@@ -26,6 +26,11 @@ export class RoleService {
     this.getUserRoles();
   }
 
+  setRolesFalse() {
+    this.isTeacher = false;
+    this.isAdmin = false;
+  }
+
   async getUserRoles() {
     this.loadingService.showLoading("İşlemler yapılıyor lütfen bekleyiniz.")
     const user: LoginedUser = JSON.parse(await this.storageService.getValue(KeyType.User))
