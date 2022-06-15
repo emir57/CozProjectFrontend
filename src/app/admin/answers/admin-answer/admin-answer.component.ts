@@ -28,7 +28,7 @@ export class AdminAnswerComponent implements OnInit {
   }
 
   async getUser() {
-    this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+    this.user = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
 
   async goQuestionPage(answer: AnswerModel) {
