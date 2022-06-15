@@ -27,7 +27,6 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPage,
-    canActivate: [CheckAdminRoleGuard, CheckTeacherRoleGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
   },
   {
