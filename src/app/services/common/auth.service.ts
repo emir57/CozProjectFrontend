@@ -45,6 +45,10 @@ export class AuthService {
   }
 
   async logout() {
-
+    this.setIsLogin(false);
+    await this.storageService.removeValue(KeyType.Token);
+    await this.storageService.removeValue(KeyType.User);
+    this.router.navigateByUrl("/login")
+    this.messageService.showMessage("Çıkış Başarılı", { iconType: SweetIconType.Success })
   }
 }
