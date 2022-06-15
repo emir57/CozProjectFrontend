@@ -60,8 +60,8 @@ export class LoginPage implements OnInit {
       let loginModel = this.loginForm.value;
       this.authService.login(loginModel).subscribe(async response => {
         if (response.success) {
-          this.storageService.setName(KeyType.Token, response.data.token);
-          this.storageService.setName(KeyType.User, response.data.user);
+          this.storageService.setValue(KeyType.Token, response.data.token);
+          this.storageService.setValue(KeyType.User, response.data.user);
           this.authService.setIsLogin(true);
           this.isOk = true;
           await this.roleService.getUserRoles();
@@ -103,8 +103,8 @@ export class LoginPage implements OnInit {
   async checkToken() {
     try {
       if (!this.token && !this.user) {
-        this.token = JSON.parse(await this.storageService.checkName(KeyType.Token));
-        this.user = JSON.parse(await this.storageService.checkName(KeyType.User));
+        this.token = JSON.parse(await this.storageService.checkValue(KeyType.Token));
+        this.user = JSON.parse(await this.storageService.checkValue(KeyType.User));
         throw new Error;
       } else {
         setTimeout(() => {

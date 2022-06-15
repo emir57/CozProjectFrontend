@@ -21,7 +21,7 @@ export class StorageService {
     })
   }
 
-  async checkValue(key: KeyType) {
+  async getValue(key: KeyType) {
     const { value } = await Storage.get({ key: key });
     return await value;
   }
