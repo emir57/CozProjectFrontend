@@ -18,7 +18,7 @@ export class HttpInterceptorService implements HttpInterceptor {
   }
 
   async handle(req: HttpRequest<unknown>, next: HttpHandler) {
-    this.tokenModel = JSON.parse(await this.storageService.checkName(KeyType.Token));
+    this.tokenModel = JSON.parse(await this.storageService.getValue(KeyType.Token));
     if (!this.tokenModel) {
       return next.handle(req).toPromise();
     }
