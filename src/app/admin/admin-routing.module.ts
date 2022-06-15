@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'category-save',
-    canActivate: [IsLoginGuard, CheckAdminAndTeacherGuard],
+    canActivate: [IsLoginGuard, CheckAdminRoleGuard],
     loadChildren: () => import('./category-save/category-save.module').then(m => m.CategorySavePageModule)
   },
   {
