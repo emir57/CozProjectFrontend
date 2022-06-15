@@ -29,7 +29,7 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     this.createSaveForm();
     this.createResetPasswordForm();
-    this.currentUser = JSON.parse(await this.storageService.checkName(KeyType.User));
+    this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
   createSaveForm() {
     this.saveForm = this.formBuilder.group({
@@ -59,8 +59,8 @@ export class ProfilePage implements OnInit {
         }, async (response) => {
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
           this.isOk = true;
-          await this.storageService.setName(KeyType.User, this.currentUser);
-          this.currentUser = JSON.parse(await this.storageService.checkName(KeyType.User));
+          await this.storageService.setValue(KeyType.User, this.currentUser);
+          this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
         })
     }
   }
