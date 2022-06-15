@@ -43,8 +43,8 @@ export class SettingsPage implements OnInit {
       (cancel) => { console.log("cancel") },
       async (ok) => {
         this.authService.setIsLogin(false);
-        await this.storageService.removeName(KeyType.Token);
-        await this.storageService.removeName(KeyType.User);
+        await this.storageService.removeValue(KeyType.Token);
+        await this.storageService.removeValue(KeyType.User);
         this.router.navigateByUrl("/login")
         this.messageService.showMessage("Çıkış Başarılı", { iconType: SweetIconType.Success })
       })
