@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AdminPage } from './admin/admin.page';
+import { CheckAdminRoleGuard } from './guards/check-admin-role.guard';
+import { CheckTeacherRoleGuard } from './guards/check-teacher-role-guard';
 import { HomePage } from './ui/home/home.page';
 
 const routes: Routes = [
@@ -25,11 +27,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPage,
+    canActivate: [CheckAdminRoleGuard, CheckTeacherRoleGuard],
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule)
   },
   {
     path: 'question',
-    loadChildren: () => import('./question/question.module').then( m => m.QuestionPageModule)
+    loadChildren: () => import('./question/question.module').then(m => m.QuestionPageModule)
   }
 ];
 
