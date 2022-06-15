@@ -43,4 +43,8 @@ export class AuthService {
     let newUrl = `${this.baseUrl}api/auth/register`;
     return this.http.post<ResponseSingleModel<LoginedUser>>(newUrl, registerModel);
   }
+
+  async logout() {
+
+  }
 }
