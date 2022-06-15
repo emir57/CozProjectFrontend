@@ -8,26 +8,26 @@ export class StorageService {
 
   constructor() { }
 
-  async setName(key: KeyType, value: any) {
+  async setValue(key: KeyType, value: any) {
     await Storage.set({
       key: key,
       value: JSON.stringify(value)
     });
   }
 
-  async removeName(key: KeyType) {
+  async removeValue(key: KeyType) {
     await Storage.remove({
       key: key
     })
   }
 
-  async checkName(key: KeyType) {
+  async checkValue(key: KeyType) {
     const { value } = await Storage.get({ key: key });
     return await value;
   }
 }
 
 export enum KeyType {
-  User = "user",
-  Token = "token"
+  User = "cozproject.user",
+  Token = "cozproject.token"
 }
