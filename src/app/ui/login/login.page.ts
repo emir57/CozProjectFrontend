@@ -5,6 +5,7 @@ import LoginedUser from 'src/app/models/auth/loginedUserModel';
 import TokenModel from 'src/app/models/auth/tokenModel';
 import { AuthService } from 'src/app/services/common/auth.service';
 import { LoadingService } from 'src/app/services/common/loading.service';
+import { RoleService } from 'src/app/services/common/role.service';
 import { KeyType, StorageService } from 'src/app/services/common/storage.service';
 import { SweetalertService, SweetIconType } from 'src/app/services/common/sweetalert.service';
 
@@ -25,7 +26,8 @@ export class LoginPage implements OnInit {
     private messageService: SweetalertService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private roleService: RoleService
   ) { }
   ngOnInit() {
     this.checkStorage();
@@ -62,6 +64,7 @@ export class LoginPage implements OnInit {
           this.storageService.setName(KeyType.User, response.data.user);
           this.authService.setIsLogin(true);
           this.isOk = true;
+          await this.roleService.getUserRoles();
           await this.loadingService.closeLoading();
           this.messageService.showMessage("Giriş Başarılı Anasayfaya Yönlendiriliyorsunuz", { iconType: SweetIconType.Success });
           await this.checkToken();
