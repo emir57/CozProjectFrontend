@@ -28,7 +28,7 @@ export class RoleService {
 
   async getUserRoles() {
     this.loadingService.showLoading("İşlemler yapılıyor lütfen bekleyiniz.")
-    const user: LoginedUser = JSON.parse(await this.storageService.checkName(KeyType.User))
+    const user: LoginedUser = JSON.parse(await this.storageService.getValue(KeyType.User))
     let url = `${this.baseUrl}api/users/getroles?userId=${user.id}`;
     this.http.get<string[]>(url).subscribe(async response => {
       response.forEach(role => {
@@ -43,8 +43,8 @@ export class RoleService {
     }, async responseErr => {
       this.messageService.showMessage("Bilinmeyen bir hata meydana geldi lütfen tekrar giriş yapınız", { iconType: SweetIconType.Warning })
       await this.loadingService.closeLoading();
-      await this.storageService.removeName(KeyType.Token);
-      await this.storageService.removeName(KeyType.User);
+      await this.storageService.removeValue(KeyType.Token);
+      await this.storageService.removeValue(KeyType.User);
       this.router.navigateByUrl("/login");
 
     })
