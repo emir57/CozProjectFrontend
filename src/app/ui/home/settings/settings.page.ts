@@ -42,11 +42,7 @@ export class SettingsPage implements OnInit {
     this.alertService.showAlertConfirm("Çıkış yapmak istediğinizden eminmisiniz", "Çıkış",
       (cancel) => { console.log("cancel") },
       async (ok) => {
-        this.authService.setIsLogin(false);
-        await this.storageService.removeValue(KeyType.Token);
-        await this.storageService.removeValue(KeyType.User);
-        this.router.navigateByUrl("/login")
-        this.messageService.showMessage("Çıkış Başarılı", { iconType: SweetIconType.Success })
+        await this.authService.logout();
       })
   }
 }
