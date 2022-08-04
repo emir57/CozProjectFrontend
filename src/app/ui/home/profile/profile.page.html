@@ -6,47 +6,11 @@
 
 <ion-content>
   <div id="container">
-    <form [formGroup]="saveForm" *ngIf="currentUser">
-      <h3>Bilgilerimi Düzenle</h3>
-      <ion-item>
-        <ion-label position="floating">Ad</ion-label>
-        <ion-input [(ngModel)]="currentUser.firstName" formControlName="firstName"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Soyad</ion-label>
-        <ion-input [(ngModel)]="currentUser.lastName" formControlName="lastName"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Şifre</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
-    </form>
-    <ion-button [disabled]="!isOk" [disabled]="!saveForm.valid" (click)="save()" expand="block">
-      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      &nbsp;Kaydet
+    <ion-button (click)="updateProfilePage()" expand="block">
+      Bilgilerimi Düzenle
     </ion-button>
-    <hr>
-    <form [formGroup]="resetPasswordForm">
-      <h3>Şifremi Sıfırla</h3>
-      <ion-item>
-        <ion-label position="floating">Eski Şifre</ion-label>
-        <ion-input type="password" formControlName="oldPassword"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Yeni Şifre</ion-label>
-        <ion-input type="password" formControlName="newPassword"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Yeni Şifre Tekrar</ion-label>
-        <ion-input type="password" formControlName="newRePassword"></ion-input>
-      </ion-item>
-      <small class="text-danger" *ngIf="(resetPasswordForm.hasError('notSame'))">
-        <div>Şifreler uyuşmuyor</div>
-      </small>
-    </form>
-    <ion-button [disabled]="!isOk" [disabled]="!resetPasswordForm.valid" (click)="resetPassword()" expand="block">
-      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-      &nbsp;Sıfırla
+    <ion-button (click)="resetPasswordPage()" expand="block">
+      Şifremi Sıfırla
     </ion-button>
   </div>
 </ion-content>

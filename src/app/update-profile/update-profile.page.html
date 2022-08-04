@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>updateProfile</ion-title>
+    <ion-title>Bilgilerimi Güncelle</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div id="container">
+    <form [formGroup]="saveForm" *ngIf="currentUser">
+      <h3>Bilgilerimi Düzenle</h3>
+      <ion-item>
+        <ion-label position="floating">Ad</ion-label>
+        <ion-input [(ngModel)]="currentUser.firstName" formControlName="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Soyad</ion-label>
+        <ion-input [(ngModel)]="currentUser.lastName" formControlName="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Şifre</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    </form>
+    <ion-button [disabled]="!isOk" [disabled]="!saveForm.valid" (click)="save()" expand="block">
+      <span *ngIf="!isOk" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      &nbsp;Kaydet
+    </ion-button>
+  </div>
 </ion-content>

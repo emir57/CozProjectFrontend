@@ -85,4 +85,10 @@ export class ProfilePage implements OnInit {
     let repassword = group.get("newRePassword").value;
     return password === repassword ? null : { notSame: true };
   }
+  updateProfilePage() {
+
+  }
+  resetPasswordPage() {
+
+  }
 }
