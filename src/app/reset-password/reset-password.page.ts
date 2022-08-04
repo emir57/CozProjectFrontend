@@ -50,6 +50,7 @@ export class ResetPasswordPage implements OnInit {
         }, (response) => {
           this.isOk = true;
           this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
+          this.close();
         })
     }
   }

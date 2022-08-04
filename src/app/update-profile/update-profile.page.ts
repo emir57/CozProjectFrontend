@@ -52,6 +52,7 @@ export class UpdateProfilePage implements OnInit {
           this.isOk = true;
           await this.storageService.setValue(KeyType.User, this.currentUser);
           this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
+          this.close();
         })
     }
   }
