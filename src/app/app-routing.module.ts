@@ -34,6 +34,14 @@ const routes: Routes = [
   {
     path: 'question',
     loadChildren: () => import('./question/question.module').then(m => m.QuestionPageModule)
+  },
+  {
+    path: 'reset-password',
+    loadChildren: () => import('./reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
+  },
+  {
+    path: 'update-profile',
+    loadChildren: () => import('./update-profile/update-profile.module').then( m => m.UpdateProfilePageModule)
   }
 ];
 
