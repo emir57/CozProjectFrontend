@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 import { User } from '../models/tables/user';
 import { UserResetPasswordModel } from '../models/tables/userResetPasswordModel';
 import { KeyType, StorageService } from '../services/common/storage.service';
@@ -20,7 +21,8 @@ export class ResetPasswordPage implements OnInit {
     private messageService: SweetalertService,
     private storageService: StorageService,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
@@ -56,6 +58,10 @@ export class ResetPasswordPage implements OnInit {
     let password = group.get("newPassword").value;
     let repassword = group.get("newRePassword").value;
     return password === repassword ? null : { notSame: true };
+  }
+
+  async close() {
+    await this.modalController.dismiss();
   }
 
 }

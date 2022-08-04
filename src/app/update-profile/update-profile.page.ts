@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
 import { UpdateUserModel } from '../models/tables/updateUserModel';
 import { User } from '../models/tables/user';
 import { KeyType, StorageService } from '../services/common/storage.service';
@@ -20,7 +21,8 @@ export class UpdateProfilePage implements OnInit {
     private formBuilder: FormBuilder,
     private storageService: StorageService,
     private messageService: SweetalertService,
-    private userService: UserService
+    private userService: UserService,
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
@@ -52,6 +54,10 @@ export class UpdateProfilePage implements OnInit {
           this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
         })
     }
+  }
+
+  async close() {
+    await this.modalController.dismiss();
   }
 
 }
