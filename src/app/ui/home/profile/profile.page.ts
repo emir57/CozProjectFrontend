@@ -27,17 +27,10 @@ export class ProfilePage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.createSaveForm();
     this.createResetPasswordForm();
     this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
   }
-  createSaveForm() {
-    this.saveForm = this.formBuilder.group({
-      firstName: ["", [Validators.required, Validators.maxLength(20)]],
-      lastName: ["", [Validators.required, Validators.maxLength(30)]],
-      password: ["", [Validators.required, Validators.minLength(5)]]
-    })
-  }
+
   createResetPasswordForm() {
     this.resetPasswordForm = this.formBuilder.group({
       oldPassword: ["", [Validators.required, Validators.minLength(5)]],
@@ -46,24 +39,6 @@ export class ProfilePage implements OnInit {
     }, { validators: this.checkpassword })
   }
 
-
-  save() {
-    if (this.saveForm.valid) {
-      this.isOk = false;
-      let updateUser: UpdateUserModel = this.saveForm.value;
-      updateUser.email = this.currentUser.email;
-      this.userService.updateProfile(updateUser,
-        (responseErr) => {
-          this.messageService.showMessage(responseErr.error.message, { iconType: SweetIconType.Error });
-          this.isOk = true;
-        }, async (response) => {
-          this.messageService.showMessage(response.message, { iconType: SweetIconType.Success });
-          this.isOk = true;
-          await this.storageService.setValue(KeyType.User, this.currentUser);
-          this.currentUser = JSON.parse(await this.storageService.getValue(KeyType.User));
-        })
-    }
-  }
   resetPassword() {
     if (this.resetPasswordForm.valid) {
       this.isOk = false;
