@@ -20,7 +20,7 @@ import { HttpInterceptorService } from './interceptors/http-interceptor.service'
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: "baseUrl", useValue: "https://daf4-78-166-36-77.eu.ngrok.io/" }, //https://localhost:44379/
+    { provide: "baseUrl", useValue: "https://localhost:44379/" },
     { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent],

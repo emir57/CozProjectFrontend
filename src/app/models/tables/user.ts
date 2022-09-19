@@ -3,10 +3,8 @@ export interface User {
   firstName: string;
   lastName: string;
   email: string;
-  emailConfirmed: boolean;
   score: number;
   profilePhotoUrl: string;
   createdDate: string;
   updatedDate: string;
-  deletedDate: string;
 }
