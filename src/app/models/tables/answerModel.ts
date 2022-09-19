@@ -4,10 +4,9 @@ import { QuestionModel } from "./questionModel";
 export interface AnswerModel {
   id?: number;
   questionId?: number;
+  question?: QuestionModel
   content?: string;
   isTrue?: boolean;
   createdDate?: string;
   updatedDate?: string;
-  deletedDate?: string;
-  question?: QuestionModel
 }
