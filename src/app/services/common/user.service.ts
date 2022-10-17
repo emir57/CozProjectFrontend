@@ -21,7 +21,7 @@ export class UserService {
   ) { }
 
   getAll(successCallback: (users: User[]) => void, errorCallBack: (err: any) => void) {
-    let url = `${this.baseUrl}api/users/getall`;
+    let url = `${this.baseUrl}api/users`;
     this.http.get<ResponseListModel<User>>(url).subscribe(response => {
       if (response.success) {
         successCallback(response.data);
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   getById(userId: number) {
-    let newUrl = `${this.baseUrl}api/users/getbyid?userId=${userId}`;
+    let newUrl = `${this.baseUrl}api/users/${userId}`;
     return this.http.get<ResponseSingleModel<UpdateUserAdmin>>(newUrl);
   }
   updateUserAdmin(user: UpdateUserAdmin) {
